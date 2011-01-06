@@ -8,5 +8,4 @@ Rails developers can use the ActiveResource helper file found in this gem.  Refe
 
 Copyright (c) 2011 New Relic, Inc.
 
-Do not redistribute without permission.
 
