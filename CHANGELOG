@@ -1,0 +1,4 @@
+1.0.0
+  - Initial versioning of the API
+  - Added tests pointing at integration.newrelic.com
+  

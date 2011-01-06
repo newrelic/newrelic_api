@@ -1,0 +1,12 @@
+= New Relic REST API
+
+This gem contains the documentation and examples for using the New Relic REST API for RPM customers.
+
+Rails developers can use the ActiveResource helper file found in this gem.  Refer to the gem rdocs.
+
+== Copyright
+
+Copyright (c) 2011 New Relic, Inc.
+
+Do not redistribute without permission.
+
