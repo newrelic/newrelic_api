@@ -6,11 +6,11 @@ require 'new_relic_api'
 class NewrelicApiTest < ActiveSupport::TestCase  
   
   def setup
-=begin    
     NewRelicApi.host = 'integration.newrelic.com'
-=end
+=begin    
     NewRelicApi.host = 'localhost'
     NewRelicApi.port = 3000
+=end
     NewRelicApi.license_key = '8022da2f6d143de67e056741262a054547b43479'
     NewRelicApi.reset!
   end
