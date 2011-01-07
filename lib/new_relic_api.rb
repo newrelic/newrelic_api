@@ -6,13 +6,12 @@ require 'active_resource_associations'
 #
 # Can also be used as a script using script/runner.
 #
-# In this version of the api, authentication is handled using your agent license key.  In subsequent versions
-# license key authorization will be supported but deprecated in favor of a generated api key.
-# The New Relic account associated with the license key must allow api access.
-# Log into RPM, click Account at the top of the page and check the "Make my account data accessible" checkbox.
+# In this version of the api, authentication is handled using your account API key, available in your Account settings
+# in http://rpm.newrelic.com.  
+# Log in, click Account at the top of the page and check the "Make my account data accessible" checkbox.  An
+# API key will appear.
 #
-# This API gem does not have any agent dependencies.  It can be used independent of the agent.  If the agent
-# is loaded, it will fall back to the license key specified in the newrelic.yml file. 
+# Refer to the README file for details and examples on the REST API.
 #
 # == Examples
 #
@@ -32,14 +31,7 @@ require 'active_resource_associations'
 module NewRelicApi
 
   class << self
-    attr_accessor :email, :password, :license_key, :ssl, :host, :port
-
-    # Sets up basic authentication credentials for all the resources.  This is not necessary if you are
-    # using agent license key authentication.
-    def authenticate(email, password)
-      @password = password
-      @email    = email
-    end
+    attr_accessor :api_key, :ssl, :host, :port
 
     # Resets the base path of all resources.  This should be called when overridding the newrelic.yml settings
     # using the ssl, host or port accessors.
@@ -63,9 +55,8 @@ module NewRelicApi
       end
 
       def headers
-        h = {'x-license-key' => NewRelicApi.license_key || NewRelic::Control.instance['license_key']}
-        h['Authorization'] = 'Basic ' + ["#{NewRelicApi.email}:#{NewRelicApi.password}"].pack('m').delete("\r\n") if NewRelicApi.email
-        h
+        raise "api_key required" unless NewRelicApi.api_key
+        {'x-api-key' => NewRelicApi.api_key}
       end
 
       def site_url

@@ -11,7 +11,7 @@ class NewrelicApiTest < ActiveSupport::TestCase
     NewRelicApi.host = 'localhost'
     NewRelicApi.port = 3000
 =end
-    NewRelicApi.license_key = '8022da2f6d143de67e056741262a054547b43479'
+    NewRelicApi.api_key = '8022da2f6d143de67e056741262a054547b43479'
     NewRelicApi.reset!
   end
   

@@ -9,27 +9,26 @@ New Relic supports a RESTful API that can be used to list applications within a 
 
 == Authentication
 
-New Relic supports a key-based authentication mechanism. The key is the license key associated with an account (supplied in the account creation email and available on the Account Settings page in RPM). This key should be passed as a request header with each request. All API calls described in this document require authentication.
+New Relic supports an api key-based authentication mechanism. The key is the api key associated with an account and can be obtained using the RPM Account settings for Integrations.  This key should be passed as a request header with each request. All API calls described in this document require authentication.
 
-API requests require HTTPS in order to ensure the license key cannot be easily read by a third party.
+API requests require HTTPS in order to ensure the API key cannot be easily read by a third party.
 
 === Request Headers
 
-[x-license-key]       License key of account, used for authentication (required)
+[x-api-key]       API key for account, used for authentication (required)
 
 === ActiveResource authentication under Rails
-When using the agent's ActiveResource wrapper, by default the license key from the <tt>config/newrelic.yml</tt> file will be used. Optionally an alternate key can be specified by setting the following static field:
 
-    NewRelicApi.license_key = '<license key>'
+    NewRelicApi.api_key = '<api key>'
 
 == ActiveResource API
+
 The New Relic ActiveResource-based API can be found in the +lib+ directory of the New Relic Ruby agent (version 2.8.0+).  The file is named +new_relic_api.rb+.  If you are using ActiveResource to access our API you can focus on the documentation and examples contained within that Ruby file. 
 
 The remainder of this document will describe our XML API.
 == View applications
 
-[URL]            <code>https://rpm.newrelic.com/accounts/:account_id/applications.xml</code>  Replace <tt>:account_id</tt> with the account ID. If using license key authentication, this account ID will be ignored (but some value must still be given).
-         
+[URL]            <code>https://rpm.newrelic.com/accounts/:account_id/applications.xml</code>  Replace <tt>:account_id</tt> with the account ID.
 
 [Method]         GET
 
@@ -55,9 +54,10 @@ Sample data:
 
 === Possible Error Conditions
 
-* Invalid License Key (500)
+* Invalid API Key (403)
 
 == Application Summary Metrics
+
 Fetch summary metrics and threshold values (traffic light information) for one application.
 
 [URL]  <code>https://rpm.newrelic.com/accounts/:account_id/applications/:app_id/threshold_values.xml</code>   Replace <tt>:account_id</tt> and <tt>:app_id</tt> with the account and application IDs.
@@ -85,7 +85,7 @@ Sample data:
 
 === Possible Error Conditions
 
-* Invalid License Key (500)
+* Invalid API Key (403)
 * Unknown Application (404)
 
 == Application Summary Metrics (All applications)
@@ -128,11 +128,11 @@ Sample data:
 
 === Possible Error Conditions
 
-* Invalid License Key (500)
+* Invalid API Key (403)
 
 == Dashboard HTML fragment (All applications)
 
-New Relic provides an HTML fragment of the {dashboard view}[https://rpm.newrelic.com/v2] of RPM. CSS styles are included, and images linked absolutely, which enables callers to embed the response directly in their applications. Authentication is through setting the appropriate license key header as outlined above, or through the regular login cookie. When using the regular login cookie, the logged-in user's default account's applications will be shown.
+New Relic provides an HTML fragment of the {dashboard view}[https://rpm.newrelic.com/v2] of RPM. CSS styles are included, and images linked absolutely, which enables callers to embed the response directly in their applications. Authentication is through setting the appropriate API key header as outlined above, or through the regular login cookie. When using the regular login cookie, the logged-in user's default account's applications will be shown.
 
 [URL]    <code>https://rpm.newrelic.com/application_dashboard</code>
 
@@ -226,7 +226,7 @@ Sample data:
 
 === Possible Error Conditions
 
-* Invalid License Key (500)
+* Invalid API Key (403)
 
 == Dashboard HTML fragment (One application)
 
@@ -325,13 +325,17 @@ Sample data:
 
 === Possible Error Conditions
 
-* Invalid License Key (500)
+* Invalid API Key (403)
 * Unknown Application (404)
 
 
 == Deployment Notifications
 
-[URL]  <code>https://rpm.newrelic.com/deployments.xml</code>
+Unlike other API requests, the deployments API will accept either a license key or an API key in the +api-key+ header.  Furthermore, when 
+using the license key, you do not need to enable the API in the account settings.  This is the standard mechanism used by the agent to upload
+deployments from the built in capistrano recipes.
+
+[URL]      <code>https://rpm.newrelic.com/deployments.xml</code>
 
 [Method]   POST
 
@@ -346,13 +350,14 @@ Sample data:
 The optional fields may be set to anything you wish, and are not validated. For example, you could set the <tt>user</tt> to <tt>"auto deployment script"</tt>.
 
 === Example
+
 Here's an example using <tt>curl</tt>:
 
-    curl -H "x-license-key:YOUR_LICENSE_KEY_HERE" -d "deployment[application_id]=iMyFace.ly Production" https://rpm.newrelic.com/deployments.xml
+    curl -H "x-api-key:YOUR_LICENSE_KEY_HERE" -d "deployment[application_id]=iMyFace.ly Production" https://rpm.newrelic.com/deployments.xml
   
 If you were to specify the optional <tt>host</tt>, <tt>description</tt>, <tt>changelog</tt> and <tt>user</tt> fields, the command would look like this:
   
-    curl -H "x-license-key:YOUR_LICENSE_KEY_HERE" -d "deployment[application_id]=iMyFace.ly Production" -d "deployment[host]=localhost" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://rpm.newrelic.com/deployments.xml
+    curl -H "x-api-key:YOUR_LICENSE_KEY_HERE" -d "deployment[application_id]=iMyFace.ly Production" -d "deployment[host]=localhost" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://rpm.newrelic.com/deployments.xml
 
 
 == Copyright
