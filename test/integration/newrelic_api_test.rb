@@ -23,7 +23,7 @@ class NewrelicApiTest < ActiveSupport::TestCase
   end
 
   def test_account_show
-    nr_account = NewRelicApi::Account.find(1)
+    nr_account = NewRelicApi::Account.find(identify('gold'))
     assert_not_nil nr_account
   end
 
