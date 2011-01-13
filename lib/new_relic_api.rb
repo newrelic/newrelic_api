@@ -164,8 +164,8 @@ module NewRelicApi
   #
   # Find Accounts
   #
-  #   NewRelicApi::Account.find(:all) # find all accounts for the current user.
-  #   NewRelicApi::Account.find(44)   # find individual account by ID
+  #   NewRelicApi::Account.find(:first) # find account associated with the api key
+  #   NewRelicApi::Account.find(44)     # find individual account by ID
   #
   class Account < BaseResource
     has_many :applications

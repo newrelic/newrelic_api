@@ -26,13 +26,17 @@ API requests require HTTPS in order to ensure the API key cannot be easily read 
 The New Relic ActiveResource-based API can be found in the +lib+ directory of the New Relic Ruby agent (version 2.8.0+).  The file is named +new_relic_api.rb+.  If you are using ActiveResource to access our API you can focus on the documentation and examples contained within that Ruby file. 
 
 The remainder of this document will describe our XML API.
+
 == View applications
 
-[URL]            <code>https://rpm.newrelic.com/accounts/:account_id/applications.xml</code>  Replace <tt>:account_id</tt> with the account ID.
+[URL]            <code>https://rpm.newrelic.com/accounts/:account_id/applications.xml</code>  
 
 [Method]         GET
 
 [Restrictions]   None
+
+
+Replace <tt>:account_id</tt> with the your account number.  You can see this in the browser URL when you log in to rpm.newrelic.com.
 
 === Data Returned
 

@@ -15,6 +15,12 @@ class NewrelicApiTest < ActiveSupport::TestCase
     NewRelicApi.reset!
   end
   
+  def test_find_default
+    account = NewRelicApi::Account.find(:first)
+    assert_equal 'Gold', account.name
+    assert_equal identify("gold"), account.id.to_i
+  end
+  
   def test_account_find
     accounts = NewRelicApi::Account.find(:all)
     assert_equal 1, accounts.length
@@ -39,7 +45,7 @@ class NewrelicApiTest < ActiveSupport::TestCase
     assert_raises ActiveResource::Redirection do
       account.applications(9999)
     end
-    
+
     ui_app = account.applications(identify('gold_cluster'))
     threshold_values = ui_app.threshold_values
     assert_equal 9, threshold_values.length
