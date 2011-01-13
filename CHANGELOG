@@ -1,4 +1,8 @@
 1.0.0
   - Initial versioning of the API
   - Added tests pointing at integration.newrelic.com
+1.1.0
+  - Remove support for license key authentication; using api_key
+1.1.1
+  - Fixes for Ruby 1.9.1 support
   
