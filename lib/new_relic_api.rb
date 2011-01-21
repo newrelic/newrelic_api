@@ -198,9 +198,22 @@ module NewRelicApi
 
   # This model is used to mark production deployments in RPM
   # Only create is supported.
-  # ==Examples
-  #   # Creating a new deployment
-  #   NewRelicApi::Deployment.create
+  # == Options
+  # 
+  # Exactly one of the following is required:
+  # * <tt>app_name</tt>: The value of app_name in the newrelic.yml file used by the application.  This may be different than the label that appears in the RPM UI.  You can find the app_name value in RPM by looking at the label settings for your application.
+  # * <tt>application_id</tt>: The application id, found in the URL when viewing the application in RPM.
+  #
+  # Following are optional parameters:
+  # * <tt>description</tt>: Text annotation for the deployment &mdash; notes for you
+  # * <tt>changelog</tt>: A list of changes for this deployment
+  # * <tt>user</tt>: The name of the user/process that triggered this deployment
+  #
+  # ==Example
+  #
+  #   NewRelicApi::Deployment.create :application_id => 11142007, :description => "Update production", :user => "Big Mike"
+  #
+  #   NewRelicApi::Deployment.create :app_name => "My Application", :description => "Update production", :user => "Big Mike"
   #
   class Deployment < BaseResource
   end

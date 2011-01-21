@@ -7,11 +7,12 @@ class NewrelicApiTest < ActiveSupport::TestCase
   
   def setup
     NewRelicApi.host = 'integration.newrelic.com'
+    NewRelicApi.api_key = '8022da2f6d143de67e056741262a054547b43479'
+    NewRelicApi.reset!
 =begin    
     NewRelicApi.host = 'localhost'
     NewRelicApi.port = 3000
 =end
-    NewRelicApi.api_key = '8022da2f6d143de67e056741262a054547b43479'
     NewRelicApi.reset!
   end
   
@@ -56,6 +57,24 @@ class NewrelicApiTest < ActiveSupport::TestCase
     check_applications(account.applications)
   end
   
+  def test_deployments
+    # lookup an app by name
+    deployment = NewRelicApi::Deployment.create :appname => 'gold app'
+    assert deployment.valid?, deployment.inspect
+
+    # lookup an app by name
+    deployment = NewRelicApi::Deployment.create :application_id => 'gold app'
+    assert deployment.valid?, deployment.inspect
+    
+    # lookup by id won't work with appname
+    deployment = NewRelicApi::Deployment.create :appname => identify('gold_cluster')
+    assert !deployment.valid?, deployment.inspect
+
+    # lookup by id works with application_id
+    deployment = NewRelicApi::Deployment.create :application_id => identify('gold_cluster')
+    assert deployment.valid?, deployment.inspect
+  end
+  
   protected
   def check_applications(apps)
     app_names = apps.collect {|app| app.name}
@@ -67,7 +86,6 @@ class NewrelicApiTest < ActiveSupport::TestCase
       threshold_values = app.threshold_values
       
       assert_equal 9, threshold_values.length
-      puts threshold_values
       threshold_values.each do |val|
         assert [0, 1,2,3].include?(val.threshold_value), val.threshold_value
         assert ['Gray', 'Green', 'Yellow', 'Red'].include?(val.color_value), val.color_value

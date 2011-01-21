@@ -15,7 +15,7 @@ API requests require HTTPS in order to ensure the API key cannot be easily read 
 
 === Request Headers
 
-[x-api-key]       API key for account, used for authentication (required)
+x-api-key::   API key for account, used for authentication (required)
 
 === ActiveResource authentication under Rails
 
@@ -23,18 +23,17 @@ API requests require HTTPS in order to ensure the API key cannot be easily read 
 
 == ActiveResource API
 
-The New Relic ActiveResource-based API can be found in the +lib+ directory of the New Relic Ruby agent (version 2.8.0+).  The file is named +new_relic_api.rb+.  If you are using ActiveResource to access our API you can focus on the documentation and examples contained within that Ruby file. 
+The New Relic ActiveResource-based API helper is NewRelicApi.
+If you are using ActiveResource to access our API you can focus on the documentation and examples contained in the {Ruby Documentation}[link:NewRelicApi.html].
 
 The remainder of this document will describe our XML API.
 
 == View applications
 
-[URL]            <code>https://rpm.newrelic.com/accounts/:account_id/applications.xml</code>  
-
-[Method]         GET
-
-[Restrictions]   None
-
+URL::            <code>https://rpm.newrelic.com/accounts/:account_id/applications.xml</code>  
+Method::         GET
+Restrictions::   None
+Active Resource Helper  ::  {NewRelicApi::Account}[link:NewRelicApi/Account.html]
 
 Replace <tt>:account_id</tt> with the your account number.  You can see this in the browser URL when you log in to rpm.newrelic.com.
 
@@ -64,11 +63,10 @@ Sample data:
 
 Fetch summary metrics and threshold values (traffic light information) for one application.
 
-[URL]  <code>https://rpm.newrelic.com/accounts/:account_id/applications/:app_id/threshold_values.xml</code>   Replace <tt>:account_id</tt> and <tt>:app_id</tt> with the account and application IDs.
-
-[Method]    GET
-
-[Restrictions]   This API should be called at most once per minute
+URL::  <code>https://rpm.newrelic.com/accounts/:account_id/applications/:app_id/threshold_values.xml</code>   Replace <tt>:account_id</tt> and <tt>:app_id</tt> with the account and application IDs.
+Method::    GET
+Restrictions::   This API should be called at most once per minute
+Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.html]
 
 === Data Returned
 Note: Application Busy data will only be returned to Gold customers. Errors data will only be returned to Silver and Gold customers.
@@ -93,13 +91,13 @@ Sample data:
 * Unknown Application (404)
 
 == Application Summary Metrics (All applications)
+
 Fetch summary metrics and threshold values (traffic light information) for all applications.
 
-[URL]   <code>https://rpm.newrelic.com/accounts.xml?include=application_health</code>
-
-[Method]   GET
-
-[Restrictions]   This API should be called at most once per minute
+URL::   <code>https://rpm.newrelic.com/accounts.xml?include=application_health</code>
+Method::   GET
+Restrictions::   This API should be called at most once per minute
+Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.html]
 
 === Data Returned
 
@@ -136,13 +134,12 @@ Sample data:
 
 == Dashboard HTML fragment (All applications)
 
-New Relic provides an HTML fragment of the {dashboard view}[https://rpm.newrelic.com/v2] of RPM. CSS styles are included, and images linked absolutely, which enables callers to embed the response directly in their applications. Authentication is through setting the appropriate API key header as outlined above, or through the regular login cookie. When using the regular login cookie, the logged-in user's default account's applications will be shown.
+New Relic provides an HTML fragment of the {dashboard view}[https://rpm.newrelic.com] of RPM. CSS styles are included, and images linked absolutely, which enables callers to embed the response directly in their applications. Authentication is through setting the appropriate API key header as outlined above, or through the regular login cookie. When using the regular login cookie, the logged-in user's default account's applications will be shown.
 
-[URL]    <code>https://rpm.newrelic.com/application_dashboard</code>
-
-[Method]   GET
-
-[Restrictions]   This API should be called at most once per minute
+URL::    <code>https://rpm.newrelic.com/application_dashboard</code>
+Method::   GET
+Restrictions::   This API should be called at most once per minute
+Active Resource Helper::  None available currently
 
 === Data Returned
 
@@ -234,11 +231,10 @@ Sample data:
 
 == Dashboard HTML fragment (One application)
 
-[URL]   <code>https://rpm.newrelic.com/application_dashboard?application_id=:id</code>   Replace <tt>:id</tt> with application ID.
-
-[Method]   GET
-
-[Restrictions]   This API should be called at most once per minute
+URL::   <code>https://rpm.newrelic.com/application_dashboard?application_id=:id</code>   Replace <tt>:id</tt> with application ID.
+Method::   GET
+Restrictions::   This API should be called at most once per minute
+Active Resource Helper::  None available currently
 
 === Request Parameters
 
@@ -332,21 +328,23 @@ Sample data:
 * Invalid API Key (403)
 * Unknown Application (404)
 
-
 == Deployment Notifications
 
 Unlike other API requests, the deployments API will accept either a license key or an API key in the +api-key+ header.  Furthermore, when 
 using the license key, you do not need to enable the API in the account settings.  This is the standard mechanism used by the agent to upload
 deployments from the built in capistrano recipes.
 
-[URL]      <code>https://rpm.newrelic.com/deployments.xml</code>
-
-[Method]   POST
+URL::      <code>https://rpm.newrelic.com/deployments.xml</code>
+Method::   POST
+Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Deployment.html]
 
 === Request Parameters
 
-* <tt>deployment[application_id]</tt>: *Required.*  The name of the application, as RPM knows it.
-* <tt>deployment[host]</tt>: Name of the server(s) deployed to
+Exactly one of the following is required:
+* <tt>deployment[app_name]</tt>: The value of app_name in the newrelic.yml file used by the application.  This may be different than the label that appears in the RPM UI.  You can find the app_name value in RPM by looking at the label settings for your application.
+* <tt>deployment[application_id]</tt>: The application id, found in the URL when viewing the application in RPM.
+
+Following are optional parameters:
 * <tt>deployment[description]</tt>: Text annotation for the deployment &mdash; notes for you
 * <tt>deployment[changelog]</tt>: A list of changes for this deployment
 * <tt>deployment[user]</tt>: The name of the user/process that triggered this deployment
@@ -357,15 +355,13 @@ The optional fields may be set to anything you wish, and are not validated. For 
 
 Here's an example using <tt>curl</tt>:
 
-    curl -H "x-api-key:YOUR_LICENSE_KEY_HERE" -d "deployment[application_id]=iMyFace.ly Production" https://rpm.newrelic.com/deployments.xml
+    curl -H "x-api-key:YOUR_LICENSE_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" https://rpm.newrelic.com/deployments.xml
   
-If you were to specify the optional <tt>host</tt>, <tt>description</tt>, <tt>changelog</tt> and <tt>user</tt> fields, the command would look like this:
+If you were to specify the optional <tt>description</tt>, <tt>changelog</tt> and <tt>user</tt> fields, the command would look like this:
   
-    curl -H "x-api-key:YOUR_LICENSE_KEY_HERE" -d "deployment[application_id]=iMyFace.ly Production" -d "deployment[host]=localhost" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://rpm.newrelic.com/deployments.xml
-
+    curl -H "x-api-key:YOUR_LICENSE_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://rpm.newrelic.com/deployments.xml
 
 == Copyright
 
 Copyright (c) 2011 New Relic, Inc.
-
 
