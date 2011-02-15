@@ -40,6 +40,11 @@ GEM
       bundler (~> 1.0.0)
       git (>= 1.2.5)
       rake
+    little-plugger (1.1.2)
+    lockfile (1.4.3)
+    logging (1.2.3)
+      little-plugger (>= 1.1.1)
+      lockfile (>= 1.4.3)
     mail (2.2.14)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -82,6 +87,7 @@ DEPENDENCIES
   bundler (~> 1.0.0)
   ci_reporter (= 1.6.0)
   jeweler (~> 1.5.2)
+  logging
   rails (= 3.0.3)
   rcov
   rdiscount
