@@ -1,0 +1,321 @@
+# Logfile created on Fri Feb 11 17:16:49 -0800 2011 by logger.rb
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (244.4ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (44415.7ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (251.9ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (250.7ms)
+GET http://integration.newrelic.com:80/accounts/128523602.xml
+--> 200 OK 906 (283.3ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (601.5ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (820.6ms)
+GET http://integration.newrelic.com:80/accounts/128523602.xml
+--> 200 OK 906 (1490.8ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (1621.7ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (1177.3ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (1161.6ms)
+GET http://integration.newrelic.com:80/accounts/128523602.xml
+--> 200 OK 906 (175.3ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (177.0ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (256.7ms)
+GET http://integration.newrelic.com:80/accounts.xml?include=application_health
+--> 200 OK 2207 (195.3ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (241.8ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (280.0ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (148.9ms)
+GET http://localhost:3000/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 907 (395.3ms)
+GET http://localhost:3000/accounts/1202265425/applications.xml
+--> 200 OK 280 (232.9ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729/threshold_values.xml
+--> 200 OK 1620 (276.5ms)
+GET http://localhost:3000/accounts/1202265425/applications/9999.xml
+--> 302 Moved Temporarily 120 (30.6ms)
+GET http://localhost:3000/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 907 (31.0ms)
+GET http://localhost:3000/accounts/1202265425/applications.xml
+--> 200 OK 280 (60.8ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729/threshold_values.xml
+--> 200 OK 1620 (45.5ms)
+GET http://localhost:3000/accounts/1202265425/applications/9999.xml
+--> 302 Moved Temporarily 120 (28.2ms)
+GET http://localhost:3000/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 907 (40.4ms)
+GET http://localhost:3000/accounts/1202265425/applications.xml
+--> 200 OK 280 (317.2ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729/threshold_values.xml
+--> 200 OK 1620 (42.5ms)
+GET http://localhost:3000/accounts/1202265425/applications/9999.xml
+--> 302 Moved Temporarily 120 (23.4ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729/threshold_values.xml
+--> 200 OK 1620 (43.0ms)
+POST http://localhost:3000/deployments.xml
+--> 201 Created 936 (175.1ms)
+POST http://localhost:3000/deployments.xml
+--> 201 Created 936 (297.5ms)
+POST http://localhost:3000/deployments.xml
+--> 201 Created 936 (60.3ms)
+POST http://localhost:3000/deployments.xml
+--> 201 Created 936 (52.0ms)
+POST http://localhost:3000/deployments.xml
+--> 201 Created 936 (60.3ms)
+GET http://localhost:3000/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 907 (240.1ms)
+GET http://localhost:3000/accounts/1202265425/applications.xml
+--> 200 OK 280 (67.5ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729/threshold_values.xml
+--> 200 OK 1620 (56.2ms)
+GET http://localhost:3000/accounts/1202265425/applications/9999.xml
+--> 302 Moved Temporarily 120 (30.8ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729.xml
+--> 200 OK 226 (43.8ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729/threshold_values.xml
+--> 200 OK 1620 (59.7ms)
+GET http://localhost:3000/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 907 (254.3ms)
+GET http://localhost:3000/accounts/1202265425/applications.xml
+--> 200 OK 280 (77.1ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729/threshold_values.xml
+--> 200 OK 1620 (51.4ms)
+GET http://localhost:3000/accounts/1202265425/applications/9999.xml
+--> 302 Moved Temporarily 120 (81.7ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729.xml
+--> 200 OK 226 (105.7ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729/threshold_values.xml
+--> 200 OK 1620 (57.2ms)
+GET http://localhost:3000/accounts.xml
+Could not log "request.active_resource" event. NoMethodError: undefined method `code' for nil:NilClass
+GET http://localhost:3000/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+Could not log "request.active_resource" event. NoMethodError: undefined method `code' for nil:NilClass
+GET http://localhost:3000/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+Could not log "request.active_resource" event. NoMethodError: undefined method `code' for nil:NilClass
+GET http://localhost:3000/accounts.xml?include=application_health
+Could not log "request.active_resource" event. NoMethodError: undefined method `code' for nil:NilClass
+POST http://localhost:3000/deployments.xml
+Could not log "request.active_resource" event. NoMethodError: undefined method `code' for nil:NilClass
+GET http://localhost:3000/accounts.xml
+Could not log "request.active_resource" event. NoMethodError: undefined method `code' for nil:NilClass
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (172.9ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (382.4ms)
+GET http://integration.newrelic.com:80/accounts/128523602.xml
+--> 200 OK 906 (145.6ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (155.2ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (250.5ms)
+GET http://integration.newrelic.com:80/accounts.xml?include=application_health
+--> 200 OK 2207 (174.4ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (245.6ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (234.7ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (162.6ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (588.4ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (143.8ms)
+GET http://localhost:3000/accounts.xml
+--> 200 OK 989 (346.6ms)
+GET http://localhost:3000/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 907 (23.0ms)
+GET http://localhost:3000/accounts/1202265425.xml
+--> 200 OK 907 (24.6ms)
+GET http://localhost:3000/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 907 (22.8ms)
+GET http://localhost:3000/accounts/1202265425/applications.xml
+--> 200 OK 280 (408.7ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729/threshold_values.xml
+--> 200 OK 1620 (58.6ms)
+GET http://localhost:3000/accounts/1202265425/applications/9999.xml
+--> 302 Moved Temporarily 120 (26.9ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729.xml
+--> 200 OK 226 (35.6ms)
+GET http://localhost:3000/accounts/1202265425/applications/1523073729/threshold_values.xml
+--> 200 OK 1620 (257.6ms)
+GET http://localhost:3000/accounts.xml?include=application_health
+--> 200 OK 2201 (60.1ms)
+POST http://localhost:3000/deployments.xml
+--> 201 Created 936 (76.5ms)
+POST http://localhost:3000/deployments.xml
+--> 201 Created 936 (325.7ms)
+GET http://localhost:3000/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 907 (20.6ms)
+GET http://localhost:3000/accounts/1202265425/applications.xml
+--> 200 OK 280 (68.9ms)
+POST http://localhost:3000/deployments.xml
+--> 422  114 (19.0ms)
+POST http://localhost:3000/deployments.xml
+--> 201 Created 936 (55.6ms)
+GET http://localhost:3000/accounts.xml
+--> 200 OK 989 (24.8ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (285.1ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (257.0ms)
+GET http://integration.newrelic.com:80/accounts/128523602.xml
+--> 200 OK 906 (273.9ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (275.1ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (374.0ms)
+GET http://integration.newrelic.com:80/accounts.xml?include=application_health
+--> 200 OK 2207 (299.1ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (358.3ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (326.9ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (401.3ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (313.5ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (248.3ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (545.6ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (155.5ms)
+GET http://integration.newrelic.com:80/accounts/128523602.xml
+--> 200 OK 906 (146.9ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (161.2ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (244.0ms)
+GET http://integration.newrelic.com:80/accounts.xml?include=application_health
+--> 200 OK 2207 (184.3ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (496.5ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (232.5ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (164.2ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (244.3ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (144.2ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (265.0ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (259.4ms)
+GET http://integration.newrelic.com:80/accounts/128523602.xml
+--> 200 OK 906 (300.5ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (249.2ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (371.5ms)
+GET http://integration.newrelic.com:80/accounts.xml?include=application_health
+--> 200 OK 2207 (682.6ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (369.8ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (355.6ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (253.9ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (359.0ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (261.5ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (256.3ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (247.9ms)
+GET http://integration.newrelic.com:80/accounts/128523602.xml
+--> 200 OK 906 (247.4ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (251.7ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (582.6ms)
+GET http://integration.newrelic.com:80/accounts.xml?include=application_health
+--> 200 OK 2207 (295.5ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (335.5ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (332.8ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (255.2ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 500 Internal Server Error 24068 (369.5ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (252.8ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (323.0ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (209.7ms)
+GET http://integration.newrelic.com:80/accounts/128523602.xml
+--> 200 OK 906 (225.1ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (211.3ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 200 OK 287 (317.6ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications/449331907/threshold_values.xml
+--> 200 OK 1620 (402.3ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications/9999.xml
+--> 302 Moved Temporarily 129 (206.3ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications/449331907.xml
+--> 200 OK 233 (224.4ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications/449331907/threshold_values.xml
+--> 200 OK 1620 (225.4ms)
+GET http://integration.newrelic.com:80/accounts.xml?include=application_health
+--> 200 OK 2207 (235.1ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (360.8ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (512.0ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (212.6ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 200 OK 287 (245.1ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 422 Unprocessable Entity 113 (309.9ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (348.4ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (213.2ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (341.3ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (327.8ms)
+GET http://integration.newrelic.com:80/accounts/128523602.xml
+--> 200 OK 906 (332.9ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (314.0ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 200 OK 287 (366.4ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications/449331907/threshold_values.xml
+--> 200 OK 1620 (343.4ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications/9999.xml
+--> 302 Moved Temporarily 129 (568.6ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications/449331907.xml
+--> 200 OK 233 (333.6ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications/449331907/threshold_values.xml
+--> 200 OK 1620 (347.7ms)
+GET http://integration.newrelic.com:80/accounts.xml?include=application_health
+--> 200 OK 2207 (348.9ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (449.8ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (454.2ms)
+GET http://integration.newrelic.com:80/accounts/8022da2f6d143de67e056741262a054547b43479.xml
+--> 200 OK 906 (321.9ms)
+GET http://integration.newrelic.com:80/accounts/128523602/applications.xml
+--> 200 OK 287 (497.7ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 422 Unprocessable Entity 113 (413.6ms)
+POST http://integration.newrelic.com:80/deployments.xml
+--> 201 Created 934 (454.4ms)
+GET http://integration.newrelic.com:80/accounts.xml
+--> 200 OK 988 (331.5ms)
