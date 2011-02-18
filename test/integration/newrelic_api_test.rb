@@ -18,9 +18,6 @@ class NewrelicApiTest < ActiveSupport::TestCase
     NewRelicApi.license_key = '8022da2f6d143de67e056741262a054547b43479'
     NewRelicApi.reset!
   end
-  
-    NewRelicApi.reset!
-  end
 
   def test_find_default
     account = NewRelicApi::Account.find(:first)
