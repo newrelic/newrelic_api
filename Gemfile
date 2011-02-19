@@ -8,7 +8,8 @@ group :development do
   gem 'shoulda', '~>2.10.3'
   gem 'ci_reporter', '1.6.0'
   gem 'rdiscount'
-  gem "rdoc", ">= 3.3" 
+  gem "rdoc", ">= 3.3"
+  gem 'logging'
 end
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)

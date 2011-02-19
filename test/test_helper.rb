@@ -20,8 +20,10 @@ require "active_resource/railtie"
 require "rails/test_unit/railtie"
 require 'rails/test_help'
 require 'shoulda'
-ActiveResource::Base.logger=Logger.new $stdout
+require 'logging'
 $LOAD_PATH << File.expand_path("../../lib", __FILE__)
+ActiveResource::Base.logger = Logger.new('../../log/test.log')
+ActiveResource::Base.logger.level = Logger::DEBUG
 class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
