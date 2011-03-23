@@ -330,9 +330,7 @@ Sample data:
 
 == Deployment Notifications
 
-Unlike other API requests, the deployments API will accept either a license key or an API key in the +api-key+ header.  Furthermore, when 
-using the license key, you do not need to enable the API in the account settings.  This is the standard mechanism used by the agent to upload
-deployments from the built in capistrano recipes.
+Unlike other API requests, the deployments API will accept either a license key (in the +x-license-key+ header) or an API key (in the +x-api-key+ header).  Furthermore, when using the license key, you do not need to enable the API in the account settings.  This is the standard mechanism used by the agent to upload deployments from the built in capistrano recipes.
 
 URL::      <code>https://rpm.newrelic.com/deployments.xml</code>
 Method::   POST
@@ -355,11 +353,11 @@ The optional fields may be set to anything you wish, and are not validated. For 
 
 Here's an example using <tt>curl</tt>:
 
-    curl -H "x-api-key:YOUR_LICENSE_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" https://rpm.newrelic.com/deployments.xml
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" https://rpm.newrelic.com/deployments.xml
   
 If you were to specify the optional <tt>description</tt>, <tt>changelog</tt> and <tt>user</tt> fields, the command would look like this:
   
-    curl -H "x-api-key:YOUR_LICENSE_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://rpm.newrelic.com/deployments.xml
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://rpm.newrelic.com/deployments.xml
 
 == Copyright
 
