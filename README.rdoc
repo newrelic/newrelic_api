@@ -376,9 +376,23 @@ Restrictions::   This API should be called at most once per minute
 === Data Returned
 Note: Metric names will only be returned to Gold customers.
 
+Sample requests:
+
+https://api.newrelic.com/api/v2/applications/APPLICATION_ID/metrics.xml?re=WebTransaction&limit=2
+
 Sample data:
 
-TODO
+    <?xml version="1.0" encoding="UTF-8"?>
+    <records type="array">
+      <record>
+        <metric>WebTransaction</metric>
+        <fields>average_call_time, average_response_time, call_count, max_call_time, min_call_time, requests_per_minute, throughput, total_call_time</fields>
+      </record>
+      <record>
+        <metric>WebTransaction/RPMCollector/AgentListener/connect</metric>
+        <fields>average_call_time, average_response_time, call_count, max_call_time, min_call_time, requests_per_minute, throughput, total_call_time</fields>
+      </record>
+    </records>
 
 === Possible Error Conditions
 
@@ -398,16 +412,68 @@ Restrictions::   This API is rate limited per minute, and the limit is subject t
 
 * +start+: Start time, in XML UTC format. For example: 2011-04-20T15:47:00Z
 * +end+: End time, in XML UTC format. For example: 2011-04-20T15:52:00Z
-* +metrics[]+: Included one or many times, this lists the metrics you are interested in.
+* +metrics+: Included one or many times, this lists the metrics you are interested in. If you specify multiple metrics, the request parameter should look like metrics[]=foo&metrics[]=bar (append [] to the end of the name of the parameter). You can specify metrics[] even if there is a single metric.
 * +field+: each metric supports different fields that are valid, such as 'average_response_time'. If the field is not valid for a given metric, you will get a blank value, and if there are no valid fields for the metrics you request, you will get an error.
 * +summary+: 1 or 0, defaults to 0. This determines whether you get back a single, rolled up response, or a time series. Summary results do not include the beginning and end date in the result. Time series results give you a separate row for each time segment.
 
 === Data Returned
-Note: Application Busy data will only be returned to Gold customers.
+
+Note: metric data will only be returned to Gold customers.
+
+Sample request:
+
+https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.json?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=/ActiveRecord/all&field=average_response_time
 
 Sample data:
 
-TODO
+    <?xml version="1.0" encoding="UTF-8"?>
+    <records type="array">
+      <record>
+        <metric>/ActiveRecord/all</metric>
+        <average-response-time type="integer">0</average-response-time>
+        <begin>2011-04-20T15:47:00Z</begin>
+        <end>2011-04-20T15:48:00Z</end>
+      </record>
+      <record>
+        <metric>/ActiveRecord/all</metric>
+        <average-response-time type="integer">0</average-response-time>
+        <begin>2011-04-20T15:48:00Z</begin>
+        <end>2011-04-20T15:49:00Z</end>
+      </record>
+      <record>
+        <metric>/ActiveRecord/all</metric>
+        <average-response-time type="integer">0</average-response-time>
+        <begin>2011-04-20T15:49:00Z</begin>
+        <end>2011-04-20T15:50:00Z</end>
+      </record>
+      <record>
+        <metric>/ActiveRecord/all</metric>
+        <average-response-time type="integer">0</average-response-time>
+        <begin>2011-04-20T15:50:00Z</begin>
+        <end>2011-04-20T15:51:00Z</end>
+      </record>
+      <record>
+        <metric>/ActiveRecord/all</metric>
+        <average-response-time type="integer">0</average-response-time>
+        <begin>2011-04-20T15:51:00Z</begin>
+        <end>2011-04-20T15:52:00Z</end>
+      </record>
+    </records>
+
+Sample summary request:
+
+https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.json?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=/ActiveRecord/all&field=average_response_time&summary=1
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <records type="array">
+      <record>
+        <metric>/ActiveRecord/all</metric>
+        <average-response-time type="integer">0</average-response-time>
+      </record>
+    </records>
+
 
 === Possible Error Conditions
 
