@@ -422,7 +422,7 @@ Note: metric data will only be returned to Gold customers.
 
 Sample request:
 
-https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.json?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=/ActiveRecord/all&field=average_response_time
+https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=/ActiveRecord/all&field=average_response_time
 
 Sample data:
 
@@ -462,7 +462,7 @@ Sample data:
 
 Sample summary request:
 
-https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.json?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=/ActiveRecord/all&field=average_response_time&summary=1
+https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=/ActiveRecord/all&field=average_response_time&summary=1
 
 Sample data:
 
