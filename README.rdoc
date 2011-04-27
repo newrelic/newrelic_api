@@ -444,38 +444,33 @@ https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.xml?start=2011-
 Sample data:
 
     <?xml version="1.0" encoding="UTF-8"?>
-    <records type="array">
-      <record>
-        <metric>ActiveRecord/all</metric>
-        <average-response-time type="integer">0</average-response-time>
+    <metrics type="array">
+      <metric name="ActiveRecord/all">
+        <field type="integer" name="average_response_time">0</field>
         <begin>2011-04-20T15:47:00Z</begin>
         <end>2011-04-20T15:48:00Z</end>
-      </record>
-      <record>
-        <metric>ActiveRecord/all</metric>
-        <average-response-time type="integer">0</average-response-time>
+      </metric>
+      <metric name="ActiveRecord/all">
+        <field type="integer" name="average_response_time">0</field>
         <begin>2011-04-20T15:48:00Z</begin>
         <end>2011-04-20T15:49:00Z</end>
-      </record>
-      <record>
-        <metric>ActiveRecord/all</metric>
-        <average-response-time type="integer">0</average-response-time>
+      </metric>
+      <metric name="ActiveRecord/all">
+        <field type="integer" name="average_response_time">0</field>
         <begin>2011-04-20T15:49:00Z</begin>
         <end>2011-04-20T15:50:00Z</end>
-      </record>
-      <record>
-        <metric>ActiveRecord/all</metric>
-        <average-response-time type="integer">0</average-response-time>
+      </metric>
+      <metric name="ActiveRecord/all">
+        <field type="integer" name="average_response_time">0</field>
         <begin>2011-04-20T15:50:00Z</begin>
         <end>2011-04-20T15:51:00Z</end>
-      </record>
-      <record>
-        <metric>ActiveRecord/all</metric>
-        <average-response-time type="integer">0</average-response-time>
+      </metric>
+      <metric name="ActiveRecord/all">
+        <field type="integer" name="average_response_time">0</field>
         <begin>2011-04-20T15:51:00Z</begin>
         <end>2011-04-20T15:52:00Z</end>
-      </record>
-    </records>
+      </metric>
+    </metrics>
 
 Sample summary request:
 
@@ -484,12 +479,11 @@ https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.xml?start=2011-
 Sample data:
 
     <?xml version="1.0" encoding="UTF-8"?>
-    <records type="array">
-      <record>
-        <metric>ActiveRecord/all</metric>
-        <average-response-time type="integer">0</average-response-time>
-      </record>
-    </records>
+    <metrics type="array">
+      <metric name="ActiveRecord/all">
+        <field type="integer" name="average_response_time">0</field>
+      </metric>
+    </metrics> 
 
 
 === Possible Error Conditions
