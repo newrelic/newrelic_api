@@ -445,30 +445,20 @@ Sample data:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <metrics type="array">
-      <metric name="ActiveRecord/all">
+      <metric begin="2011-04-20T15:47:00Z" end="2011-04-20T15:48:00Z" name="ActiveRecord/all">
         <field type="integer" name="average_response_time">0</field>
-        <begin>2011-04-20T15:47:00Z</begin>
-        <end>2011-04-20T15:48:00Z</end>
       </metric>
-      <metric name="ActiveRecord/all">
+      <metric begin="2011-04-20T15:48:00Z" end="2011-04-20T15:49:00Z" name="ActiveRecord/all">
         <field type="integer" name="average_response_time">0</field>
-        <begin>2011-04-20T15:48:00Z</begin>
-        <end>2011-04-20T15:49:00Z</end>
       </metric>
-      <metric name="ActiveRecord/all">
+      <metric begin="2011-04-20T15:49:00Z" end="2011-04-20T15:50:00Z" name="ActiveRecord/all">
         <field type="integer" name="average_response_time">0</field>
-        <begin>2011-04-20T15:49:00Z</begin>
-        <end>2011-04-20T15:50:00Z</end>
       </metric>
-      <metric name="ActiveRecord/all">
+      <metric begin="2011-04-20T15:50:00Z" end="2011-04-20T15:51:00Z" name="ActiveRecord/all">
         <field type="integer" name="average_response_time">0</field>
-        <begin>2011-04-20T15:50:00Z</begin>
-        <end>2011-04-20T15:51:00Z</end>
       </metric>
-      <metric name="ActiveRecord/all">
+      <metric begin="2011-04-20T15:51:00Z" end="2011-04-20T15:52:00Z" name="ActiveRecord/all">
         <field type="integer" name="average_response_time">0</field>
-        <begin>2011-04-20T15:51:00Z</begin>
-        <end>2011-04-20T15:52:00Z</end>
       </metric>
     </metrics>
 
