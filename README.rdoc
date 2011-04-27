@@ -365,14 +365,15 @@ Fetches all metrics for an application, or allows you to use a regular expressio
 
 URL::  <code>https://api.newrelic.com/api/v2/applications/:app_id/metrics.:format</code>   Replace <tt>:app_id</tt> and <tt>:format</tt> with the application ID and for format use one of (json, xml, csv).
 Method::    GET
-Restrictions::   This API should be called at most once per minute
+Restrictions::   This API should be called at most once per minute.
 
 === Request Parameters
 
-* +re+: A regular expression to filter the metric set by. This is optional.
-* +limit+: The number of metrics to retrieve. Optional -- by default the limit is 5000.
+* +re+: A regular expression to filter the metric names by. Optional.
+* +limit+: The number of metrics to retrieve. Optional. By default the limit is 5000.
 
 === Data Returned
+
 Note: Metric names will only be returned to Gold customers.
 
 Sample requests:
@@ -383,7 +384,7 @@ Sample data:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <metrics type="array">
-      <metric name="WebTransaction"/>
+      <metric name="WebTransaction/all"/>
       <fields type="array">
         <field>average_call_time</field>
         <field>average_response_time</field>
@@ -410,7 +411,7 @@ Sample data:
 === Possible Error Conditions
 
 * Invalid API Key (403)
-* Invalid parameters (422) - the document will be in the appropriate format, with errors as the key, and the error message.
+* Invalid parameters (422) - the response body will be in the requested format and will contain the error message(s).
 
 
 == Metric Data
@@ -419,54 +420,54 @@ Returns the actual data for various metrics collected by New Relic. You can use 
 
 URL::  <code>https://api.newrelic.com/api/v2/applications/:app_id/data.:format</code>   Replace <tt>:app_id</tt> and <tt>:format</tt> with the application ID and for format use one of (json, xml, csv).
 Method::    GET
-Restrictions::   This API is rate limited per minute, and the limit is subject to change at any point.
+Restrictions::   This API is rate-limited per minute, and the limit is subject to change at any point.
 
 === Request Parameters
 
 * +start+: Start time, in XML UTC format. For example: 2011-04-20T15:47:00Z
 * +end+: End time, in XML UTC format. For example: 2011-04-20T15:52:00Z
 * +metrics+: Included one or many times, this lists the metrics you are interested in. If you specify multiple metrics, the request parameter should look like metrics[]=foo&metrics[]=bar (append [] to the end of the name of the parameter). You can specify metrics[] even if there is a single metric.
-* +field+: each metric supports different fields that are valid, such as 'average_response_time'. If the field is not valid for a given metric, you will get a blank value, and if there are no valid fields for the metrics you request, you will get an error.
+* +field+: Each metric supports different fields that are valid, such as 'average_response_time'. If the field is not valid for a given metric, you will get a blank value, and if there are no valid fields for the metrics you request, you will get an error.
 * +summary+: 1 or 0, defaults to 0. This determines whether you get back a single, rolled up response, or a time series. Summary results do not include the beginning and end date in the result. Time series results give you a separate row for each time segment.
 
 === Data Returned
 
-Note: metric data will only be returned to Gold customers.
+Note: Metric data will only be returned to Gold customers.
 
 Sample request:
 
-https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=/ActiveRecord/all&field=average_response_time
+https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time
 
 Sample data:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <records type="array">
       <record>
-        <metric>/ActiveRecord/all</metric>
+        <metric>ActiveRecord/all</metric>
         <average-response-time type="integer">0</average-response-time>
         <begin>2011-04-20T15:47:00Z</begin>
         <end>2011-04-20T15:48:00Z</end>
       </record>
       <record>
-        <metric>/ActiveRecord/all</metric>
+        <metric>ActiveRecord/all</metric>
         <average-response-time type="integer">0</average-response-time>
         <begin>2011-04-20T15:48:00Z</begin>
         <end>2011-04-20T15:49:00Z</end>
       </record>
       <record>
-        <metric>/ActiveRecord/all</metric>
+        <metric>ActiveRecord/all</metric>
         <average-response-time type="integer">0</average-response-time>
         <begin>2011-04-20T15:49:00Z</begin>
         <end>2011-04-20T15:50:00Z</end>
       </record>
       <record>
-        <metric>/ActiveRecord/all</metric>
+        <metric>ActiveRecord/all</metric>
         <average-response-time type="integer">0</average-response-time>
         <begin>2011-04-20T15:50:00Z</begin>
         <end>2011-04-20T15:51:00Z</end>
       </record>
       <record>
-        <metric>/ActiveRecord/all</metric>
+        <metric>ActiveRecord/all</metric>
         <average-response-time type="integer">0</average-response-time>
         <begin>2011-04-20T15:51:00Z</begin>
         <end>2011-04-20T15:52:00Z</end>
@@ -475,14 +476,14 @@ Sample data:
 
 Sample summary request:
 
-https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=/ActiveRecord/all&field=average_response_time&summary=1
+https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&summary=1
 
 Sample data:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <records type="array">
       <record>
-        <metric>/ActiveRecord/all</metric>
+        <metric>ActiveRecord/all</metric>
         <average-response-time type="integer">0</average-response-time>
       </record>
     </records>
@@ -491,7 +492,7 @@ Sample data:
 === Possible Error Conditions
 
 * Invalid API Key (403)
-* Invalid parameters (422) - the document will be in the appropriate format, with errors as the key, and the error message.
+* Invalid parameters (422) - the response body will be in the requested format and will contain the error message(s).
 
 
 == Copyright
