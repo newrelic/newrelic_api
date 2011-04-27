@@ -382,16 +382,30 @@ https://api.newrelic.com/api/v2/applications/APPLICATION_ID/metrics.xml?re=WebTr
 Sample data:
 
     <?xml version="1.0" encoding="UTF-8"?>
-    <records type="array">
-      <record>
-        <metric>WebTransaction</metric>
-        <fields>average_call_time, average_response_time, call_count, max_call_time, min_call_time, requests_per_minute, throughput, total_call_time</fields>
-      </record>
-      <record>
-        <metric>WebTransaction/RPMCollector/AgentListener/connect</metric>
-        <fields>average_call_time, average_response_time, call_count, max_call_time, min_call_time, requests_per_minute, throughput, total_call_time</fields>
-      </record>
-    </records>
+    <metrics type="array">
+      <metric name="WebTransaction"/>
+      <fields type="array">
+        <field>average_call_time</field>
+        <field>average_response_time</field>
+        <field>call_count</field>
+        <field>max_call_time</field>
+        <field>min_call_time</field>
+        <field>requests_per_minute</field>
+        <field>throughput</field>
+        <field>total_call_time</field>
+      </fields>
+      <metric name="WebTransaction/RPMCollector/AgentListener/connect"/>
+      <fields type="array">
+        <field>average_call_time</field>
+        <field>average_response_time</field>
+        <field>call_count</field>
+        <field>max_call_time</field>
+        <field>min_call_time</field>
+        <field>requests_per_minute</field>
+        <field>throughput</field>
+        <field>total_call_time</field>
+      </fields>
+    </metrics>
 
 === Possible Error Conditions
 
