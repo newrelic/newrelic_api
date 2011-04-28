@@ -364,7 +364,7 @@ If you were to specify the optional <tt>description</tt>, <tt>changelog</tt> and
 
 Fetches all metrics for an application, or allows you to use a regular expression to get a subset of the metrics. These metric names are used to retrieve more detailed metric information from the Metric Data API (below). Each metric is returned with a list of fields that are valid for that metric. 
 
-URL::  <code>https://api.newrelic.com/api/v2/applications/:app_id/metrics.:format</code>   Replace <tt>:app_id</tt> and <tt>:format</tt> with the application ID and for format use one of (json, xml, csv).
+URL::  <code>https://api.newrelic.com/api/v1/applications/:app_id/metrics.:format</code>   Replace <tt>:app_id</tt> and <tt>:format</tt> with the application ID and for format use one of (json, xml, csv).
 Method::    GET
 Restrictions::   This API should be called at most once per minute.
 
@@ -379,7 +379,7 @@ Note: Metric names will only be returned to Gold customers.
 
 Sample requests:
 
-https://api.newrelic.com/api/v2/applications/APPLICATION_ID/metrics.xml?re=WebTransaction&limit=2
+https://api.newrelic.com/api/v1/applications/APPLICATION_ID/metrics.xml?re=WebTransaction&limit=2
 
 Sample data:
 
@@ -421,7 +421,7 @@ Sample data:
 
 Returns the actual data for various metrics collected by New Relic. You can use this API to build your own view to almost any metric data tracked by New Relic. 
 
-URL::  <code>https://api.newrelic.com/api/v2/applications/:app_id/data.:format</code>   Replace <tt>:app_id</tt> and <tt>:format</tt> with the application ID and for format use one of (json, xml, csv).
+URL::  <code>https://api.newrelic.com/api/v1/applications/:app_id/data.:format</code>   Replace <tt>:app_id</tt> and <tt>:format</tt> with the application ID and for format use one of (json, xml, csv).
 Method::    GET
 Restrictions::   This API is rate-limited per minute, and the limit is subject to change at any point.
 
@@ -439,7 +439,7 @@ Note: Metric data will only be returned to Gold customers.
 
 Sample request:
 
-https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time
+https://api.newrelic.com/api/v1/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time
 
 Sample data:
 
@@ -464,7 +464,7 @@ Sample data:
 
 Sample summary request:
 
-https://api.newrelic.com/api/v2/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&summary=1
+https://api.newrelic.com/api/v1/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&summary=1
 
 Sample data:
 
