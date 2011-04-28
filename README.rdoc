@@ -361,9 +361,9 @@ If you were to specify the optional <tt>description</tt>, <tt>changelog</tt> and
 
 == Metric Names
 
-Fetches all metrics for an application, or allows you to use a regular expression to get a subset of the metrics. These metric names are used to retrieve more detailed metric information from the Metric Data API (below). Each metric is returned with a list of fields that are valid for that metric. 
+Fetches all metrics for an application, or allows you to use a regular expression to get a subset of the metrics. These metrics are used to retrieve metric values from the Metric Data API (below). Each metric is returned with a list of fields that are valid for that metric. 
 
-URL::  <code>https://api.newrelic.com/api/v1/applications/:app_id/metrics.:format</code>   Replace <tt>:app_id</tt> and <tt>:format</tt> with the application ID and for format use one of (json, xml, csv).
+URL::  <code>https://api.newrelic.com/api/v1/applications/:app_id/metrics.:format</code>   Replace +:app_id+ and +:format+ with the application ID and for format use one of (+json+, +xml+, +csv+).
 Method::    GET
 Restrictions::   This API should be called at most once per minute.
 
@@ -410,6 +410,38 @@ Sample data:
       </metric>
     </metrics>
 
+=== Fields
+
+Several different values are recorded or computed for each metric. Each value is returned in a 'field' in the metric data API response. Each field contains a value having a specific meaning and unit of measurement.
+
+Time values are measured in seconds (s):
+* +average_call_time+, +average_response_time+: Average time spent per invocation
+* +max_call_time+, +max_response_time+
+* +min_call_time+, +min_response_time+
+* +total_call_time+
+* +average_exclusive_time+: Average time spent per invocation, exclusive of any time instrumented by other metrics
+
+Some fields imply their units, or have none:
+* +call_count+, +throughput+: Number of calls/requests in the given time period
+* +requests_per_minute+: Number of calls/requests per minute in the given time period
+* +count+
+* +average_value+
+* +total_value+
+* +percent+
+
+For memory metrics (e.g., 'Memory/Physical')
+* +used+: in megabytes (MB)
+
+For instance-counting metrics (e.g., 'Instance/Busy'):
+* +busy_percent+: Percentage of total app server instances busy over the given time period
+* +instance_count+: Count of app server instances reporting in the given time period
+
+Apdex metrics support a particular set of fields:
+* +score+: Apdex score (e.g., 0.95)
+* +s+: Percent of responses that are "Satisfied", or have response times <= the Apdex "T" value
+* +t+: Percent of responses that are "Tolerated", or have response times > T and <= 4T
+* +f+: Percent of responses that are "Frustrated", or have response times >4T (or are errors)
+
 === Possible Error Conditions
 
 * Invalid API Key (403)
@@ -418,29 +450,29 @@ Sample data:
 
 == Metric Data
 
-Returns the actual data for various metrics collected by New Relic. You can use this API to build your own view to almost any metric data tracked by New Relic. 
+Returns the data values for metrics collected by New Relic for your application. You can use this API to build your own view of almost any metric data tracked by New Relic. 
 
-URL::  <code>https://api.newrelic.com/api/v1/applications/:app_id/data.:format</code>   Replace <tt>:app_id</tt> and <tt>:format</tt> with the application ID and for format use one of (json, xml, csv).
+URL::  <code>https://api.newrelic.com/api/v1/applications/:app_id/data.:format</code>   Replace +:app_id+ and +:format+ with the application ID and for format use one of (+json+, +xml+, +csv+).
 Method::    GET
 Restrictions::   This API is rate-limited per minute, and the limit is subject to change at any point.
 
 === Request Parameters
 
-* +start+: Start time, in XML UTC format. For example: 2011-04-20T15:47:00Z
-* +end+: End time, in XML UTC format. For example: 2011-04-20T15:52:00Z
-* +metrics+: Included one or many times, this lists the metrics you are interested in. If you specify multiple metrics, the request parameter should look like metrics[]=foo&metrics[]=bar (append [] to the end of the name of the parameter). You can specify metrics[] even if there is a single metric.
-* +field+: Each metric supports different fields that are valid, such as 'average_response_time'. If the field is not valid for a given metric, you will get a blank value, and if there are no valid fields for the metrics you request, you will get an error.
-* +summary+: 1 or 0, defaults to 0. This determines whether you get back a single, rolled up response, or a time series. Summary results do not include the beginning and end date in the result. Time series results give you a separate row for each time segment.
+* +begin+: Begin time, in XML UTC format. For example: <tt>2011-04-20T15:47:00Z</tt>
+* +end+: End time, in XML UTC format. For example: <tt>2011-04-20T15:52:00Z</tt>
+* +metrics+: Included one or many times, this lists the metrics you are interested in. If you specify multiple metrics, the request parameter should look like <tt>metrics[]=foo&metrics[]=bar</tt> (append '[]' to the end of the name of the parameter). You can specify <tt>metrics[]</tt> even if there is a single metric.
+* +field+: Each metric supports different fields, such as 'average_response_time'. If the field is not valid for a given metric, you will get a blank value, and if there are no valid fields for the metrics you request, you will get an error.
+* +summary+: 1 or 0, defaults to 0. This determines whether you get back a single value aggregated over the entire time period, or a time series. Summary results do not include the <tt>begin</tt> and <tt>end</tt> times in the result. Time series results give you a separate row for each time segment.
 
 === Data Returned
 
 Note: Metric data will only be returned to Gold customers.
 
-Sample request:
+Sample time series request:
 
-https://api.newrelic.com/api/v1/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time
+https://api.newrelic.com/api/v1/applications/APPLICATION_ID/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time
 
-Sample data:
+Sample time series data:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <metrics type="array">
@@ -463,9 +495,9 @@ Sample data:
 
 Sample summary request:
 
-https://api.newrelic.com/api/v1/applications/APPLICATION_ID/data.xml?start=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&summary=1
+https://api.newrelic.com/api/v1/applications/APPLICATION_ID/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&summary=1
 
-Sample data:
+Sample summary data:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <metrics type="array">
@@ -473,7 +505,6 @@ Sample data:
         <field type="integer" name="average_response_time">0</field>
       </metric>
     </metrics> 
-
 
 === Possible Error Conditions
 
