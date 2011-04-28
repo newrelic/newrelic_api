@@ -367,6 +367,13 @@ URL::  <code>https://api.newrelic.com/api/v1/applications/:app_id/metrics.:forma
 Method::    GET
 Restrictions::   This API should be called at most once per minute.
 
+For partner admins, you can use a slightly different URL to get metric names for your customers (requires partner permissions).
+
+URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/metrics.:format</code>   Replace +:account_id+ with the account ID of the customer, +:app_id+ with the application ID for the customer, and +:format+ with one of (+json+, +xml+, +csv+).
+Method::    GET
+Restrictions::   This API should be called at most once per minute.
+
+
 === Request Parameters
 
 * +re+: A regular expression to filter the metric names by. Optional.
@@ -455,6 +462,13 @@ Returns the data values for metrics collected by New Relic for your application.
 URL::  <code>https://api.newrelic.com/api/v1/applications/:app_id/data.:format</code>   Replace +:app_id+ and +:format+ with the application ID and for format use one of (+json+, +xml+, +csv+).
 Method::    GET
 Restrictions::   This API is rate-limited per minute, and the limit is subject to change at any point.
+
+For partner admins, you can use a slightly different URL to get metric data for your customers (requires partner permissions).
+
+URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/data.:format</code>   Replace +:account_id+ with the account ID of the customer, +:app_id+ with the application ID for the customer, and +:format+ with one of (+json+, +xml+, +csv+).
+Method::    GET
+Restrictions::   This API is rate-limited per minute, and the limit is subject to change at any point.
+
 
 === Request Parameters
 
