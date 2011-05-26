@@ -473,7 +473,7 @@ Restrictions::   This API is rate-limited per minute, and the limit is subject t
 
 === Request Parameters
 
-* +begin+: Begin time, in XML UTC format. For example: <tt>2011-04-20T15:47:00Z</tt>
+* +begin+: Begin time, in XML UTC format. For example: <tt>2011-04-20T15:47:00Z</tt> (note that the New Relic site graphs are NOT in UTC format, so when comparing results, be sure to convert)
 * +end+: End time, in XML UTC format. For example: <tt>2011-04-20T15:52:00Z</tt>
 * +metrics+: Included one or many times, this lists the metrics you are interested in. If you specify multiple metrics, the request parameter should look like <tt>metrics[]=foo&metrics[]=bar</tt> (append '[]' to the end of the name of the parameter). You can specify <tt>metrics[]</tt> even if there is a single metric.
 * +field+: Each metric supports different fields, such as 'average_response_time'. If the field is not valid for a given metric, you will get a blank value, and if there are no valid fields for the metrics you request, you will get an error.
