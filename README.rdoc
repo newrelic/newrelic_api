@@ -13,6 +13,8 @@ New Relic supports an api key-based authentication mechanism. The key is the api
 
 API requests require HTTPS in order to ensure the API key cannot be easily read by a third party.
 
+You will need to enable API access to your account. To do this, go to Account settings (upper right corner of the New Relic site), and then click on API + web integration. Select API access, and enable it.
+
 === Request Headers
 
 x-api-key::   API key for account, used for authentication (required)
