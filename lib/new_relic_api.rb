@@ -6,13 +6,12 @@ require 'active_resource_associations'
 #
 # Can also be used as a script using script/runner.
 #
-# In this version of the api, authentication is handled using your agent license key.  In subsequent versions
-# license key authorization will be supported but deprecated in favor of a generated api key.
-# The New Relic account associated with the license key must allow api access.
-# Log into RPM, click Account at the top of the page and check the "Make my account data accessible" checkbox.
+# In this version of the api, authentication is handled using your account API key, available in your Account settings
+# in http://rpm.newrelic.com.  
+# Log in, click Account at the top of the page and check the "Make my account data accessible" checkbox.  An
+# API key will appear.
 #
-# This API gem does not have any agent dependencies.  It can be used independent of the agent.  If the agent
-# is loaded, it will fall back to the license key specified in the newrelic.yml file. 
+# Refer to the README file for details and examples on the REST API.
 #
 # == Examples
 #
@@ -32,14 +31,7 @@ require 'active_resource_associations'
 module NewRelicApi
 
   class << self
-    attr_accessor :email, :password, :license_key, :ssl, :host, :port
-
-    # Sets up basic authentication credentials for all the resources.  This is not necessary if you are
-    # using agent license key authentication.
-    def authenticate(email, password)
-      @password = password
-      @email    = email
-    end
+    attr_accessor :api_key, :ssl, :host, :port
 
     # Resets the base path of all resources.  This should be called when overridding the newrelic.yml settings
     # using the ssl, host or port accessors.
@@ -63,9 +55,8 @@ module NewRelicApi
       end
 
       def headers
-        h = {'x-license-key' => NewRelicApi.license_key || NewRelic::Control.instance['license_key']}
-        h['Authorization'] = 'Basic ' + ["#{NewRelicApi.email}:#{NewRelicApi.password}"].pack('m').delete("\r\n") if NewRelicApi.email
-        h
+        raise "api_key required" unless NewRelicApi.api_key
+        {'x-api-key' => NewRelicApi.api_key}
       end
 
       def site_url
@@ -77,25 +68,6 @@ module NewRelicApi
       def reset!
         self.site = self.site_url
       end
-
-      protected
-
-      def fix_fields(*fields)
-        fields.to_a.each do |field|
-          define_method field do
-            yield super
-          end
-        end
-      end
-
-      def fix_integer_fields(*fields)
-        fix_fields(*fields) { |sup| sup.to_i }
-      end
-
-      def fix_float_fields(*fields)
-        fix_fields(*fields) { |sup| sup.to_f }
-      end
-
     end
     self.site = self.site_url
   end
@@ -152,21 +124,30 @@ module NewRelicApi
   #
   # ==Fields
   # +name+:: The name of the threshold setting associated with this threshold value.
+  # +begin_time+:: Time value indicating start of evaluation period, as a string.
   # +threshold_value+:: A value of 0, 1, 2 or 3 representing gray (not reporting), green, yellow and red
   # +metric_value+:: The metric value associated with this threshold
   class ThresholdValue < BaseResource
     self.prefix = ACCOUNT_APPLICATION_RESOURCE_PATH
-    #      attr_reader :name, :begin_time, :metric_value, :threshold_value
 
-    fix_integer_fields :threshold_value
-    fix_float_fields :metric_value
+    #   attr_reader :name, :begin_time, :metric_value, :threshold_value
 
+    # Return theshold_value as 0, 1, 2, or 3 representing grey (not reporting)
+    # green, yellow, and red, respectively.
+    def threshold_value
+      super.to_i
+    end
+
+    # Return the actual value of the threshold as a Float
+    def metric_value
+      super.to_f
+    end
     # Returns the color value for this threshold (Gray, Green, Yellow or Red).
     def color_value
       case threshold_value
-        when 3: 'Red'
-        when 2: 'Yellow'
-        when 1: 'Green'
+        when 3 then 'Red'
+        when 2 then 'Yellow'
+        when 1 then 'Green'
       else 'Gray'
       end
     end
@@ -183,8 +164,8 @@ module NewRelicApi
   #
   # Find Accounts
   #
-  #   NewRelicApi::Account.find(:all) # find all accounts for the current user.
-  #   NewRelicApi::Account.find(44)   # find individual account by ID
+  #   NewRelicApi::Account.find(:first) # find account associated with the api key
+  #   NewRelicApi::Account.find(44)     # find individual account by ID
   #
   class Account < BaseResource
     has_many :applications
@@ -217,9 +198,22 @@ module NewRelicApi
 
   # This model is used to mark production deployments in RPM
   # Only create is supported.
-  # ==Examples
-  #   # Creating a new deployment
-  #   NewRelicApi::Deployment.create
+  # == Options
+  # 
+  # Exactly one of the following is required:
+  # * <tt>app_name</tt>: The value of app_name in the newrelic.yml file used by the application.  This may be different than the label that appears in the RPM UI.  You can find the app_name value in RPM by looking at the label settings for your application.
+  # * <tt>application_id</tt>: The application id, found in the URL when viewing the application in RPM.
+  #
+  # Following are optional parameters:
+  # * <tt>description</tt>: Text annotation for the deployment &mdash; notes for you
+  # * <tt>changelog</tt>: A list of changes for this deployment
+  # * <tt>user</tt>: The name of the user/process that triggered this deployment
+  #
+  # ==Example
+  #
+  #   NewRelicApi::Deployment.create :application_id => 11142007, :description => "Update production", :user => "Big Mike"
+  #
+  #   NewRelicApi::Deployment.create :app_name => "My Application", :description => "Update production", :user => "Big Mike"
   #
   class Deployment < BaseResource
   end

@@ -1,4 +1,7 @@
+*~
+log/*.log
 test/reports
+log/test.log
 
 # rcov generated
 coverage

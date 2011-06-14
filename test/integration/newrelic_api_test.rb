@@ -10,12 +10,10 @@ class NewrelicApiTest < ActiveSupport::TestCase
   LICENSE_KEY = '8022da2f6d143de67e056741262a054547b43479'
 
   def setup
+    NewRelicApi.api_key = LICENSE_KEY
     NewRelicApi.host = 'integration.newrelic.com'
-=begin    
-    NewRelicApi.host = 'localhost'
-    NewRelicApi.port = 3000
-=end
-    NewRelicApi.license_key = '8022da2f6d143de67e056741262a054547b43479'
+#    NewRelicApi.host = 'localhost'
+#    NewRelicApi.port = 3000
     NewRelicApi.reset!
   end
 
@@ -99,7 +97,6 @@ class NewrelicApiTest < ActiveSupport::TestCase
       threshold_values = app.threshold_values
 
       assert_equal 9, threshold_values.length
-      
       threshold_values.each do |val|
         assert [0, 1, 2, 3].include?(val.threshold_value), val.threshold_value
         assert ['Gray', 'Green', 'Yellow', 'Red'].include?(val.color_value), val.color_value
