@@ -71,7 +71,7 @@ Restrictions::   This API should be called at most once per minute
 Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.html]
 
 === Data Returned
-Note: Application Busy data will only be returned to Professional and Volume customers. Errors data will only be returned to Silver and Professional customers.
+Note: Application Busy data will only be returned to Professional and Volume customers. Errors data will only be returned to Professional and Volume customers.
 
 Sample data:
 
