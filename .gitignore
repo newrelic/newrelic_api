@@ -1,4 +1,5 @@
 *~
+log/*.log
 test/reports
 log/test.log
 

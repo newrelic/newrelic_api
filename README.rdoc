@@ -13,6 +13,8 @@ New Relic supports an api key-based authentication mechanism. The key is the api
 
 API requests require HTTPS in order to ensure the API key cannot be easily read by a third party.
 
+You will need to enable API access to your account. To do this, go to Account settings (upper right corner of the New Relic site), and then click on API + web integration. Select API access, and enable it.
+
 === Request Headers
 
 x-api-key::   API key for account, used for authentication (required)
@@ -69,7 +71,7 @@ Restrictions::   This API should be called at most once per minute
 Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.html]
 
 === Data Returned
-Note: Application Busy data will only be returned to Gold customers. Errors data will only be returned to Silver and Gold customers.
+Note: Application Busy data will only be returned to Professional and Volume customers. Errors data will only be returned to Silver and Professional customers.
 
 Sample data:
 
@@ -101,7 +103,7 @@ Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.ht
 
 === Data Returned
 
-Note: Application Busy data will only be returned to Gold customers. Errors data will only be returned to Silver and Gold customers.
+Note: Application Busy data will only be returned to Professional and Volume customers. Errors data will only be returned to Professional and Volume customers.
 
 Sample data:
 
@@ -343,8 +345,9 @@ Exactly one of the following is required:
 * <tt>deployment[application_id]</tt>: The application id, found in the URL when viewing the application in RPM.
 
 Following are optional parameters:
-* <tt>deployment[description]</tt>: Text annotation for the deployment &mdash; notes for you
 * <tt>deployment[changelog]</tt>: A list of changes for this deployment
+* <tt>deployment[description]</tt>: Text annotation for the deployment &mdash; notes for you
+* <tt>deployment[revision]</tt>: A revision number (e.g., git commit SHA)
 * <tt>deployment[user]</tt>: The name of the user/process that triggered this deployment
 
 The optional fields may be set to anything you wish, and are not validated. For example, you could set the <tt>user</tt> to <tt>"auto deployment script"</tt>.
@@ -472,7 +475,7 @@ Restrictions::   This API is rate-limited per minute, and the limit is subject t
 
 === Request Parameters
 
-* +begin+: Begin time, in XML UTC format. For example: <tt>2011-04-20T15:47:00Z</tt>
+* +begin+: Begin time, in XML UTC format. For example: <tt>2011-04-20T15:47:00Z</tt> (note that the New Relic site graphs are NOT in UTC format, so when comparing results, be sure to convert)
 * +end+: End time, in XML UTC format. For example: <tt>2011-04-20T15:52:00Z</tt>
 * +metrics+: Included one or many times, this lists the metrics you are interested in. If you specify multiple metrics, the request parameter should look like <tt>metrics[]=foo&metrics[]=bar</tt> (append '[]' to the end of the name of the parameter). You can specify <tt>metrics[]</tt> even if there is a single metric.
 * +field+: Each metric supports different fields, such as 'average_response_time'. If the field is not valid for a given metric, you will get a blank value, and if there are no valid fields for the metrics you request, you will get an error.
