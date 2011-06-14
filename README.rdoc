@@ -69,7 +69,7 @@ Restrictions::   This API should be called at most once per minute
 Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.html]
 
 === Data Returned
-Note: Application Busy data will only be returned to Gold customers. Errors data will only be returned to Silver and Gold customers.
+Note: Application Busy data will only be returned to Professional and Volume customers. Errors data will only be returned to Silver and Professional customers.
 
 Sample data:
 
@@ -101,7 +101,7 @@ Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.ht
 
 === Data Returned
 
-Note: Application Busy data will only be returned to Gold customers. Errors data will only be returned to Silver and Gold customers.
+Note: Application Busy data will only be returned to Professional and Volume customers. Errors data will only be returned to Professional and Volume customers.
 
 Sample data:
 
@@ -330,9 +330,7 @@ Sample data:
 
 == Deployment Notifications
 
-Unlike other API requests, the deployments API will accept either a license key or an API key in the +api-key+ header.  Furthermore, when 
-using the license key, you do not need to enable the API in the account settings.  This is the standard mechanism used by the agent to upload
-deployments from the built in capistrano recipes.
+Unlike other API requests, the deployments API will accept either a license key (in the +x-license-key+ header) or an API key (in the +x-api-key+ header).  Furthermore, when using the license key, you do not need to enable the API in the account settings.  This is the standard mechanism used by the agent to upload deployments from the built in capistrano recipes.
 
 URL::      <code>https://rpm.newrelic.com/deployments.xml</code>
 Method::   POST
@@ -345,8 +343,9 @@ Exactly one of the following is required:
 * <tt>deployment[application_id]</tt>: The application id, found in the URL when viewing the application in RPM.
 
 Following are optional parameters:
-* <tt>deployment[description]</tt>: Text annotation for the deployment &mdash; notes for you
 * <tt>deployment[changelog]</tt>: A list of changes for this deployment
+* <tt>deployment[description]</tt>: Text annotation for the deployment &mdash; notes for you
+* <tt>deployment[revision]</tt>: A revision number (e.g., git commit SHA)
 * <tt>deployment[user]</tt>: The name of the user/process that triggered this deployment
 
 The optional fields may be set to anything you wish, and are not validated. For example, you could set the <tt>user</tt> to <tt>"auto deployment script"</tt>.
@@ -355,11 +354,11 @@ The optional fields may be set to anything you wish, and are not validated. For 
 
 Here's an example using <tt>curl</tt>:
 
-    curl -H "x-api-key:YOUR_LICENSE_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" https://rpm.newrelic.com/deployments.xml
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" https://rpm.newrelic.com/deployments.xml
   
 If you were to specify the optional <tt>description</tt>, <tt>changelog</tt> and <tt>user</tt> fields, the command would look like this:
   
-    curl -H "x-api-key:YOUR_LICENSE_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://rpm.newrelic.com/deployments.xml
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://rpm.newrelic.com/deployments.xml
 
 == Copyright
 
