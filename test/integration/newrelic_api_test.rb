@@ -90,6 +90,14 @@ class NewrelicApiTest < ActiveSupport::TestCase
     assert deployment.valid?, deployment.inspect
   end
 
+  def test_restricted_partner_account
+    NewRelicApi.api_key = '9042da2f6d143de67e056741262a051234b43475'
+    NewRelicApi.reset!
+
+    account = NewRelicApi::Account.find('9042da2f6d143de67e056741262a051234b43475')
+    assert_equal "Clouds 'R' Us", account.name
+  end
+
   protected
   def check_applications(apps)
     app_names = apps.collect { |app| app.name }
