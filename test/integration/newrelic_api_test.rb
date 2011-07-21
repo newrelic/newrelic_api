@@ -6,14 +6,18 @@ require 'new_relic_api'
 class NewrelicApiTest < ActiveSupport::TestCase
 
   # Accounts may be identified either by their ID or by their license key.
-  # This is the license key for the "gold" fixture in the RPM fixture data
+  # This is the license key for the "gold" fixture in the New Relic fixture data.
   LICENSE_KEY = '8022da2f6d143de67e056741262a054547b43479'
 
   def setup
     NewRelicApi.api_key = LICENSE_KEY
-    NewRelicApi.host = 'integration.newrelic.com'
-#    NewRelicApi.host = 'localhost'
-#    NewRelicApi.port = 3000
+    if ENV['LOCAL']
+      # Run your local instance in RAILS_ENV=test to load the fixture data
+      NewRelicApi.host = 'localhost'
+      NewRelicApi.port = 3000
+    else
+      NewRelicApi.host = 'integration.newrelic.com'
+    end
     NewRelicApi.reset!
   end
 
