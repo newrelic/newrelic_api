@@ -68,6 +68,13 @@ class NewrelicApiTest < ActiveSupport::TestCase
     check_applications(account.applications)
   end
 
+  def test_application_health_with_no_health
+    NewRelicApi.api_key = '9042da2f6d143de67e056741262a051234b434659042'
+    account = NewRelicApi::Account.application_health
+    assert_equal 1, account.applications.length
+    assert_equal 0, account.applications.first.threshold_values.length
+  end
+
   def test_deployments
     # lookup an app by name
     deployment = NewRelicApi::Deployment.create :appname => 'gold app'
