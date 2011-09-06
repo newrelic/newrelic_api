@@ -6,14 +6,18 @@ require 'new_relic_api'
 class NewrelicApiTest < ActiveSupport::TestCase
 
   # Accounts may be identified either by their ID or by their license key.
-  # This is the license key for the "gold" fixture in the RPM fixture data
+  # This is the license key for the "gold" fixture in the New Relic fixture data.
   LICENSE_KEY = '8022da2f6d143de67e056741262a054547b43479'
 
   def setup
     NewRelicApi.api_key = LICENSE_KEY
-    NewRelicApi.host = 'integration.newrelic.com'
-#    NewRelicApi.host = 'localhost'
-#    NewRelicApi.port = 3000
+    if ENV['LOCAL']
+      # Run your local instance in RAILS_ENV=test to load the fixture data
+      NewRelicApi.host = 'localhost'
+      NewRelicApi.port = 3000
+    else
+      NewRelicApi.host = 'integration.newrelic.com'
+    end
     NewRelicApi.reset!
   end
 
@@ -64,6 +68,13 @@ class NewrelicApiTest < ActiveSupport::TestCase
     check_applications(account.applications)
   end
 
+  def test_application_health_with_no_health
+    NewRelicApi.api_key = '9042da2f6d143de67e056741262a051234b434659042'
+    account = NewRelicApi::Account.application_health
+    assert_equal 1, account.applications.length
+    assert_equal 0, account.applications.first.threshold_values.length
+  end
+
   def test_deployments
     # lookup an app by name
     deployment = NewRelicApi::Deployment.create :appname => 'gold app'
@@ -84,6 +95,14 @@ class NewrelicApiTest < ActiveSupport::TestCase
     # lookup by id works with application_id
     deployment = NewRelicApi::Deployment.create :application_id => application_id
     assert deployment.valid?, deployment.inspect
+  end
+
+  def test_restricted_partner_account
+    NewRelicApi.api_key = '9042da2f6d143de67e056741262a051234b43475'
+    NewRelicApi.reset!
+
+    account = NewRelicApi::Account.find('9042da2f6d143de67e056741262a051234b43475')
+    assert_equal "Clouds 'R' Us", account.name
   end
 
   protected

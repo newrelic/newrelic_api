@@ -439,6 +439,9 @@ Some fields imply their units, or have none:
 * +total_value+
 * +percent+
 
+For the error-rate metric ('Errors/all')
+* +errors_per_minute+
+
 For memory metrics (e.g., 'Memory/Physical')
 * +used+: in megabytes (MB)
 
