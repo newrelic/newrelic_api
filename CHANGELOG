@@ -11,4 +11,8 @@
 1.2.0
   - Added support for metric names and metric data API
 1.2.1
-  
+  - Updated for new product names
+  - Minor bugs and compatibility fixes
+1.2.2
+  - Add support for querying multiple applications in the data api
+  - Support for proxies (thanks to Wei Feng)
