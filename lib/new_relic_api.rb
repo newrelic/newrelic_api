@@ -31,7 +31,7 @@ require 'active_resource_associations'
 module NewRelicApi
 
   class << self
-    attr_accessor :api_key, :ssl, :host, :port
+    attr_accessor :api_key, :ssl, :host, :port, :proxy
 
     # Resets the base path of all resources.  This should be called when overridding the newrelic.yml settings
     # using the ssl, host or port accessors.
@@ -50,6 +50,7 @@ module NewRelicApi
     include ActiveResourceAssociations
 
     class << self
+
       def inherited(klass) #:nodoc:
         NewRelicApi.track_resource(klass)
       end
@@ -68,8 +69,13 @@ module NewRelicApi
       def reset!
         self.site = self.site_url
       end
+
+      def proxy
+        NewRelicApi.proxy
+      end
     end
     self.site = self.site_url
+    self.proxy = self.proxy
   end
   ACCOUNT_RESOURCE_PATH = '/accounts/:account_id/' #:nodoc:
   ACCOUNT_AGENT_RESOURCE_PATH = ACCOUNT_RESOURCE_PATH + 'agents/:agent_id/' #:nodoc:
@@ -216,6 +222,7 @@ module NewRelicApi
   #   NewRelicApi::Deployment.create :app_name => "My Application", :description => "Update production", :user => "Big Mike"
   #
   class Deployment < BaseResource
+    self.format = ActiveResource::Formats::XmlFormat
   end
 
   class Subscription < BaseResource
