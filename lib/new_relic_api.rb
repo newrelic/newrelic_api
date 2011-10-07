@@ -222,7 +222,6 @@ module NewRelicApi
   #   NewRelicApi::Deployment.create :app_name => "My Application", :description => "Update production", :user => "Big Mike"
   #
   class Deployment < BaseResource
-    self.format = ActiveResource::Formats::XmlFormat
   end
 
   class Subscription < BaseResource
