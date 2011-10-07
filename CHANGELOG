@@ -16,3 +16,5 @@
 1.2.2
   - Add support for querying multiple applications in the data api
   - Support for proxies (thanks to Wei Feng)
+1.2.3
+  - Fix XML compatibility
