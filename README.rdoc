@@ -491,7 +491,7 @@ Note: Metric data will only be returned to Pro customers.
 
 Sample time series request:
 
-https://api.newrelic.com/api/v1/accounts/ACCOUNT_ID/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application
+https://api.newrelic.com/api/v1/accounts/ACCOUNT_ID/metrics/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application
 
 Sample time series data:
 
@@ -516,7 +516,7 @@ Sample time series data:
 
 Sample summary request:
 
-https://api.newrelic.com/api/v1/accounts/ACCOUNT_ID/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application&summary=1
+https://api.newrelic.com/api/v1/accounts/ACCOUNT_ID/metrics/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application&summary=1
 
 Sample summary data:
 
