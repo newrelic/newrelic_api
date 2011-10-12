@@ -61,6 +61,28 @@ Sample data:
 
 * Invalid API Key (403)
 
+== Delete applications
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/delete.xml</code>  
+Method::         POST
+Parameters::     app, a string representing the name of your application, or
+                 app_id, an integer representing the id of your application
+Replace <tt>:account_id</tt> with the your account number. You can see this in the browser URL when you log in to rpm.newrelic.com. 
+
+=== Data Returned
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <applications type="array">
+      <application name="MyApp" id="1234">
+        <result>deleted</result>
+      </application>
+      <application name="MyApp 2" id="2345">
+        <result>failed</result>
+      </application>
+      </record>
+    </applications>
+
 == Application Summary Metrics
 
 Fetch summary metrics and threshold values (traffic light information) for one application.
@@ -374,8 +396,7 @@ For partner admins, you can use a slightly different URL to get metric names for
 
 URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/metrics.:format</code>   Replace +:account_id+ with the account ID of the customer, +:app_id+ with the application ID for the customer, and +:format+ with one of (+json+, +xml+, +csv+).
 Method::    GET
-Restrictions::   This API should be called at most once per minute.
-
+Restrictions::   This API should be called at most once per minute. 
 
 === Request Parameters
 
