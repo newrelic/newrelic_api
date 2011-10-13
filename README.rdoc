@@ -486,7 +486,7 @@ Apdex metrics support a particular set of fields:
 
 Returns the data values for metrics collected by New Relic for your application. You can use this API to build your own view of almost any metric data tracked by New Relic. 
 
-URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/data.:format</code>   Replace +:account_id+ and +:format+ with your New Relic account ID (found in the URL when you access New Relic), and for format use one of (+json+, +xml+, +csv+).
+URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/metrics/data.:format</code>   Replace +:account_id+ and +:format+ with your New Relic account ID (found in the URL when you access New Relic), and for format use one of (+json+, +xml+, +csv+).
 Method::    GET
 Restrictions::   This API is rate-limited per minute, and the limit is subject to change at any point.
 
