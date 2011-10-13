@@ -23,6 +23,12 @@ x-api-key::   API key for account, used for authentication (required)
 
     NewRelicApi.api_key = '<api key>'
 
+== Proxy Support
+
+If you are behind a proxy:
+
+    NewRelicApi.proxy = 'http://localhost:3128'
+
 == ActiveResource API
 
 The New Relic ActiveResource-based API helper is NewRelicApi.
