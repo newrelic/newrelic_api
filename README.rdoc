@@ -78,7 +78,7 @@ EXAMPLE 1 - Deleting an app via browser URL field
 We want to delete the app called "dotNet qa3" which has the app_id of 11068. 
 The account # is 26286. The data_access_key is the API key for this account.
 
-https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id[]=11068&data_access_key=a4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9
+https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id[]=11068&data_access_key=4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9
 
 Actual response via browser:
 
@@ -90,13 +90,13 @@ Actual response via browser:
 
 EXAMPLE 2 - Deleting an app via Curl
 
-curl -H "x-api-key:a4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9" 'https://staging.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id=11253'
+curl -H "x-api-key:4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9" 'https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id=11253'
 
 Actual response:
 
     <?xml version="1.0" encoding="UTF-8"?>
         <applications type="array">
-            <application name="') or ('1'='1--" id="11253">
+            <application name="test100" id="11253">
                 <result>deleted</result>
             </application>
     </applications>
