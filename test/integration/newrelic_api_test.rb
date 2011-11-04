@@ -51,7 +51,6 @@ class NewrelicApiTest < ActiveSupport::TestCase
     check_applications(apps)
     ui_app = apps.first
 
-    # Unfortunately, if you ask for a non-existent app, you get a redirect right now.
     assert_raises ActiveResource::ResourceNotFound do
       account.applications(9999)
     end
