@@ -5,7 +5,7 @@ group :development do
   gem "bundler", "~> 1.0.0"
   gem "jeweler", "~> 1.5.2"
   gem "rcov", ">= 0"
-  gem 'shoulda', '~>2.10.3'
+  gem 'shoulda', '~>2.11.0'
   gem 'ci_reporter', '1.6.0'
   gem 'rdiscount'
   gem "rdoc", ">= 3.3"
