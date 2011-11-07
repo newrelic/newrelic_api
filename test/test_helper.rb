@@ -23,6 +23,7 @@ require 'shoulda'
 require 'logging'
 
 $LOAD_PATH << File.expand_path("../../lib", __FILE__)
+Dir.mkdir "log" unless File.directory? "log"
 ActiveResource::Base.logger = Logger.new(File.expand_path('../../log/test.log', __FILE__))
 ActiveResource::Base.logger.level = Logger::DEBUG
 class ActiveSupport::TestCase
