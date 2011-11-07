@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Module: NewRelicApi</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/new_relic_api.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-reset-21">::reset!</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./CHANGELOG.html">CHANGELOG</a>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./NewRelicApi.html">NewRelicApi</a>
+  
+    <li><a href="./NewRelicApi/Account.html">NewRelicApi::Account</a>
+  
+    <li><a href="./NewRelicApi/Account/AccountUsage.html">NewRelicApi::Account::AccountUsage</a>
+  
+    <li><a href="./NewRelicApi/Account/AccountView.html">NewRelicApi::Account::AccountView</a>
+  
+    <li><a href="./NewRelicApi/Application.html">NewRelicApi::Application</a>
+  
+    <li><a href="./NewRelicApi/Application/Agent.html">NewRelicApi::Application::Agent</a>
+  
+    <li><a href="./NewRelicApi/Deployment.html">NewRelicApi::Deployment</a>
+  
+    <li><a href="./NewRelicApi/Subscription.html">NewRelicApi::Subscription</a>
+  
+    <li><a href="./NewRelicApi/ThresholdValue.html">NewRelicApi::ThresholdValue</a>
+  
+    <li><a href="./NewRelicApi/User.html">NewRelicApi::User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module NewRelicApi</h1>
+
+  <div id="description" class="description">
+    
+<h1 id="label-New+Relic+REST+API">New Relic REST API</h1>
+
+<p>This is a helper module for working with the New Relic API’s XML
+interface.  Requires Rails 2.0 or later to be loaded.</p>
+
+<p>Can also be used as a script using script/runner.</p>
+
+<p>In this version of the api, authentication is handled using your account
+API key, available in your <a href="NewRelicApi/Account.html">Account</a>
+settings in <a href="http://rpm.newrelic.com.">rpm.newrelic.com.</a></p>
+
+<p>Log in, click <a href="NewRelicApi/Account.html">Account</a> at the top of
+the page and check the “Make my account data accessible” checkbox.  An
+API key will appear.</p>
+
+<p>Refer to the <a href="README_rdoc.html">README</a> file for details and
+examples on the REST API.</p>
+
+<h2 id="label-Examples">Examples</h2>
+
+<pre class="ruby"><span class="ruby-comment"># Fetching the list of applications for an account</span>
+<span class="ruby-constant">NewRelicApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(:<span class="ruby-identifier">first</span>).<span class="ruby-identifier">applications</span>
+
+<span class="ruby-comment"># Fetching the health values for all account applications</span>
+<span class="ruby-constant">NewRelicApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Account</span>.<span class="ruby-identifier">application_health</span>
+
+<span class="ruby-comment"># Fetching the health values for an application</span>
+<span class="ruby-constant">NewRelicApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(:<span class="ruby-identifier">first</span>).<span class="ruby-identifier">applications</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">threshold_values</span>
+
+<span class="ruby-comment"># Finding an application by name</span>
+<span class="ruby-constant">NewRelicApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(:<span class="ruby-identifier">first</span>).<span class="ruby-identifier">applications</span>(:<span class="ruby-identifier">params</span> =<span class="ruby-operator">&gt;</span> {:<span class="ruby-identifier">conditions</span> =<span class="ruby-operator">&gt;</span> {:<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'My App'</span>}})
+</pre>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-c-api_key" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">api_key</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-host" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">host</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-port" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">port</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-proxy" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">proxy</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-ssl" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ssl</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-reset-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reset!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Resets the base path of all resources.  This should be called when
+overridding the newrelic.yml settings using the ssl, host or port
+accessors.</p>
+          
+
+          
+          <div class="method-source-code" id="reset-21-source">
+            <pre><span class="ruby-comment"># File lib/new_relic_api.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reset!</span>
+  <span class="ruby-ivar">@classes</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">klass</span><span class="ruby-operator">|</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">reset!</span>} <span class="ruby-keyword">if</span> <span class="ruby-ivar">@classes</span>
+  <span class="ruby-constant">NewRelicApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Account</span>.<span class="ruby-identifier">site_url</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reset-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reset-21-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

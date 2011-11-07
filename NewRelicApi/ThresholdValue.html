@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Class: NewRelicApi::ThresholdValue</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/new_relic_api.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">NewRelicApi::BaseResource
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-color_value">#color_value</a>
+    
+    <li><a href="#method-i-metric_value">#metric_value</a>
+    
+    <li><a href="#method-i-threshold_value">#threshold_value</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../CHANGELOG.html">CHANGELOG</a>
+  
+    <li class="file"><a href="../README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../NewRelicApi.html">NewRelicApi</a>
+  
+    <li><a href="../NewRelicApi/Account.html">NewRelicApi::Account</a>
+  
+    <li><a href="../NewRelicApi/Account/AccountUsage.html">NewRelicApi::Account::AccountUsage</a>
+  
+    <li><a href="../NewRelicApi/Account/AccountView.html">NewRelicApi::Account::AccountView</a>
+  
+    <li><a href="../NewRelicApi/Application.html">NewRelicApi::Application</a>
+  
+    <li><a href="../NewRelicApi/Application/Agent.html">NewRelicApi::Application::Agent</a>
+  
+    <li><a href="../NewRelicApi/Deployment.html">NewRelicApi::Deployment</a>
+  
+    <li><a href="../NewRelicApi/Subscription.html">NewRelicApi::Subscription</a>
+  
+    <li><a href="../NewRelicApi/ThresholdValue.html">NewRelicApi::ThresholdValue</a>
+  
+    <li><a href="../NewRelicApi/User.html">NewRelicApi::User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class NewRelicApi::ThresholdValue</h1>
+
+  <div id="description" class="description">
+    
+<p>A threshold value represents a single health indicator for an application
+such as CPU, memory or response time.</p>
+
+<h2 id="label-Fields">Fields</h2>
+<dl class="rdoc-list note-list"><dt><code>name</code>
+<dd>
+<p>The name of the threshold setting associated with this threshold value.</p>
+</dd><dt><code>begin_time</code>
+<dd>
+<p>Time value indicating start of evaluation period, as a string.</p>
+</dd><dt><code>threshold_value</code>
+<dd>
+<p>A value of 0, 1, 2 or 3 representing gray (not reporting), green, yellow
+and red</p>
+</dd><dt><code>metric_value</code>
+<dd>
+<p>The metric value associated with this threshold</p>
+</dd></dl>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-color_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">color_value</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the color value for this threshold (Gray, Green, Yellow or Red).</p>
+          
+
+          
+          <div class="method-source-code" id="color_value-source">
+            <pre><span class="ruby-comment"># File lib/new_relic_api.rb, line 152</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">color_value</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">threshold_value</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-string">'Red'</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-string">'Yellow'</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-string">'Green'</span>
+  <span class="ruby-keyword">else</span> <span class="ruby-string">'Gray'</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- color_value-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- color_value-method -->
+
+    
+      <div id="method-i-metric_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">metric_value</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the actual value of the threshold as a Float</p>
+          
+
+          
+          <div class="method-source-code" id="metric_value-source">
+            <pre><span class="ruby-comment"># File lib/new_relic_api.rb, line 148</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">metric_value</span>
+  <span class="ruby-keyword">super</span>.<span class="ruby-identifier">to_f</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- metric_value-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- metric_value-method -->
+
+    
+      <div id="method-i-threshold_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">threshold_value</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return theshold_value as 0, 1, 2, or 3 representing grey (not reporting)
+green, yellow, and red, respectively.</p>
+          
+
+          
+          <div class="method-source-code" id="threshold_value-source">
+            <pre><span class="ruby-comment"># File lib/new_relic_api.rb, line 143</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">threshold_value</span>
+  <span class="ruby-keyword">super</span>.<span class="ruby-identifier">to_i</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- threshold_value-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- threshold_value-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

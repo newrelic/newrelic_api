@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Documentation and helper code for the New Relic API</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body>
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./CHANGELOG.html">CHANGELOG</a>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./NewRelicApi.html">NewRelicApi</a>
+  
+    <li><a href="./NewRelicApi/Account.html">NewRelicApi::Account</a>
+  
+    <li><a href="./NewRelicApi/Account/AccountUsage.html">NewRelicApi::Account::AccountUsage</a>
+  
+    <li><a href="./NewRelicApi/Account/AccountView.html">NewRelicApi::Account::AccountView</a>
+  
+    <li><a href="./NewRelicApi/Application.html">NewRelicApi::Application</a>
+  
+    <li><a href="./NewRelicApi/Application/Agent.html">NewRelicApi::Application::Agent</a>
+  
+    <li><a href="./NewRelicApi/Deployment.html">NewRelicApi::Deployment</a>
+  
+    <li><a href="./NewRelicApi/Subscription.html">NewRelicApi::Subscription</a>
+  
+    <li><a href="./NewRelicApi/ThresholdValue.html">NewRelicApi::ThresholdValue</a>
+  
+    <li><a href="./NewRelicApi/User.html">NewRelicApi::User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation" class="description">
+  
+<h1 id="label-New+Relic+REST+API">New Relic REST API</h1>
+
+<p>This gem contains the documentation and examples for using the New Relic
+REST API for RPM customers.</p>
+
+<p>Rails developers can use the ActiveResource helper file found in this gem. 
+Refer to the gem rdocs.</p>
+
+<p>New Relic supports a RESTful API that can be used to list applications
+within a given account and enumerate the health indicators of each
+application. The API uses the XML response format. As a convenience, New
+Relic offers an ActiveResource wrapper API, but developers are welcome to
+work directly with the XML.</p>
+
+<h2 id="label-Authentication">Authentication</h2>
+
+<p>New Relic supports an api key-based authentication mechanism. The key is
+the api key associated with an account and can be obtained using the RPM
+Account settings for Integrations.  This key should be passed as a request
+header with each request. All API calls described in this document require
+authentication.</p>
+
+<p>API requests require HTTPS in order to ensure the API key cannot be easily
+read by a third party.</p>
+
+<p>You will need to enable API access to your account. To do this, go to
+Account settings (upper right corner of the New Relic site), and then click
+on API + web integration. Select API access, and enable it.</p>
+
+<h3 id="label-Request+Headers">Request Headers</h3>
+<dl class="rdoc-list note-list"><dt>x-api-key
+<dd>
+<p>API key for account, used for authentication (required)</p>
+</dd></dl>
+
+<h3 id="label-ActiveResource+authentication+under+Rails">ActiveResource authentication under Rails</h3>
+
+<pre>NewRelicApi.api_key = '&lt;api key&gt;'</pre>
+
+<h2 id="label-Proxy+Support">Proxy Support</h2>
+
+<p>If you are behind a proxy:</p>
+
+<pre>NewRelicApi.proxy = 'http://localhost:3128'</pre>
+
+<h2 id="label-ActiveResource+API">ActiveResource API</h2>
+
+<p>The New Relic ActiveResource-based API helper is <a
+href="NewRelicApi.html">NewRelicApi</a>. If you are using ActiveResource to
+access our API you can focus on the documentation and examples contained in
+the <a href="NewRelicApi.html">Ruby Documentation</a>.</p>
+
+<p>The remainder of this document will describe our XML API.</p>
+
+<h2 id="label-View+applications">View applications</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://rpm.newrelic.com/accounts/:account_id/applications.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd><dt>Active Resource Helper  
+<dd>
+<p><a href="NewRelicApi/Account.html">NewRelicApi::Account</a></p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> with the your account number.  You can see
+this in the browser URL when you log in to rpm.newrelic.com.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;applications type=&quot;array&quot;&gt; 
+  &lt;application&gt; 
+    &lt;id type=&quot;integer&quot;&gt;123&lt;/id&gt; 
+    &lt;name&gt;My Application&lt;/name&gt; 
+    &lt;overview-url&gt;&lt;a href=&quot;https://rpm.newrelic.com/browser/agent?account_id=1&amp;agent=123%3C&quot;&gt;https://rpm.newrelic.com/browser...&lt;/a&gt;/overview-url&gt; 
+  &lt;/application&gt; 
+  &lt;application&gt; 
+    &lt;id type=&quot;integer&quot;&gt;124&lt;/id&gt; 
+    &lt;name&gt;My Application2&lt;/name&gt; 
+    &lt;overview-url&gt;&lt;a href=&quot;https://rpm.newrelic.com/browser/agent?account_id=1&amp;agent=124%3C&quot;&gt;https://rpm.newrelic.com/browser...&lt;/a&gt;/overview-url&gt; 
+  &lt;/application&gt; 
+&lt;/applications&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li></ul>
+
+<h2 id="label-Delete+applications">Delete applications</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/delete.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>POST</p>
+</dd><dt>Parameters
+<dd>
+<p>app, a string representing the name of your application, or app_id, an
+integer representing the id of your application</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> with the your account number. You can see
+this in the browser URL when you log in to rpm.newrelic.com.</p>
+
+<p>EXAMPLE 1 - Deleting an app via browser URL field We want to delete the app
+called “dotNet qa3” which has the app_id of 11068.  The account # is
+26286. The data_access_key is the API key for this account.</p>
+
+<p><a
+href="https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id[]=11068&data_access_key=4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9">api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id[]=11068&data_access_key=4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9</a></p>
+
+<p>Actual response via browser:</p>
+
+<pre>&lt;applications type=&quot;array&quot;&gt;
+    &lt;application name=&quot;dotNet qa3&quot; id=&quot;11068&quot;&gt;
+        &lt;result&gt;deleted&lt;/result&gt;
+    &lt;/application&gt;
+&lt;/applications&gt;</pre>
+
+<p>EXAMPLE 2 - Deleting an app via Curl</p>
+
+<p>curl -H “x-api-key:4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9”
+‘<a
+href="https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id=11253">api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id=11253</a>’</p>
+
+<p>Actual response:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;applications type=&quot;array&quot;&gt;
+        &lt;application name=&quot;test100&quot; id=&quot;11253&quot;&gt;
+            &lt;result&gt;deleted&lt;/result&gt;
+        &lt;/application&gt;
+&lt;/applications&gt;</pre>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;applications type=&quot;array&quot;&gt;
+  &lt;application name=&quot;MyApp&quot; id=&quot;1234&quot;&gt;
+    &lt;result&gt;deleted&lt;/result&gt;
+  &lt;/application&gt;
+  &lt;application name=&quot;MyApp 2&quot; id=&quot;2345&quot;&gt;
+    &lt;result&gt;failed&lt;/result&gt;
+  &lt;/application&gt;
+  &lt;/record&gt;
+&lt;/applications&gt;</pre>
+
+<h2 id="label-Application+Summary+Metrics">Application Summary Metrics</h2>
+
+<p>Fetch summary metrics and threshold values (traffic light information) for
+one application.</p>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://rpm.newrelic.com/accounts/:account_id/applications/:app_id/threshold_values.xml</code>
+Replace <code>:account_id</code> and <code>:app_id</code> with the account
+and application IDs.</p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>This API should be called at most once per minute</p>
+</dd><dt>Active Resource Helper
+<dd>
+<p><a href="NewRelicApi/Application.html">NewRelicApi::Account</a></p>
+</dd></dl>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Note: Application Busy data will only be returned to Professional and
+Volume customers. Errors data will only be returned to Professional and
+Volume customers.</p>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;threshold-values type=&quot;array&quot;&gt; 
+  &lt;threshold_value name=&quot;Apdex&quot; begin_time=&quot;Fri Dec 12 01:22:00 +0000 2008&quot; end_time=&quot;Fri Dec 12 01:27:00 +0000 2008&quot; formatted_metric_value=&quot;0.96 [1.0]*&quot; threshold_value=&quot;1&quot; metric_value=&quot;0.96&quot;/&gt; 
+  &lt;threshold_value name=&quot;Application Busy&quot; begin_time=&quot;Fri Dec 12 01:22:00 +0000 2008&quot; end_time=&quot;Fri Dec 12 01:27:00 +0000 2008&quot; formatted_metric_value=&quot;3%&quot; threshold_value=&quot;1&quot; metric_value=&quot;3&quot;/&gt; 
+  &lt;threshold_value name=&quot;CPU&quot; begin_time=&quot;Fri Dec 12 01:22:00 +0000 2008&quot; end_time=&quot;Fri Dec 12 01:27:00 +0000 2008&quot; formatted_metric_value=&quot;52.86 %&quot; threshold_value=&quot;1&quot; metric_value=&quot;52.86&quot;/&gt; 
+  &lt;threshold_value name=&quot;Memory&quot; begin_time=&quot;Fri Dec 12 01:22:00 +0000 2008&quot; end_time=&quot;Fri Dec 12 01:27:00 +0000 2008&quot; formatted_metric_value=&quot;261.42 MB&quot; threshold_value=&quot;1&quot; metric_value=&quot;261.42&quot;/&gt; 
+  &lt;threshold_value name=&quot;Errors&quot; begin_time=&quot;Fri Dec 12 01:22:00 +0000 2008&quot; end_time=&quot;Fri Dec 12 01:27:00 +0000 2008&quot; formatted_metric_value=&quot;0.0 epm&quot; threshold_value=&quot;1&quot; metric_value=&quot;0.0&quot;/&gt; 
+  &lt;threshold_value name=&quot;Response Time&quot; begin_time=&quot;Fri Dec 12 01:22:00 +0000 2008&quot; end_time=&quot;Fri Dec 12 01:27:00 +0000 2008&quot; formatted_metric_value=&quot;31 ms&quot; threshold_value=&quot;1&quot; metric_value=&quot;31&quot;/&gt; 
+  &lt;threshold_value name=&quot;Throughput&quot; begin_time=&quot;Fri Dec 12 01:22:00 +0000 2008&quot; end_time=&quot;Fri Dec 12 01:27:00 +0000 2008&quot; formatted_metric_value=&quot;14028.6 cpm&quot; threshold_value=&quot;1&quot; metric_value=&quot;14028.6&quot;/&gt; 
+  &lt;threshold_value name=&quot;DB&quot; begin_time=&quot;Fri Dec 12 01:22:00 +0000 2008&quot; end_time=&quot;Fri Dec 12 01:27:00 +0000 2008&quot; formatted_metric_value=&quot;46.82 %&quot; threshold_value=&quot;1&quot; metric_value=&quot;46.82&quot;/&gt; 
+&lt;/threshold-values&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Unknown Application (404)</p>
+</li></ul>
+
+<h2 id="label-Application+Summary+Metrics+%28All+applications%29">Application Summary Metrics (All applications)</h2>
+
+<p>Fetch summary metrics and threshold values (traffic light information) for
+all applications.</p>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://rpm.newrelic.com/accounts.xml?include=application_health</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>This API should be called at most once per minute</p>
+</dd><dt>Active Resource Helper
+<dd>
+<p><a href="NewRelicApi/Application.html">NewRelicApi::Account</a></p>
+</dd></dl>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Note: Application Busy data will only be returned to Professional and
+Volume customers. Errors data will only be returned to Professional and
+Volume customers.</p>
+
+<p>Sample data:</p>
+
+<pre>&lt;accounts type=&quot;array&quot;&gt;
+  &lt;account&gt; 
+    &lt;id&gt;1&lt;/id&gt; 
+    &lt;name&gt;New Relic Administration&lt;/name&gt; 
+    &lt;applications type=&quot;array&quot;&gt; 
+      &lt;application&gt; 
+        &lt;id type=&quot;integer&quot;&gt;5&lt;/id&gt; 
+        &lt;name&gt;My Application&lt;/name&gt; 
+        &lt;threshold-values type=&quot;array&quot;&gt; 
+          &lt;threshold_value begin_time=&quot;Fri Nov 21 20:03:00 +0000 2008&quot; formatted_metric_value=&quot;0.96 [1.0]*&quot; name=&quot;Apdex&quot; end_time=&quot;Fri Nov 21 20:08:00 +0000 2008&quot; threshold_value=&quot;1&quot; metric_value=&quot;0.96&quot;/&gt; 
+          &lt;threshold_value begin_time=&quot;Fri Nov 21 20:03:00 +0000 2008&quot; formatted_metric_value=&quot;3%&quot; name=&quot;Application Busy&quot; end_time=&quot;Fri Nov 21 20:08:00 +0000 2008&quot; threshold_value=&quot;1&quot; metric_value=&quot;3&quot;/&gt; 
+          &lt;threshold_value begin_time=&quot;Fri Nov 21 20:03:00 +0000 2008&quot; formatted_metric_value=&quot;2.59 %&quot; name=&quot;CPU&quot; end_time=&quot;Fri Nov 21 20:08:00 +0000 2008&quot; threshold_value=&quot;1&quot; metric_value=&quot;2.59&quot;/&gt; 
+          &lt;threshold_value begin_time=&quot;Fri Nov 21 20:03:00 +0000 2008&quot; formatted_metric_value=&quot;151.62 MB&quot; name=&quot;Memory&quot; end_time=&quot;Fri Nov 21 20:08:00 +0000 2008&quot; threshold_value=&quot;1&quot; metric_value=&quot;151.62&quot;/&gt; 
+          &lt;threshold_value begin_time=&quot;Fri Nov 21 20:03:00 +0000 2008&quot; formatted_metric_value=&quot;0.0 epm&quot; name=&quot;Errors&quot; end_time=&quot;Fri Nov 21 20:08:00 +0000 2008&quot; threshold_value=&quot;1&quot; metric_value=&quot;0.0&quot;/&gt; 
+          &lt;threshold_value begin_time=&quot;Fri Nov 21 20:03:00 +0000 2008&quot; formatted_metric_value=&quot;947 ms&quot; name=&quot;Response Time&quot; end_time=&quot;Fri Nov 21 20:08:00 +0000 2008&quot; threshold_value=&quot;1&quot; metric_value=&quot;947&quot;/&gt; 
+          &lt;threshold_value begin_time=&quot;Fri Nov 21 20:03:00 +0000 2008&quot; formatted_metric_value=&quot;2.4 cpm&quot; name=&quot;Throughput&quot; end_time=&quot;Fri Nov 21 20:08:00 +0000 2008&quot; threshold_value=&quot;1&quot; metric_value=&quot;2.4&quot;/&gt; 
+          &lt;threshold_value begin_time=&quot;Fri Nov 21 20:03:00 +0000 2008&quot; formatted_metric_value=&quot;0.52 %&quot; name=&quot;DB&quot; end_time=&quot;Fri Nov 21 20:08:00 +0000 2008&quot; threshold_value=&quot;1&quot; metric_value=&quot;0.52&quot;/&gt; 
+        &lt;/threshold-values&gt; 
+      &lt;/application&gt; 
+    &lt;/applications&gt; 
+  &lt;/account&gt; 
+&lt;/accounts&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li></ul>
+
+<h2 id="label-Dashboard+HTML+fragment+%28All+applications%29">Dashboard HTML fragment (All applications)</h2>
+
+<p>New Relic provides an HTML fragment of the <a
+href="https://rpm.newrelic.com">dashboard view</a> of RPM. CSS styles are
+included, and images linked absolutely, which enables callers to embed the
+response directly in their applications. Authentication is through setting
+the appropriate API key header as outlined above, or through the regular
+login cookie. When using the regular login cookie, the logged-in user’s
+default account’s applications will be shown.</p>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://rpm.newrelic.com/application_dashboard</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>This API should be called at most once per minute</p>
+</dd><dt>Active Resource Helper
+<dd>
+<p>None available currently</p>
+</dd></dl>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Sample data:</p>
+
+<pre class="ruby"><span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;newrelic-rpm-2&quot;</span><span class="ruby-operator">&gt;</span>
+  <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;newrelic-rpm-2-content&quot;</span><span class="ruby-operator">&gt;</span>
+    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">style</span> <span class="ruby-identifier">type</span>=<span class="ruby-string">&quot;text/css&quot;</span> <span class="ruby-identifier">media</span>=<span class="ruby-string">&quot;screen&quot;</span><span class="ruby-operator">&gt;</span>
+       <span class="ruby-operator">...</span><span class="ruby-identifier">embeded</span> <span class="ruby-identifier">styles</span><span class="ruby-operator">...</span>
+    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/style&gt;
+
+&lt;table id=&quot;all_applications&quot; cellspacing=&quot;0&quot; class=&quot;section agent_display span-16&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th class=&quot;header&quot;&gt;Application&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Apdex Score is a industry-standard measurement of customer satisfaction. It is calculated essentially as weighted response time. The larger number is your Apdex Score, out of 1, and the smaller number is the threshold for an acceptable response time, in seconds.&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;apdex&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Apdex</span> <span class="ruby-constant">Score</span> <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-string">&quot;http://support.newrelic.com/faqs/general/apdex&quot;</span> <span class="ruby-identifier">target</span>=<span class="ruby-string">&quot;_blank&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">img</span> <span class="ruby-identifier">alt</span>=<span class="ruby-string">&quot;?&quot;</span> <span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;https://rpm.newrelic.com/images/v2/12x12/moreinfo.png?1285097852&quot;</span> <span class="ruby-identifier">style</span>=<span class="ruby-string">&quot;border: 0px none;&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/a&gt;&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Response Time is the average time it took to generate a response to all requests.&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Resp</span>. <span class="ruby-constant">Time</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/th&gt;
+      &lt;th title=&quot;Errors is the percentage of your requests that received an error as a response.&quot;&gt;Errors&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput is total number of requests processed by your application per minute.&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;throughput last&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Throughput</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">br</span><span class="ruby-operator">&gt;</span>(<span class="ruby-identifier">change</span> <span class="ruby-identifier">from</span> <span class="ruby-operator">&lt;</span><span class="ruby-identifier">abbr</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;24 hours ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">24</span><span class="ruby-identifier">h</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/abbr&gt;/</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">abbr</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;7 days ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">7</span><span class="ruby-identifier">d</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/abbr&gt;)&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
+    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tr&gt;
+  &lt;/</span><span class="ruby-identifier">thead</span><span class="ruby-operator">&gt;</span>
+  <span class="ruby-operator">&lt;</span><span class="ruby-identifier">tbody</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application application_1&quot;</span><span class="ruby-operator">&gt;</span>  
+    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">tr</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application_tier data&quot;</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">td</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;agent&quot;</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">img</span> <span class="ruby-identifier">alt</span>=<span class="ruby-string">&quot;Normal&quot;</span> <span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;https://rpm.newrelic.com/images/v2/16x16/light-green.png?1285097852&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;name&quot;</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-string">&quot;https://rpm.newrelic.com/accounts/1/applications/1&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">RPM</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/a&gt;
+        &lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;status reporting&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">1</span> <span class="ruby-constant">Host</span> <span class="ruby-keyword">and</span> <span class="ruby-value">5</span> <span class="ruby-constant">Instances</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/span&gt;
+      &lt;/</span><span class="ruby-identifier">td</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">td</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;data apdex&quot;</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-node">&quot;https://rpm.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dapdex&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0.99</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">sub</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0.025</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/sub&gt;&lt;/</span><span class="ruby-identifier">a</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/td&gt;
+      &lt;td class=&quot;data&quot;&gt;&lt;a href=&quot;https:/</span><span class="ruby-operator">/</span><span class="ruby-identifier">rpm</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">transactions</span><span class="ruby-string">&quot;&gt;5.7 ms&lt;/a&gt;&lt;/td&gt;
+      &lt;td class=&quot;</span><span class="ruby-identifier">data</span><span class="ruby-string">&quot;&gt;&lt;a href=&quot;</span><span class="ruby-identifier">https</span><span class="ruby-operator">:</span><span class="ruby-regexp">//</span><span class="ruby-identifier">rpm</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">traced_errors</span><span class="ruby-string">&quot;&gt;0.00 %&lt;/a&gt;&lt;/td&gt;
+      &lt;td class=&quot;</span><span class="ruby-identifier">data</span> <span class="ruby-identifier">throughput</span> <span class="ruby-identifier">last</span><span class="ruby-string">&quot;&gt;
+        &lt;a href=&quot;</span><span class="ruby-identifier">https</span><span class="ruby-operator">:</span><span class="ruby-regexp">//</span><span class="ruby-identifier">rpm</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">transactions</span><span class="ruby-comment">#sort_by%3Dthroughput&quot;&gt;92 rpm&lt;/a&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;throughput_history&quot;</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;yesterday&quot;</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput down 2% from 24 hours ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">strong</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;down &quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">-2</span><span class="ruby-operator">%</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/strong&gt;&lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;last_week&quot;</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput up 0% from 7 days ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">strong</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;up &quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-operator">%</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/strong&gt;&lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/div&gt;  
+      &lt;/</span><span class="ruby-identifier">td</span><span class="ruby-operator">&gt;</span>
+    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tr&gt;
+  &lt;/</span><span class="ruby-identifier">tbody</span><span class="ruby-operator">&gt;</span>
+<span class="ruby-operator">&lt;</span><span class="ruby-regexp">/table&gt;
+
+&lt;script type=&quot;text/</span><span class="ruby-identifier">javascript</span><span class="ruby-string">&quot; charset=&quot;</span><span class="ruby-identifier">utf</span><span class="ruby-operator">-</span><span class="ruby-value">8</span><span class="ruby-string">&quot;&gt;
+
+  // Link catching via event delegation
+
+  var getTarget = function(x){
+    x = x || window.event;
+    return x.target || x.srcElement;
+  };
+
+  var linkCatcher = function(event){
+    var target = getTarget(event);
+
+    var link = findLink(target);
+    if(link !== null){
+      window.open(link.href);
+      return false;
+    }
+  };
+
+  var findLink = function(el){
+    while(el.nodeName.toLowerCase() !== &quot;</span><span class="ruby-identifier">body</span><span class="ruby-string">&quot;){
+      if(el.nodeName.toLowerCase() === 'a'){
+        return el;
+      }
+      else {
+        el = el.parentNode;
+      }
+    }
+    return null;
+  };
+
+  var table = document.getElementById(&quot;</span><span class="ruby-identifier">all_applications</span><span class="ruby-string">&quot;);
+  table.onclick = linkCatcher;
+&lt;/script&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+</span></pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li></ul>
+
+<h2 id="label-Dashboard+HTML+fragment+%28One+application%29">Dashboard HTML fragment (One application)</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://rpm.newrelic.com/application_dashboard?application_id=:id</code>
+Replace <code>:id</code> with application ID.</p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>This API should be called at most once per minute</p>
+</dd><dt>Active Resource Helper
+<dd>
+<p>None available currently</p>
+</dd></dl>
+
+<h3 id="label-Request+Parameters">Request Parameters</h3>
+<ul><li>
+<p><code>application_id</code>: the ID of the application to view</p>
+</li></ul>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Sample data:</p>
+
+<pre class="ruby"><span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;newrelic-rpm-2&quot;</span><span class="ruby-operator">&gt;</span>
+  <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;newrelic-rpm-2-content&quot;</span><span class="ruby-operator">&gt;</span>
+    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">style</span> <span class="ruby-identifier">type</span>=<span class="ruby-string">&quot;text/css&quot;</span> <span class="ruby-identifier">media</span>=<span class="ruby-string">&quot;screen&quot;</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">...</span><span class="ruby-identifier">embeded</span> <span class="ruby-identifier">styles</span><span class="ruby-operator">...</span>
+    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/style&gt;
+
+&lt;table id=&quot;all_applications&quot; cellspacing=&quot;0&quot; class=&quot;section agent_display span-16&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th class=&quot;header&quot;&gt;Application&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Apdex Score is a industry-standard measurement of customer satisfaction. It is calculated essentially as weighted response time. The larger number is your Apdex Score, out of 1, and the smaller number is the threshold for an acceptable response time, in seconds.&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;apdex&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Apdex</span> <span class="ruby-constant">Score</span> <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-string">&quot;http://support.newrelic.com/faqs/general/apdex&quot;</span> <span class="ruby-identifier">target</span>=<span class="ruby-string">&quot;_blank&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">img</span> <span class="ruby-identifier">alt</span>=<span class="ruby-string">&quot;?&quot;</span> <span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;https://rpm.newrelic.com/images/v2/12x12/moreinfo.png?1285097852&quot;</span> <span class="ruby-identifier">style</span>=<span class="ruby-string">&quot;border: 0px none;&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/a&gt;&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Response Time is the average time it took to generate a response to all requests.&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Resp</span>. <span class="ruby-constant">Time</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/th&gt;
+      &lt;th title=&quot;Errors is the percentage of your requests that received an error as a response.&quot;&gt;Errors&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput is total number of requests processed by your application per minute.&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;throughput last&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Throughput</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">br</span><span class="ruby-operator">&gt;</span>(<span class="ruby-identifier">change</span> <span class="ruby-identifier">from</span> <span class="ruby-operator">&lt;</span><span class="ruby-identifier">abbr</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;24 hours ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">24</span><span class="ruby-identifier">h</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/abbr&gt;/</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">abbr</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;7 days ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">7</span><span class="ruby-identifier">d</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/abbr&gt;)&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
+    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tr&gt;
+  &lt;/</span><span class="ruby-identifier">thead</span><span class="ruby-operator">&gt;</span>
+  <span class="ruby-operator">&lt;</span><span class="ruby-identifier">tbody</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application application_1&quot;</span><span class="ruby-operator">&gt;</span>  
+    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">tr</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application_tier data&quot;</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">td</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;agent&quot;</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">img</span> <span class="ruby-identifier">alt</span>=<span class="ruby-string">&quot;Normal&quot;</span> <span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;https://rpm.newrelic.com/images/v2/16x16/light-green.png?1285097852&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;name&quot;</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-string">&quot;https://rpm.newrelic.com/accounts/1/applications/1&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">RPM</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/a&gt;
+        &lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;status reporting&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">1</span> <span class="ruby-constant">Host</span> <span class="ruby-keyword">and</span> <span class="ruby-value">5</span> <span class="ruby-constant">Instances</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/span&gt;
+      &lt;/</span><span class="ruby-identifier">td</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">td</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;data apdex&quot;</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-node">&quot;https://rpm.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dapdex&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0.99</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">sub</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0.025</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/sub&gt;&lt;/</span><span class="ruby-identifier">a</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/td&gt;
+      &lt;td class=&quot;data&quot;&gt;&lt;a href=&quot;https:/</span><span class="ruby-operator">/</span><span class="ruby-identifier">rpm</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">transactions</span><span class="ruby-string">&quot;&gt;5.7 ms&lt;/a&gt;&lt;/td&gt;
+      &lt;td class=&quot;</span><span class="ruby-identifier">data</span><span class="ruby-string">&quot;&gt;&lt;a href=&quot;</span><span class="ruby-identifier">https</span><span class="ruby-operator">:</span><span class="ruby-regexp">//</span><span class="ruby-identifier">rpm</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">traced_errors</span><span class="ruby-string">&quot;&gt;0.00 %&lt;/a&gt;&lt;/td&gt;
+      &lt;td class=&quot;</span><span class="ruby-identifier">data</span> <span class="ruby-identifier">throughput</span> <span class="ruby-identifier">last</span><span class="ruby-string">&quot;&gt;
+        &lt;a href=&quot;</span><span class="ruby-identifier">https</span><span class="ruby-operator">:</span><span class="ruby-regexp">//</span><span class="ruby-identifier">rpm</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">transactions</span><span class="ruby-comment">#sort_by%3Dthroughput&quot;&gt;92 rpm&lt;/a&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;throughput_history&quot;</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;yesterday&quot;</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput down 2% from 24 hours ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">strong</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;down &quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">-2</span><span class="ruby-operator">%</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/strong&gt;&lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;last_week&quot;</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput up 0% from 7 days ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">strong</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;up &quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-operator">%</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/strong&gt;&lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/div&gt;  
+      &lt;/</span><span class="ruby-identifier">td</span><span class="ruby-operator">&gt;</span>
+    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tr&gt;
+  &lt;/</span><span class="ruby-identifier">tbody</span><span class="ruby-operator">&gt;</span>
+<span class="ruby-operator">&lt;</span><span class="ruby-regexp">/table&gt;
+
+&lt;script type=&quot;text/</span><span class="ruby-identifier">javascript</span><span class="ruby-string">&quot; charset=&quot;</span><span class="ruby-identifier">utf</span><span class="ruby-operator">-</span><span class="ruby-value">8</span><span class="ruby-string">&quot;&gt;
+
+  // Link catching via event delegation
+
+  var getTarget = function(x){
+    x = x || window.event;
+    return x.target || x.srcElement;
+  };
+
+  var linkCatcher = function(event){
+    var target = getTarget(event);
+
+    var link = findLink(target);
+    if(link !== null){
+      window.open(link.href);
+      return false;
+    }
+  };
+
+  var findLink = function(el){
+    while(el.nodeName.toLowerCase() !== &quot;</span><span class="ruby-identifier">body</span><span class="ruby-string">&quot;){
+      if(el.nodeName.toLowerCase() === 'a'){
+        return el;
+      }
+      else {
+        el = el.parentNode;
+      }
+    }
+    return null;
+  };
+
+  var table = document.getElementById(&quot;</span><span class="ruby-identifier">all_applications</span><span class="ruby-string">&quot;);
+  table.onclick = linkCatcher;
+&lt;/script&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+</span></pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Unknown Application (404)</p>
+</li></ul>
+
+<h2 id="label-Deployment+Notifications">Deployment Notifications</h2>
+
+<p>Unlike other API requests, the deployments API will accept either a license
+key (in the <code>x-license-key</code> header) or an API key (in the
+<code>x-api-key</code> header).  Furthermore, when using the license key,
+you do not need to enable the API in the account settings.  This is the
+standard mechanism used by the agent to upload deployments from the built
+in capistrano recipes.</p>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://rpm.newrelic.com/deployments.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>POST</p>
+</dd><dt>Active Resource Helper
+<dd>
+<p><a href="NewRelicApi/Deployment.html">NewRelicApi::Account</a></p>
+</dd></dl>
+
+<h3 id="label-Request+Parameters">Request Parameters</h3>
+
+<p>Exactly one of the following is required:</p>
+<ul><li>
+<p><code>deployment[app_name]</code>: The value of app_name in the
+newrelic.yml file used by the application.  This may be different than the
+label that appears in the RPM UI.  You can find the app_name value in RPM
+by looking at the label settings for your application.</p>
+</li><li>
+<p><code>deployment[application_id]</code>: The application id, found in the
+URL when viewing the application in RPM.</p>
+</li></ul>
+
+<p>Following are optional parameters:</p>
+<ul><li>
+<p><code>deployment[changelog]</code>: A list of changes for this deployment</p>
+</li><li>
+<p><code>deployment[description]</code>: Text annotation for the deployment
+&amp;mdash; notes for you</p>
+</li><li>
+<p><code>deployment[revision]</code>: A revision number (e.g., git commit SHA)</p>
+</li><li>
+<p><code>deployment[user]</code>: The name of the user/process that triggered
+this deployment</p>
+</li></ul>
+
+<p>The optional fields may be set to anything you wish, and are not validated.
+For example, you could set the <code>user</code> to <code>&quot;auto
+deployment script&quot;</code>.</p>
+
+<h3 id="label-Example">Example</h3>
+
+<p>Here’s an example using <code>curl</code>:</p>
+
+<pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -d &quot;deployment[app_name]=iMyFace.ly Production&quot; https://rpm.newrelic.com/deployments.xml</pre>
+
+<p>If you were to specify the optional <code>description</code>,
+<code>changelog</code> and <code>user</code> fields, the command would look
+like this:</p>
+
+<pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -d &quot;deployment[app_name]=iMyFace.ly Production&quot; -d &quot;deployment[description]=This deployment was sent using curl&quot; -d &quot;deployment[changelog]=many hands make light work&quot; -d &quot;deployment[user]=Joe User&quot; https://rpm.newrelic.com/deployments.xml</pre>
+
+<h2 id="label-Metric+Names">Metric Names</h2>
+
+<p>Fetches all metrics for an application, or allows you to use a regular
+expression to get a subset of the metrics. These metrics are used to
+retrieve metric values from the Metric Data API (below). Each metric is
+returned with a list of fields that are valid for that metric.</p>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/applications/:app_id/metrics.:format</code>
+Replace <code>:app_id</code> and <code>:format</code> with the application
+ID and for format use one of (<code>json</code>, <code>xml</code>,
+<code>csv</code>).</p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>This API should be called at most once per minute.</p>
+</dd></dl>
+
+<p>For partner admins, you can use a slightly different URL to get metric
+names for your customers (requires partner permissions).</p>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/metrics.:format</code>
+Replace <code>:account_id</code> with the account ID of the customer,
+<code>:app_id</code> with the application ID for the customer, and
+<code>:format</code> with one of (<code>json</code>, <code>xml</code>,
+<code>csv</code>).</p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>This API should be called at most once per minute.</p>
+</dd></dl>
+
+<h3 id="label-Request+Parameters">Request Parameters</h3>
+<ul><li>
+<p><code>re</code>: A regular expression to filter the metric names by.
+Optional.</p>
+</li><li>
+<p><code>limit</code>: The number of metrics to retrieve. Optional. By default
+the limit is 5000.</p>
+</li></ul>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Note: Metric names will only be returned to Pro customers.</p>
+
+<p>Sample requests:</p>
+
+<p><a
+href="https://api.newrelic.com/api/v1/applications/APPLICATION_ID/metrics.xml?re=WebTransaction&limit=2">api.newrelic.com/api/v1/applications/APPLICATION_ID/metrics.xml?re=WebTransaction&limit=2</a></p>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;metrics type=&quot;array&quot;&gt;
+  &lt;metric name=&quot;WebTransaction&quot;&gt;
+    &lt;fields type=&quot;array&quot;&gt;
+      &lt;field name=&quot;average_call_time&quot;/&gt;
+      &lt;field name=&quot;average_response_time&quot;/&gt;
+      &lt;field name=&quot;call_count&quot;/&gt;
+      &lt;field name=&quot;max_call_time&quot;/&gt;
+      &lt;field name=&quot;min_call_time&quot;/&gt;
+      &lt;field name=&quot;requests_per_minute&quot;/&gt;
+      &lt;field name=&quot;throughput&quot;/&gt;
+      &lt;field name=&quot;total_call_time&quot;/&gt;
+    &lt;/fields&gt;
+  &lt;/metric&gt;
+  &lt;metric name=&quot;WebTransaction/RPMCollector/AgentListener/connect&quot;&gt;
+    &lt;fields type=&quot;array&quot;&gt;
+      &lt;field name=&quot;average_call_time&quot;/&gt;
+      &lt;field name=&quot;average_response_time&quot;/&gt;
+      &lt;field name=&quot;call_count&quot;/&gt;
+      &lt;field name=&quot;max_call_time&quot;/&gt;
+      &lt;field name=&quot;min_call_time&quot;/&gt;
+      &lt;field name=&quot;requests_per_minute&quot;/&gt;
+      &lt;field name=&quot;throughput&quot;/&gt;
+      &lt;field name=&quot;total_call_time&quot;/&gt;
+    &lt;/fields&gt;
+  &lt;/metric&gt;
+&lt;/metrics&gt;</pre>
+
+<h3 id="label-Fields">Fields</h3>
+
+<p>Several different values are recorded or computed for each metric. Each
+value is returned in a ‘field’ in the metric data API response. Each
+field contains a value having a specific meaning and unit of measurement.</p>
+
+<p>Time values are measured in seconds (s):</p>
+<ul><li>
+<p><code>average_call_time</code>, <code>average_response_time</code>: Average
+time spent per invocation</p>
+</li><li>
+<p><code>max_call_time</code>, <code>max_response_time</code></p>
+</li><li>
+<p><code>min_call_time</code>, <code>min_response_time</code></p>
+</li><li>
+<p><code>total_call_time</code></p>
+</li><li>
+<p><code>average_exclusive_time</code>: Average time spent per invocation,
+exclusive of any time instrumented by other metrics</p>
+</li></ul>
+
+<p>Some fields imply their units, or have none:</p>
+<ul><li>
+<p><code>call_count</code>, <code>throughput</code>: Number of calls/requests
+in the given time period</p>
+</li><li>
+<p><code>requests_per_minute</code>: Number of calls/requests per minute in
+the given time period</p>
+</li><li>
+<p><code>count</code></p>
+</li><li>
+<p><code>average_value</code></p>
+</li><li>
+<p><code>total_value</code></p>
+</li><li>
+<p><code>percent</code></p>
+</li></ul>
+
+<p>For the error-rate metric (‘Errors/all’)</p>
+<ul><li>
+<p><code>errors_per_minute</code></p>
+</li></ul>
+
+<p>For memory metrics (e.g., ‘Memory/Physical’)</p>
+<ul><li>
+<p><code>used</code>: in megabytes (MB)</p>
+</li></ul>
+
+<p>For instance-counting metrics (e.g., ‘Instance/Busy’):</p>
+<ul><li>
+<p><code>busy_percent</code>: Percentage of total app server instances busy
+over the given time period</p>
+</li><li>
+<p><code>instance_count</code>: Count of app server instances reporting in the
+given time period</p>
+</li></ul>
+
+<p>Apdex metrics support a particular set of fields:</p>
+<ul><li>
+<p><code>score</code>: Apdex score (e.g., 0.95)</p>
+</li><li>
+<p><code>s</code>: Percent of responses that are “Satisfied”, or have
+response times &lt;= the Apdex “T” value</p>
+</li><li>
+<p><code>t</code>: Percent of responses that are “Tolerated”, or have
+response times &gt; T and &lt;= 4T</p>
+</li><li>
+<p><code>f</code>: Percent of responses that are “Frustrated”, or have
+response times &gt;4T (or are errors)</p>
+</li></ul>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Invalid parameters (422) - the response body will be in the requested
+format and will contain the error message(s).</p>
+</li></ul>
+
+<h2 id="label-Metric+Data">Metric Data</h2>
+
+<p>Returns the data values for metrics collected by New Relic for your
+application. You can use this API to build your own view of almost any
+metric data tracked by New Relic.</p>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/metrics/data.:format</code>
+Replace <code>:account_id</code> and <code>:format</code> with your New
+Relic account ID (found in the URL when you access New Relic), and for
+format use one of (<code>json</code>, <code>xml</code>, <code>csv</code>).</p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>This API is rate-limited per minute, and the limit is subject to change at
+any point.</p>
+</dd></dl>
+
+<p>For partner admins, you can use a slightly different URL to get metric data
+for your customers (requires partner permissions).</p>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/data.:format</code>
+Replace <code>:account_id</code> with the account ID of the customer,
+<code>:app_id</code> with the application ID for the customer, and
+<code>:format</code> with one of (<code>json</code>, <code>xml</code>,
+<code>csv</code>).</p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>This API is rate-limited per minute, and the limit is subject to change at
+any point.</p>
+</dd></dl>
+
+<h3 id="label-Request+Parameters">Request Parameters</h3>
+<ul><li>
+<p><code>app</code> or <code>app_id</code>: Application name, or application
+ID, respectively. The application name must be an exact match. You can pass
+in an array of apps to query by specifying <a
+href="http://">app[]=First&app</a>=Second or <a
+href="http://">app_id[]=1234&app_id</a>=2345</p>
+</li><li>
+<p><code>begin</code>: Begin time, in XML UTC format. For example:
+<code>2011-04-20T15:47:00Z</code> (note that the New Relic site graphs are
+NOT in UTC format, so when comparing results, be sure to convert)</p>
+</li><li>
+<p><code>end</code>: End time, in XML UTC format. For example:
+<code>2011-04-20T15:52:00Z</code></p>
+</li><li>
+<p><code>metrics</code>: Included one or many times, this lists the metrics
+you are interested in. If you specify multiple metrics, the request
+parameter should look like <code>metrics[]=foo&metrics[]=bar</code> (append
+‘[]’ to the end of the name of the parameter). You can specify
+<code>metrics[]</code> even if there is a single metric.</p>
+</li><li>
+<p><code>field</code>: Each metric supports different fields, such as
+‘average_response_time’. If the field is not valid for a given metric,
+you will get a blank value, and if there are no valid fields for the
+metrics you request, you will get an error.</p>
+</li><li>
+<p><code>summary</code>: 1 or 0, defaults to 0. This determines whether you
+get back a single value aggregated over the entire time period, or a time
+series. Summary results do not include the <code>begin</code> and
+<code>end</code> times in the result. Time series results give you a
+separate row for each time segment.</p>
+</li></ul>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Note: Metric data will only be returned to Pro customers.</p>
+
+<p>Sample time series request:</p>
+
+<p><a
+href="https://api.newrelic.com/api/v1/accounts/ACCOUNT_ID/metrics/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application">api.newrelic.com/api/v1/accounts/ACCOUNT_ID/metrics/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application</a></p>
+
+<p>Sample time series data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;metrics type=&quot;array&quot;&gt;
+  &lt;metric app=&quot;My Application&quot; begin=&quot;2011-04-20T15:47:00Z&quot; end=&quot;2011-04-20T15:48:00Z&quot; name=&quot;ActiveRecord/all&quot;&gt;
+    &lt;field type=&quot;integer&quot; name=&quot;average_response_time&quot;&gt;0&lt;/field&gt;
+  &lt;/metric&gt;
+  &lt;metric app=&quot;My Application&quot; begin=&quot;2011-04-20T15:48:00Z&quot; end=&quot;2011-04-20T15:49:00Z&quot; name=&quot;ActiveRecord/all&quot;&gt;
+    &lt;field type=&quot;integer&quot; name=&quot;average_response_time&quot;&gt;0&lt;/field&gt;
+  &lt;/metric&gt;
+  &lt;metric app=&quot;My Application&quot; begin=&quot;2011-04-20T15:49:00Z&quot; end=&quot;2011-04-20T15:50:00Z&quot; name=&quot;ActiveRecord/all&quot;&gt;
+    &lt;field type=&quot;integer&quot; name=&quot;average_response_time&quot;&gt;0&lt;/field&gt;
+  &lt;/metric&gt;
+  &lt;metric app=&quot;My Application&quot; begin=&quot;2011-04-20T15:50:00Z&quot; end=&quot;2011-04-20T15:51:00Z&quot; name=&quot;ActiveRecord/all&quot;&gt;
+    &lt;field type=&quot;integer&quot; name=&quot;average_response_time&quot;&gt;0&lt;/field&gt;
+  &lt;/metric&gt;
+  &lt;metric app=&quot;My Application&quot; begin=&quot;2011-04-20T15:51:00Z&quot; end=&quot;2011-04-20T15:52:00Z&quot; name=&quot;ActiveRecord/all&quot;&gt;
+    &lt;field type=&quot;integer&quot; name=&quot;average_response_time&quot;&gt;0&lt;/field&gt;
+  &lt;/metric&gt;
+&lt;/metrics&gt;</pre>
+
+<p>Sample summary request:</p>
+
+<p><a
+href="https://api.newrelic.com/api/v1/accounts/ACCOUNT_ID/metrics/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application&summary=1">api.newrelic.com/api/v1/accounts/ACCOUNT_ID/metrics/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application&summary=1</a></p>
+
+<p>Sample summary data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;metrics type=&quot;array&quot;&gt;
+  &lt;metric app=&quot;My Application&quot; name=&quot;ActiveRecord/all&quot;&gt;
+    &lt;field type=&quot;integer&quot; name=&quot;average_response_time&quot;&gt;0&lt;/field&gt;
+  &lt;/metric&gt;
+&lt;/metrics&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Invalid parameters (422) - the response body will be in the requested
+format and will contain the error message(s).</p>
+</li></ul>
+
+<h2 id="label-Copyright">Copyright</h2>
+
+<p>Copyright © 2011 New Relic, Inc.</p>
+
+</div>
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

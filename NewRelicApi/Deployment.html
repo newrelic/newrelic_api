@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Class: NewRelicApi::Deployment</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/new_relic_api.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">NewRelicApi::BaseResource
+  
+</nav>
+
+    
+    
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../CHANGELOG.html">CHANGELOG</a>
+  
+    <li class="file"><a href="../README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../NewRelicApi.html">NewRelicApi</a>
+  
+    <li><a href="../NewRelicApi/Account.html">NewRelicApi::Account</a>
+  
+    <li><a href="../NewRelicApi/Account/AccountUsage.html">NewRelicApi::Account::AccountUsage</a>
+  
+    <li><a href="../NewRelicApi/Account/AccountView.html">NewRelicApi::Account::AccountView</a>
+  
+    <li><a href="../NewRelicApi/Application.html">NewRelicApi::Application</a>
+  
+    <li><a href="../NewRelicApi/Application/Agent.html">NewRelicApi::Application::Agent</a>
+  
+    <li><a href="../NewRelicApi/Deployment.html">NewRelicApi::Deployment</a>
+  
+    <li><a href="../NewRelicApi/Subscription.html">NewRelicApi::Subscription</a>
+  
+    <li><a href="../NewRelicApi/ThresholdValue.html">NewRelicApi::ThresholdValue</a>
+  
+    <li><a href="../NewRelicApi/User.html">NewRelicApi::User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class NewRelicApi::Deployment</h1>
+
+  <div id="description" class="description">
+    
+<p>This model is used to mark production deployments in RPM Only create is
+supported.</p>
+
+<h2 id="label-Options">Options</h2>
+
+<p>Exactly one of the following is required:</p>
+<ul><li>
+<p><code>app_name</code>: The value of app_name in the newrelic.yml file used
+by the application.  This may be different than the label that appears in
+the RPM UI.  You can find the app_name value in RPM by looking at the label
+settings for your application.</p>
+</li><li>
+<p><code>application_id</code>: The application id, found in the URL when
+viewing the application in RPM.</p>
+</li></ul>
+
+<p>Following are optional parameters:</p>
+<ul><li>
+<p><code>description</code>: Text annotation for the deployment &amp;mdash;
+notes for you</p>
+</li><li>
+<p><code>changelog</code>: A list of changes for this deployment</p>
+</li><li>
+<p><code>user</code>: The name of the user/process that triggered this
+deployment</p>
+</li></ul>
+
+<h2 id="label-Example">Example</h2>
+
+<pre class="ruby"><span class="ruby-constant">NewRelicApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Deployment</span>.<span class="ruby-identifier">create</span> :<span class="ruby-identifier">application_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">11142007</span>, :<span class="ruby-identifier">description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Update production&quot;</span>, :<span class="ruby-identifier">user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Big Mike&quot;</span>
+
+<span class="ruby-constant">NewRelicApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Deployment</span>.<span class="ruby-identifier">create</span> :<span class="ruby-identifier">app_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;My Application&quot;</span>, :<span class="ruby-identifier">description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Update production&quot;</span>, :<span class="ruby-identifier">user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Big Mike&quot;</span>
+</pre>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
