@@ -77,6 +77,8 @@ module NewRelic
                 #{@module_name}.proxy
               end
             end
+            
+            self.format = ActiveResource::Formats::XmlFormat
             self.site = self.site_url
             self.proxy = self.proxy
           end
@@ -177,13 +179,14 @@ module NewRelic
           #   #{@module_name}::Account.find(44)     # find individual account by ID
           #
           class Account < BaseResource
+            
             has_many :applications
             has_many :account_views
 
             def query_params #:nodoc:
               {:account_id => id}
             end
-
+            
             # Returns an account including all of its applications and the threshold values for each application.
             def self.application_health(type = :first)
               find(type, :params => {:include => :application_health})
