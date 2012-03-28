@@ -590,5 +590,5 @@ Sample summary data:
 
 == Copyright
 
-Copyright (c) 2011 New Relic, Inc.
+Copyright (c) 2012 New Relic, Inc.
 
