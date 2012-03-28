@@ -67,6 +67,37 @@ Sample data:
 
 * Invalid API Key (403)
 
+== View servers
+
+URL::            <code>https://rpm.newrelic.com/api/v1/accounts/:account_id/servers.xml</code>  
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> with your account number.  You can see this in the browser URL when you log in to rpm.newrelic.com.
+
+=== Data Returned
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <servers type="array">
+      <server>
+        <overview-url>https://staging.newrelic.com/accounts/1/servers/123</overview-url>
+        <hostname>my-hostname.newrelic.com</hostname>
+        <id type="integer">123</id>
+      </server>
+      <server>
+        <overview-url>https://staging.newrelic.com/accounts/1/servers/124</overview-url>
+        <hostname>my-hostname-2.newrelic.com</hostname>
+        <id type="integer">124</id>
+      </server>
+    <server>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+
+
 == Delete applications
 URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/delete.xml</code>  
 Method::         POST
