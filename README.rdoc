@@ -82,16 +82,43 @@ Sample data:
     <?xml version="1.0" encoding="UTF-8"?>
     <servers type="array">
       <server>
-        <overview-url>https://staging.newrelic.com/accounts/1/servers/123</overview-url>
+        <overview-url>https://staging.newrelic.com/accounts/1/servers/555</overview-url>
         <hostname>my-hostname.newrelic.com</hostname>
-        <id type="integer">123</id>
+        <id type="integer">555</id>
       </server>
       <server>
-        <overview-url>https://staging.newrelic.com/accounts/1/servers/124</overview-url>
+        <overview-url>https://staging.newrelic.com/accounts/1/servers/556</overview-url>
         <hostname>my-hostname-2.newrelic.com</hostname>
-        <id type="integer">124</id>
+        <id type="integer">556</id>
       </server>
     <server>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+
+== View hosts
+
+This gives you the list of hosts, so you can look up application data filtered by host.
+
+URL::            <code>https://rpm.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/hosts.xml</code>  
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> with your account number, and <tt>:app_id</tt> with the application ID. You can see this in the browser URL when you log in to rpm.newrelic.com, or you can look up the applications using the API to view applications. JSON is also supported.
+
+=== Data Returned
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <hosts type="array">
+      <host>
+        <overview-url>https://staging.newrelic.com/accounts/1/applications/123_h3333</overview-url>
+        <name>App name (my-hostname.newrelic.com)</name>
+        <id>123_h3333</id>
+      </host>
+    </hosts>
 
 === Possible Error Conditions
 
