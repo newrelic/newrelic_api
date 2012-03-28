@@ -43,7 +43,7 @@ Method::         GET
 Restrictions::   None
 Active Resource Helper  ::  {NewRelicApi::Account}[link:NewRelicApi/Account.html]
 
-Replace <tt>:account_id</tt> with the your account number.  You can see this in the browser URL when you log in to rpm.newrelic.com.
+Replace <tt>:account_id</tt> with your account number.  You can see this in the browser URL when you log in to rpm.newrelic.com.
 
 === Data Returned
 
