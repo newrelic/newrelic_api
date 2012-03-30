@@ -125,6 +125,36 @@ Sample data:
 * Invalid API Key (403)
 
 
+== View instances
+
+This gives you the list of instances of your application, so you can look up application data filtered by instance. 
+
+URL::            <code>https://rpm.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/instances.xml</code>  
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> with your account number, and <tt>:app_id</tt> with the application ID. You can see this in the browser URL when you log in to rpm.newrelic.com, or you can look up the applications using the API to view applications. JSON is also supported.
+
+=== Data Returned
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <instances type="array">
+      <instance>
+        <overview-url>https://staging.newrelic.com/accounts/1/applications/123/instances/1441_i7584</overview-url>
+        <name>App name (my-hostname.newrelic.com)</name>
+        <id>1441_i7584</id>
+      </instance>
+    </instances>
+
+The overview URL may vary depending on the language of your application.
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+
+
 == Delete applications
 URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/delete.xml</code>  
 Method::         POST
