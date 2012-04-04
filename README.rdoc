@@ -510,13 +510,13 @@ If you were to specify the optional <tt>description</tt>, <tt>changelog</tt> and
 
 Fetches all metrics for an application, or allows you to use a regular expression to get a subset of the metrics. These metrics are used to retrieve metric values from the Metric Data API (below). Each metric is returned with a list of fields that are valid for that metric. 
 
-URL::  <code>https://api.newrelic.com/api/v1/applications/:app_id/metrics.:format</code>   Replace +:app_id+ and +:format+ with the application ID and for format use one of (+json+, +xml+, +csv+).
+URL::  <code>https://api.newrelic.com/api/v1/agents/:agent_id/metrics.:format</code>   Replace +:format+ with the one of (+json+, +xml+, +csv+). +:agent_id+ is either an application ID, server ID, host ID, or instance ID, from the APIs documented above. 
 Method::    GET
 Restrictions::   This API should be called at most once per minute.
 
 For partner admins, you can use a slightly different URL to get metric names for your customers (requires partner permissions).
 
-URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/metrics.:format</code>   Replace +:account_id+ with the account ID of the customer, +:app_id+ with the application ID for the customer, and +:format+ with one of (+json+, +xml+, +csv+).
+URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/agents/:agent_id/metrics.:format</code>   Replace +:account_id+ with the account ID of the customer, +:agent_id+ with the application, server, host, or instance ID for the customer, and +:format+ with one of (+json+, +xml+, +csv+).
 Method::    GET
 Restrictions::   This API should be called at most once per minute. 
 
@@ -531,7 +531,7 @@ Note: Metric names will only be returned to Pro customers.
 
 Sample requests:
 
-https://api.newrelic.com/api/v1/applications/APPLICATION_ID/metrics.xml?re=WebTransaction&limit=2
+https://api.newrelic.com/api/v1/agents/:agent_id/metrics.xml?re=WebTransaction&limit=2
 
 Sample data:
 
@@ -614,14 +614,14 @@ Restrictions::   This API is rate-limited per minute, and the limit is subject t
 
 For partner admins, you can use a slightly different URL to get metric data for your customers (requires partner permissions).
 
-URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/data.:format</code>   Replace +:account_id+ with the account ID of the customer, +:app_id+ with the application ID for the customer, and +:format+ with one of (+json+, +xml+, +csv+).
+URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/agents/:agent_id/data.:format</code>   Replace +:account_id+ with the account ID of the customer, +:agent_id+ with the application, server, host, or instance ID for the customer, and +:format+ with one of (+json+, +xml+, +csv+).
 Method::    GET
 Restrictions::   This API is rate-limited per minute, and the limit is subject to change at any point.
 
 
 === Request Parameters
 
-* +app+ or +app_id+: Application name, or application ID, respectively. The application name must be an exact match. You can pass in an array of apps to query by specifying app[]=First&app[]=Second or app_id[]=1234&app_id[]=2345
+* +app+ or +agent_id+: Application name, or agent ID, respectively. The application name must be an exact match. You can pass in an array of apps to query by specifying app[]=First&app[]=Second . The agent_id is either an ID for an application, an instance, a server, or a host. You can look each of these up using our API (see documentation above for "view applications", "view servers", "view hosts", "view instances"). You can query multiple agents at the same time, but they must all be of the same type: application, instance, server, or host. Examples: agent_id[]=1234&agent_id[]=2345 (for applications), agent_id[]=1441_i7584&agent_id[]=1441_i7588 (for instances), agent_id[]=123_h3333&agent_id[]=123_h3388 (for host filtered application data), agent_id[]=555&agent_id[]=556 (for server data)
 * +begin+: Begin time, in XML UTC format. For example: <tt>2011-04-20T15:47:00Z</tt> (note that the New Relic site graphs are NOT in UTC format, so when comparing results, be sure to convert)
 * +end+: End time, in XML UTC format. For example: <tt>2011-04-20T15:52:00Z</tt>
 * +metrics+: Included one or many times, this lists the metrics you are interested in. If you specify multiple metrics, the request parameter should look like <tt>metrics[]=foo&metrics[]=bar</tt> (append '[]' to the end of the name of the parameter). You can specify <tt>metrics[]</tt> even if there is a single metric.
@@ -634,7 +634,7 @@ Note: Metric data will only be returned to Pro customers.
 
 Sample time series request:
 
-https://api.newrelic.com/api/v1/accounts/ACCOUNT_ID/metrics/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application
+https://api.newrelic.com/api/v1/accounts/:account_id/metrics/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application
 
 Sample time series data:
 
@@ -659,7 +659,7 @@ Sample time series data:
 
 Sample summary request:
 
-https://api.newrelic.com/api/v1/accounts/ACCOUNT_ID/metrics/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application&summary=1
+https://api.newrelic.com/api/v1/accounts/:account_id/metrics/data.xml?begin=2011-04-20T15:47:19Z&end=2011-04-20T15:52:19Z&metrics[]=ActiveRecord/all&field=average_response_time&app=My%20Application&summary=1
 
 Sample summary data:
 
