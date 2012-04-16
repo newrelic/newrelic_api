@@ -74,6 +74,7 @@ module NewRelicApi
         NewRelicApi.proxy
       end
     end
+    self.format = ActiveResource::Formats::XmlFormat
     self.site = self.site_url
     self.proxy = self.proxy
   end
