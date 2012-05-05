@@ -1,3 +1,4 @@
+require 'active_resource'
 require 'active_resource_associations'
 
 # = New Relic REST API

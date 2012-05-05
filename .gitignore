@@ -2,6 +2,7 @@
 log/*.log
 test/reports
 log/test.log
+.rvmrc
 
 # rcov generated
 coverage
@@ -21,6 +22,7 @@ pkg
 
 # For those weirdos with IDEs
 .idea
+.project
 
 # Have editor/IDE/OS specific files you need to ignore? Consider using a global gitignore: 
 #
@@ -35,7 +37,7 @@ pkg
 #
 # For MacOS:
 #
-#.DS_Store
+.DS_Store
 #
 # For TextMate
 #*.tmproj
