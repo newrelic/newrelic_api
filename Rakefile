@@ -23,7 +23,7 @@ Jeweler::Tasks.new do |gem|
   gem.email = "support@newrelic.com"
   gem.authors = ["New Relic"]
   gem.extra_rdoc_files = FileList[*RDOC_FILES]
-  gem.add_dependency 'activeresource', '3.0.9'
+  gem.add_dependency 'activeresource', '3.0.7'
   gem.rdoc_options <<
       "--line-numbers" <<
       "--title" << TITLE <<
