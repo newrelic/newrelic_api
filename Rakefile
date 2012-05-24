@@ -12,9 +12,9 @@ require 'jeweler'
 require 'rdiscount'
 
 require 'ci/reporter/rake/test_unit'
-API_VERSION = File.read('CHANGELOG.md')[/^.*$/]
+API_VERSION = File.read('CHANGELOG')[/^.*$/]
 TITLE = %Q{Documentation and helper code for the New Relic API}
-RDOC_FILES=Dir['README*', 'CHANGELOG*', 'sample*']
+RDOC_FILES=Dir['README*', 'CHANGELOG', 'sample*']
 Jeweler::Tasks.new do |gem|
   gem.version = API_VERSION
   gem.name = "newrelic_api"
