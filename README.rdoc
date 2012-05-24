@@ -38,12 +38,12 @@ The remainder of this document will describe our XML API.
 
 == View applications
 
-URL::            <code>https://rpm.newrelic.com/accounts/:account_id/applications.xml</code>  
+URL::            <code>https://api.newrelic.com/accounts/:account_id/applications.xml</code>  
 Method::         GET
 Restrictions::   None
 Active Resource Helper  ::  {NewRelicApi::Account}[link:NewRelicApi/Account.html]
 
-Replace <tt>:account_id</tt> with your account number.  You can see this in the browser URL when you log in to rpm.newrelic.com.
+Replace <tt>:account_id</tt> with your account number.  You can see this in the browser URL when you log in to api.newrelic.com.
 
 === Data Returned
 
@@ -54,12 +54,12 @@ Sample data:
       <application> 
         <id type="integer">123</id> 
         <name>My Application</name> 
-        <overview-url><a href="https://rpm.newrelic.com/browser/agent?account_id=1&agent=123%3C">https://rpm.newrelic.com/browser...</a>/overview-url> 
+        <overview-url><a href="https://api.newrelic.com/browser/agent?account_id=1&agent=123%3C">https://api.newrelic.com/browser...</a>/overview-url> 
       </application> 
       <application> 
         <id type="integer">124</id> 
         <name>My Application2</name> 
-        <overview-url><a href="https://rpm.newrelic.com/browser/agent?account_id=1&agent=124%3C">https://rpm.newrelic.com/browser...</a>/overview-url> 
+        <overview-url><a href="https://api.newrelic.com/browser/agent?account_id=1&agent=124%3C">https://api.newrelic.com/browser...</a>/overview-url> 
       </application> 
     </applications> 
 
@@ -69,11 +69,11 @@ Sample data:
 
 == View servers
 
-URL::            <code>https://rpm.newrelic.com/api/v1/accounts/:account_id/servers.xml</code>  
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/servers.xml</code>  
 Method::         GET
 Restrictions::   None
 
-Replace <tt>:account_id</tt> with your account number.  You can see this in the browser URL when you log in to rpm.newrelic.com.
+Replace <tt>:account_id</tt> with your account number.  You can see this in the browser URL when you log in to api.newrelic.com.
 
 === Data Returned
 
@@ -101,11 +101,11 @@ Sample data:
 
 This gives you the list of hosts, so you can look up application data filtered by host.
 
-URL::            <code>https://rpm.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/hosts.xml</code>  
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/hosts.xml</code>  
 Method::         GET
 Restrictions::   None
 
-Replace <tt>:account_id</tt> with your account number, and <tt>:app_id</tt> with the application ID. You can see this in the browser URL when you log in to rpm.newrelic.com, or you can look up the applications using the API to view applications. JSON is also supported.
+Replace <tt>:account_id</tt> with your account number, and <tt>:app_id</tt> with the application ID. You can see this in the browser URL when you log in to api.newrelic.com, or you can look up the applications using the API to view applications. JSON is also supported.
 
 === Data Returned
 
@@ -129,11 +129,11 @@ Sample data:
 
 This gives you the list of instances of your application, so you can look up application data filtered by instance. 
 
-URL::            <code>https://rpm.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/instances.xml</code>  
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/instances.xml</code>  
 Method::         GET
 Restrictions::   None
 
-Replace <tt>:account_id</tt> with your account number, and <tt>:app_id</tt> with the application ID. You can see this in the browser URL when you log in to rpm.newrelic.com, or you can look up the applications using the API to view applications. JSON is also supported.
+Replace <tt>:account_id</tt> with your account number, and <tt>:app_id</tt> with the application ID. You can see this in the browser URL when you log in to api.newrelic.com, or you can look up the applications using the API to view applications. JSON is also supported.
 
 === Data Returned
 
@@ -160,7 +160,7 @@ URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/appl
 Method::         POST
 Parameters::     app, a string representing the name of your application, or
                  app_id, an integer representing the id of your application
-Replace <tt>:account_id</tt> with the your account number. You can see this in the browser URL when you log in to rpm.newrelic.com. 
+Replace <tt>:account_id</tt> with the your account number. You can see this in the browser URL when you log in to api.newrelic.com. 
 
 EXAMPLE 1 - Deleting an app via browser URL field
 We want to delete the app called "dotNet qa3" which has the app_id of 11068. 
@@ -209,7 +209,7 @@ Sample data:
 
 Fetch summary metrics and threshold values (traffic light information) for one application.
 
-URL::  <code>https://rpm.newrelic.com/accounts/:account_id/applications/:app_id/threshold_values.xml</code>   Replace <tt>:account_id</tt> and <tt>:app_id</tt> with the account and application IDs.
+URL::  <code>https://api.newrelic.com/accounts/:account_id/applications/:app_id/threshold_values.xml</code>   Replace <tt>:account_id</tt> and <tt>:app_id</tt> with the account and application IDs.
 Method::    GET
 Restrictions::   This API should be called at most once per minute
 Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.html]
@@ -240,7 +240,7 @@ Sample data:
 
 Fetch summary metrics and threshold values (traffic light information) for all applications.
 
-URL::   <code>https://rpm.newrelic.com/accounts.xml?include=application_health</code>
+URL::   <code>https://api.newrelic.com/accounts.xml?include=application_health</code>
 Method::   GET
 Restrictions::   This API should be called at most once per minute
 Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.html]
@@ -280,9 +280,9 @@ Sample data:
 
 == Dashboard HTML fragment (All applications)
 
-New Relic provides an HTML fragment of the {dashboard view}[https://rpm.newrelic.com] of RPM. CSS styles are included, and images linked absolutely, which enables callers to embed the response directly in their applications. Authentication is through setting the appropriate API key header as outlined above, or through the regular login cookie. When using the regular login cookie, the logged-in user's default account's applications will be shown.
+New Relic provides an HTML fragment of the {dashboard view}[https://api.newrelic.com] of RPM. CSS styles are included, and images linked absolutely, which enables callers to embed the response directly in their applications. Authentication is through setting the appropriate API key header as outlined above, or through the regular login cookie. When using the regular login cookie, the logged-in user's default account's applications will be shown.
 
-URL::    <code>https://rpm.newrelic.com/application_dashboard</code>
+URL::    <code>https://api.newrelic.com/application_dashboard</code>
 Method::   GET
 Restrictions::   This API should be called at most once per minute
 Active Resource Helper::  None available currently
@@ -301,7 +301,7 @@ Sample data:
       <thead>
         <tr>
           <th class="header">Application</th>
-          <th title="Apdex Score is a industry-standard measurement of customer satisfaction. It is calculated essentially as weighted response time. The larger number is your Apdex Score, out of 1, and the smaller number is the threshold for an acceptable response time, in seconds." class="apdex">Apdex Score <a href="http://support.newrelic.com/faqs/general/apdex" target="_blank"><img alt="?" src="https://rpm.newrelic.com/images/v2/12x12/moreinfo.png?1285097852" style="border: 0px none;" /></a></th>
+          <th title="Apdex Score is a industry-standard measurement of customer satisfaction. It is calculated essentially as weighted response time. The larger number is your Apdex Score, out of 1, and the smaller number is the threshold for an acceptable response time, in seconds." class="apdex">Apdex Score <a href="http://support.newrelic.com/faqs/general/apdex" target="_blank"><img alt="?" src="https://api.newrelic.com/images/v2/12x12/moreinfo.png?1285097852" style="border: 0px none;" /></a></th>
           <th title="Response Time is the average time it took to generate a response to all requests.">Resp. Time</th>
           <th title="Errors is the percentage of your requests that received an error as a response.">Errors</th>
           <th title="Throughput is total number of requests processed by your application per minute." class="throughput last">Throughput<br>(change from <abbr title="24 hours ago">24h</abbr>/<abbr title="7 days ago">7d</abbr>)</th>
@@ -310,19 +310,19 @@ Sample data:
       <tbody class="application application_1">  
         <tr class="application_tier data">
           <td class="agent">
-            <img alt="Normal" src="https://rpm.newrelic.com/images/v2/16x16/light-green.png?1285097852" />
+            <img alt="Normal" src="https://api.newrelic.com/images/v2/16x16/light-green.png?1285097852" />
             <span class="name">
-              <a href="https://rpm.newrelic.com/accounts/1/applications/1" class="application">RPM</a>
+              <a href="https://api.newrelic.com/accounts/1/applications/1" class="application">RPM</a>
             </span>
             <span class="status reporting">1 Host and 5 Instances</span>
           </td>
           <td class="data apdex">
-            <a href="https://rpm.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dapdex">0.99<sub>0.025</sub></a>
+            <a href="https://api.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dapdex">0.99<sub>0.025</sub></a>
           </td>
-          <td class="data"><a href="https://rpm.newrelic.com/accounts/1/applications/1/transactions">5.7 ms</a></td>
-          <td class="data"><a href="https://rpm.newrelic.com/accounts/1/applications/1/traced_errors">0.00 %</a></td>
+          <td class="data"><a href="https://api.newrelic.com/accounts/1/applications/1/transactions">5.7 ms</a></td>
+          <td class="data"><a href="https://api.newrelic.com/accounts/1/applications/1/traced_errors">0.00 %</a></td>
           <td class="data throughput last">
-            <a href="https://rpm.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dthroughput">92 rpm</a>
+            <a href="https://api.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dthroughput">92 rpm</a>
             <div class="throughput_history">
               <span class="yesterday" title="Throughput down 2% from 24 hours ago"><strong class="down ">-2%</strong></span>
               <span class="last_week" title="Throughput up 0% from 7 days ago"><strong class="up ">0%</strong></span>
@@ -377,7 +377,7 @@ Sample data:
 
 == Dashboard HTML fragment (One application)
 
-URL::   <code>https://rpm.newrelic.com/application_dashboard?application_id=:id</code>   Replace <tt>:id</tt> with application ID.
+URL::   <code>https://api.newrelic.com/application_dashboard?application_id=:id</code>   Replace <tt>:id</tt> with application ID.
 Method::   GET
 Restrictions::   This API should be called at most once per minute
 Active Resource Helper::  None available currently
@@ -400,7 +400,7 @@ Sample data:
       <thead>
         <tr>
           <th class="header">Application</th>
-          <th title="Apdex Score is a industry-standard measurement of customer satisfaction. It is calculated essentially as weighted response time. The larger number is your Apdex Score, out of 1, and the smaller number is the threshold for an acceptable response time, in seconds." class="apdex">Apdex Score <a href="http://support.newrelic.com/faqs/general/apdex" target="_blank"><img alt="?" src="https://rpm.newrelic.com/images/v2/12x12/moreinfo.png?1285097852" style="border: 0px none;" /></a></th>
+          <th title="Apdex Score is a industry-standard measurement of customer satisfaction. It is calculated essentially as weighted response time. The larger number is your Apdex Score, out of 1, and the smaller number is the threshold for an acceptable response time, in seconds." class="apdex">Apdex Score <a href="http://support.newrelic.com/faqs/general/apdex" target="_blank"><img alt="?" src="https://api.newrelic.com/images/v2/12x12/moreinfo.png?1285097852" style="border: 0px none;" /></a></th>
           <th title="Response Time is the average time it took to generate a response to all requests.">Resp. Time</th>
           <th title="Errors is the percentage of your requests that received an error as a response.">Errors</th>
           <th title="Throughput is total number of requests processed by your application per minute." class="throughput last">Throughput<br>(change from <abbr title="24 hours ago">24h</abbr>/<abbr title="7 days ago">7d</abbr>)</th>
@@ -409,19 +409,19 @@ Sample data:
       <tbody class="application application_1">  
         <tr class="application_tier data">
           <td class="agent">
-            <img alt="Normal" src="https://rpm.newrelic.com/images/v2/16x16/light-green.png?1285097852" />
+            <img alt="Normal" src="https://api.newrelic.com/images/v2/16x16/light-green.png?1285097852" />
             <span class="name">
-              <a href="https://rpm.newrelic.com/accounts/1/applications/1" class="application">RPM</a>
+              <a href="https://api.newrelic.com/accounts/1/applications/1" class="application">RPM</a>
             </span>
             <span class="status reporting">1 Host and 5 Instances</span>
           </td>
           <td class="data apdex">
-            <a href="https://rpm.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dapdex">0.99<sub>0.025</sub></a>
+            <a href="https://api.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dapdex">0.99<sub>0.025</sub></a>
           </td>
-          <td class="data"><a href="https://rpm.newrelic.com/accounts/1/applications/1/transactions">5.7 ms</a></td>
-          <td class="data"><a href="https://rpm.newrelic.com/accounts/1/applications/1/traced_errors">0.00 %</a></td>
+          <td class="data"><a href="https://api.newrelic.com/accounts/1/applications/1/transactions">5.7 ms</a></td>
+          <td class="data"><a href="https://api.newrelic.com/accounts/1/applications/1/traced_errors">0.00 %</a></td>
           <td class="data throughput last">
-            <a href="https://rpm.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dthroughput">92 rpm</a>
+            <a href="https://api.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dthroughput">92 rpm</a>
             <div class="throughput_history">
               <span class="yesterday" title="Throughput down 2% from 24 hours ago"><strong class="down ">-2%</strong></span>
               <span class="last_week" title="Throughput up 0% from 7 days ago"><strong class="up ">0%</strong></span>
@@ -478,7 +478,7 @@ Sample data:
 
 Unlike other API requests, the deployments API will accept either a license key (in the +x-license-key+ header) or an API key (in the +x-api-key+ header).  Furthermore, when using the license key, you do not need to enable the API in the account settings.  This is the standard mechanism used by the agent to upload deployments from the built in capistrano recipes.
 
-URL::      <code>https://rpm.newrelic.com/deployments.xml</code>
+URL::      <code>https://api.newrelic.com/deployments.xml</code>
 Method::   POST
 Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Deployment.html]
 
@@ -500,11 +500,11 @@ The optional fields may be set to anything you wish, and are not validated. For 
 
 Here's an example using <tt>curl</tt>:
 
-    curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" https://rpm.newrelic.com/deployments.xml
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" https://api.newrelic.com/deployments.xml
   
 If you were to specify the optional <tt>description</tt>, <tt>changelog</tt> and <tt>user</tt> fields, the command would look like this:
   
-    curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://rpm.newrelic.com/deployments.xml
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://api.newrelic.com/deployments.xml
 
 == Metric Names
 

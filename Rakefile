@@ -12,9 +12,11 @@ require 'jeweler'
 require 'rdiscount'
 
 require 'ci/reporter/rake/test_unit'
+API_VERSION = File.read('CHANGELOG.md')[/^.*$/]
 TITLE = %Q{Documentation and helper code for the New Relic API}
-RDOC_FILES=['README*', 'CHANGELOG', 'sample*']
+RDOC_FILES=Dir['README*', 'CHANGELOG*', 'sample*']
 Jeweler::Tasks.new do |gem|
+  gem.version = API_VERSION
   gem.name = "newrelic_api"
   gem.homepage = "http://www.github.com/newrelic/newrelic_api"
   gem.license = "MIT"
@@ -48,9 +50,9 @@ task :default => :test
 
 require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = TITLE
+  # I don't know why, but the next line has no effect
   rdoc.rdoc_files.include(*RDOC_FILES)
   rdoc.rdoc_files.include('lib/**/*.rb')
   rdoc.main = "README.rdoc"

@@ -9,15 +9,15 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["New Relic"]
-  s.date = "2012-05-07"
+  s.date = "2012-05-24"
   s.description = "Use this gem to access New Relic application information via a REST api"
   s.email = "support@newrelic.com"
   s.extra_rdoc_files = [
-    "CHANGELOG",
+    "CHANGELOG.md",
     "README.rdoc"
   ]
   s.files = [
-    "CHANGELOG",
+    "CHANGELOG.md",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.rdoc_options = ["--line-numbers", "--title", "Documentation and helper code for the New Relic API", "-m", "README.rdoc"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.17"
+  s.rubygems_version = "1.8.24"
   s.summary = "Documentation and helper code for the New Relic API"
   s.test_files = [
     "test/integration/newrelic_api_test.rb",

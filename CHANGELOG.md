@@ -1,0 +1,47 @@
+1.2.4
+
+* Update docs to reflect that api.newrelic.com should be used instead of rpm.newrelic.com
+* Update gemspec with new dependencies, remove active resource dependency
+* Misc doc updates and fixes (thanks Wei Feng)
+* Force XmlFormat for compatibility with ActiveResource 3.1 (thanks Jeff Gran)
+* Update routes for metric name lookup
+* Add documentation for instances API
+* Add documentation for hosts API
+* Add documentation for servers API
+
+1.2.3
+
+* Fix XML compatibility
+
+1.2.2
+
+* Add support for querying multiple applications in the data api
+* Support for proxies (thanks to Wei Feng)
+
+1.2.1
+
+* Updated for new product names
+* Minor bugs and compatibility fixes
+
+1.2.0
+
+* Added support for metric names and metric data API
+
+1.1.2
+
+* Update deployments to support an app id # as well as app name
+* Updated documentation
+
+1.1.1
+
+* Fixes for Ruby 1.9.1 support
+
+1.1.0
+
+* Remove support for license key authentication; using api_key
+
+1.0.0
+
+* Initial versioning of the API
+* Added tests pointing at integration.newrelic.com
+
