@@ -263,7 +263,7 @@ accessors.</p>
 
           
           <div class="method-source-code" id="reset-21-source">
-            <pre><span class="ruby-comment"># File lib/new_relic_api.rb, line 38</span>
+            <pre><span class="ruby-comment"># File lib/new_relic_api.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reset!</span>
   <span class="ruby-ivar">@classes</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">klass</span><span class="ruby-operator">|</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">reset!</span>} <span class="ruby-keyword">if</span> <span class="ruby-ivar">@classes</span>
   <span class="ruby-constant">NewRelicApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Account</span>.<span class="ruby-identifier">site_url</span>
