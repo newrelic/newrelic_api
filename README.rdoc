@@ -82,12 +82,12 @@ Sample data:
     <?xml version="1.0" encoding="UTF-8"?>
     <servers type="array">
       <server>
-        <overview-url>https://staging.newrelic.com/accounts/1/servers/555</overview-url>
+        <overview-url>https://api.newrelic.com/accounts/1/servers/555</overview-url>
         <hostname>my-hostname.newrelic.com</hostname>
         <id type="integer">555</id>
       </server>
       <server>
-        <overview-url>https://staging.newrelic.com/accounts/1/servers/556</overview-url>
+        <overview-url>https://api.newrelic.com/accounts/1/servers/556</overview-url>
         <hostname>my-hostname-2.newrelic.com</hostname>
         <id type="integer">556</id>
       </server>
@@ -114,7 +114,7 @@ Sample data:
     <?xml version="1.0" encoding="UTF-8"?>
     <hosts type="array">
       <host>
-        <overview-url>https://staging.newrelic.com/accounts/1/applications/123_h3333</overview-url>
+        <overview-url>https://api.newrelic.com/accounts/1/applications/123_h3333</overview-url>
         <name>App name (my-hostname.newrelic.com)</name>
         <id>123_h3333</id>
       </host>
@@ -142,7 +142,7 @@ Sample data:
     <?xml version="1.0" encoding="UTF-8"?>
     <instances type="array">
       <instance>
-        <overview-url>https://staging.newrelic.com/accounts/1/applications/123/instances/1441_i7584</overview-url>
+        <overview-url>https://api.newrelic.com/accounts/1/applications/123/instances/1441_i7584</overview-url>
         <name>App name (my-hostname.newrelic.com)</name>
         <id>1441_i7584</id>
       </instance>
