@@ -229,7 +229,16 @@ Sample data:
       <threshold_value name="Response Time" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="31 ms" threshold_value="1" metric_value="31"/> 
       <threshold_value name="Throughput" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="14028.6 cpm" threshold_value="1" metric_value="14028.6"/> 
       <threshold_value name="DB" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="46.82 %" threshold_value="1" metric_value="46.82"/> 
-    </threshold-values> 
+    </threshold-values>
+
+* Apdex is a measurement of the experience of people hitting your site, with a value between 0 and 1. Errors are poor performance lower the score.
+* Application Busy shows the count of apps (agents) reporting and the percentage of wallclock time that is spent handing requests as an average of the reporting apps. In other words, how often your app your busy handling stuff compared to the elapsed time (as a percentage).
+* CPU shows the percentage of time spent in User space by the CPU as an average of reporting apps (agents).
+* Memory shows memory usage by your app
+* Errors shows the errors per minute for your app
+* Response time show the overall response-time on average across your whole application at the app server layer (not including any browser data)
+* Throughput is the total of all activity (in requests per min) across all web transactions of your app
+* DB shows the time spent in the database as a percent of the time
 
 === Possible Error Conditions
 
