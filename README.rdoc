@@ -97,6 +97,38 @@ Sample data:
 
 * Invalid API Key (403)
 
+== Delete servers
+
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:id</code>
+Method::         DELETE
+Restrictions::   None
+
+Replace <tt>:account_id</tt> with your account number.  Replace <tt>:id</tt> with the server number you want to delete. You can find your account and server number in the browser URL when you log in to api.newrelic.com and navigate to the server you want to delete. The first number in the URL is your account number and the last number is your server number.
+
+=== Data Returned
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <servers type="array">
+      <server name="My Server" id="123456">
+        <result>deleted</result>
+      </server>
+    <server>
+
+Or:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <servers type="array">
+      <server name="My Server" id="123456">
+        <result>failed</result>
+      </server>
+    <server>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+
 == View hosts
 
 This gives you the list of hosts, so you can look up application data filtered by host.
