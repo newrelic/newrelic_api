@@ -13,11 +13,11 @@ Gem::Specification.new do |s|
   s.description = "Use this gem to access New Relic application information via a REST api"
   s.email = "support@newrelic.com"
   s.extra_rdoc_files = [
-    "CHANGELOG.md",
+    "CHANGELOG",
     "README.rdoc"
   ]
   s.files = [
-    "CHANGELOG.md",
+    "CHANGELOG",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
