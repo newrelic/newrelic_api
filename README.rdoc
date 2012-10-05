@@ -568,7 +568,7 @@ Restrictions::   This API should be called at most once per minute.
 
 === Data Returned
 
-Note: Metric names will only be returned to Standard customers.
+Note: Metric names will only be returned to Standard (and higher) customers.
 
 Sample requests:
 
@@ -671,7 +671,7 @@ Restrictions::   This API is rate-limited per minute, and the limit is subject t
 
 === Data Returned
 
-Note: Metric data will only be returned to Standard customers.
+Note: Metric data will only be returned to Standard (and higher) customers.
 
 Sample time series request:
 
