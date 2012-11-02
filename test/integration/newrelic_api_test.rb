@@ -116,8 +116,8 @@ class NewrelicApiTest < ActiveSupport::TestCase
 
       assert_equal 9, threshold_values.length
       threshold_values.each do |val|
-        assert [0, 1, 2, 3].include?(val.threshold_value), val.threshold_value
-        assert ['Gray', 'Green', 'Yellow', 'Red'].include?(val.color_value), val.color_value
+        assert [0, 1, 2, 3].include?(val.threshold_value), val.threshold_value.to_s
+        assert ['Gray', 'Green', 'Yellow', 'Red'].include?(val.color_value), val.color_value.to_s
 
         assert_not_nil val.formatted_metric_value
 
