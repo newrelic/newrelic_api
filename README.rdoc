@@ -2,7 +2,8 @@
 
 This gem contains the documentation and examples for using the New Relic REST API for RPM customers.
 
-Rails developers can use the ActiveResource helper file found in this gem.  Refer to the gem rdocs.
+Rails developers can use the ActiveResource helper file found in this gem.
+Refer to the gem rdocs.
 
 
 New Relic supports a RESTful API that can be used
@@ -52,7 +53,7 @@ The remainder of this document will describe our XML API.
 
 == View applications
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/applications.xml</code>  
+URL::            <code>https://api.newrelic.com/accounts/:account_id/applications.xml</code>
 Method::         GET
 Restrictions::   None
 Active Resource Helper  ::  {NewRelicApi::Account}[link:NewRelicApi/Account.html]
@@ -65,18 +66,18 @@ You can see this in the browser URL when you log in to api.newrelic.com.
 Sample data:
 
     <?xml version="1.0" encoding="UTF-8"?>
-    <applications type="array"> 
-      <application> 
-        <id type="integer">123</id> 
-        <name>My Application</name> 
-        <overview-url><a href="https://api.newrelic.com/browser/agent?account_id=1&agent=123%3C">https://api.newrelic.com/browser...</a>/overview-url> 
-      </application> 
-      <application> 
-        <id type="integer">124</id> 
-        <name>My Application2</name> 
-        <overview-url><a href="https://api.newrelic.com/browser/agent?account_id=1&agent=124%3C">https://api.newrelic.com/browser...</a>/overview-url> 
-      </application> 
-    </applications> 
+    <applications type="array">
+      <application>
+        <id type="integer">123</id>
+        <name>My Application</name>
+        <overview-url><a href="https://api.newrelic.com/browser/agent?account_id=1&agent=123%3C">https://api.newrelic.com/browser...</a>/overview-url>
+      </application>
+      <application>
+        <id type="integer">124</id>
+        <name>My Application2</name>
+        <overview-url><a href="https://api.newrelic.com/browser/agent?account_id=1&agent=124%3C">https://api.newrelic.com/browser...</a>/overview-url>
+      </application>
+    </applications>
 
 === Possible Error Conditions
 
@@ -84,7 +85,7 @@ Sample data:
 
 == View servers
 
-URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/servers.xml</code>  
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/servers.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -153,14 +154,15 @@ Or:
 
 This gives you the list of hosts, so you can look up application data filtered by host.
 
-URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/hosts.xml</code>  
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/hosts.xml</code>
 Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> with your account number,
 and <tt>:app_id</tt> with the application ID.
 You can see this in the browser URL when you log in to api.newrelic.com,
-or you can look up the applications using the API to view applications. JSON is also supported.
+or you can look up the applications using the API to view applications.
+JSON is also supported.
 
 === Data Returned
 
@@ -184,7 +186,7 @@ Sample data:
 
 This gives you the list of instances of your application, so you can look up application data filtered by instance.
 
-URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/instances.xml</code>  
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/instances.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -214,12 +216,12 @@ The overview URL may vary depending on the language of your application.
 
 
 == Delete applications
-URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/delete.xml</code>  
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/delete.xml</code>
 Method::         POST
 Parameters::     app, a string representing the name of your application, or
                  app_id, an integer representing the id of your application
 Replace <tt>:account_id</tt> with the your account number.
-You can see this in the browser URL when you log in to api.newrelic.com. 
+You can see this in the browser URL when you log in to api.newrelic.com.
 
 EXAMPLE 1 - Deleting an app via browser URL field
 We want to delete the app called "dotNet qa3" which has the app_id of 11068.
@@ -269,7 +271,8 @@ Sample data:
 
 Fetch summary metrics and threshold values (traffic light information) for one application.
 
-URL::  <code>https://api.newrelic.com/accounts/:account_id/applications/:app_id/threshold_values.xml</code>   Replace <tt>:account_id</tt> and <tt>:app_id</tt> with the account and application IDs.
+URL::  <code>https://api.newrelic.com/accounts/:account_id/applications/:app_id/threshold_values.xml</code>
+Replace <tt>:account_id</tt> and <tt>:app_id</tt> with the account and application IDs.
 Method::    GET
 Restrictions::   This API should be called at most once per minute
 Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.html]
@@ -281,15 +284,15 @@ Errors data will only be returned to Professional and Volume customers.
 Sample data:
 
     <?xml version="1.0" encoding="UTF-8"?>
-    <threshold-values type="array"> 
-      <threshold_value name="Apdex" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="0.96 [1.0]*" threshold_value="1" metric_value="0.96"/> 
-      <threshold_value name="Application Busy" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="3%" threshold_value="1" metric_value="3"/> 
-      <threshold_value name="CPU" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="52.86 %" threshold_value="1" metric_value="52.86"/> 
-      <threshold_value name="Memory" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="261.42 MB" threshold_value="1" metric_value="261.42"/> 
-      <threshold_value name="Errors" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="0.0 epm" threshold_value="1" metric_value="0.0"/> 
-      <threshold_value name="Response Time" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="31 ms" threshold_value="1" metric_value="31"/> 
-      <threshold_value name="Throughput" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="14028.6 cpm" threshold_value="1" metric_value="14028.6"/> 
-      <threshold_value name="DB" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="46.82 %" threshold_value="1" metric_value="46.82"/> 
+    <threshold-values type="array">
+      <threshold_value name="Apdex" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="0.96 [1.0]*" threshold_value="1" metric_value="0.96"/>
+      <threshold_value name="Application Busy" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="3%" threshold_value="1" metric_value="3"/>
+      <threshold_value name="CPU" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="52.86 %" threshold_value="1" metric_value="52.86"/>
+      <threshold_value name="Memory" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="261.42 MB" threshold_value="1" metric_value="261.42"/>
+      <threshold_value name="Errors" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="0.0 epm" threshold_value="1" metric_value="0.0"/>
+      <threshold_value name="Response Time" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="31 ms" threshold_value="1" metric_value="31"/>
+      <threshold_value name="Throughput" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="14028.6 cpm" threshold_value="1" metric_value="14028.6"/>
+      <threshold_value name="DB" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="46.82 %" threshold_value="1" metric_value="46.82"/>
     </threshold-values>
 
 * Apdex is a measurement of the experience of people hitting your site, with a value between 0 and 1.
@@ -327,27 +330,27 @@ Errors data will only be returned to Professional and Volume customers.
 Sample data:
 
     <accounts type="array">
-      <account> 
-        <id>1</id> 
-        <name>New Relic Administration</name> 
-        <applications type="array"> 
-          <application> 
-            <id type="integer">5</id> 
-            <name>My Application</name> 
-            <threshold-values type="array"> 
-              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="0.96 [1.0]*" name="Apdex" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="0.96"/> 
-              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="3%" name="Application Busy" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="3"/> 
-              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="2.59 %" name="CPU" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="2.59"/> 
-              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="151.62 MB" name="Memory" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="151.62"/> 
-              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="0.0 epm" name="Errors" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="0.0"/> 
-              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="947 ms" name="Response Time" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="947"/> 
-              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="2.4 cpm" name="Throughput" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="2.4"/> 
-              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="0.52 %" name="DB" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="0.52"/> 
-            </threshold-values> 
-          </application> 
-        </applications> 
-      </account> 
-    </accounts> 
+      <account>
+        <id>1</id>
+        <name>New Relic Administration</name>
+        <applications type="array">
+          <application>
+            <id type="integer">5</id>
+            <name>My Application</name>
+            <threshold-values type="array">
+              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="0.96 [1.0]*" name="Apdex" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="0.96"/>
+              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="3%" name="Application Busy" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="3"/>
+              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="2.59 %" name="CPU" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="2.59"/>
+              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="151.62 MB" name="Memory" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="151.62"/>
+              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="0.0 epm" name="Errors" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="0.0"/>
+              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="947 ms" name="Response Time" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="947"/>
+              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="2.4 cpm" name="Throughput" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="2.4"/>
+              <threshold_value begin_time="Fri Nov 21 20:03:00 +0000 2008" formatted_metric_value="0.52 %" name="DB" end_time="Fri Nov 21 20:08:00 +0000 2008" threshold_value="1" metric_value="0.52"/>
+            </threshold-values>
+          </application>
+        </applications>
+      </account>
+    </accounts>
 
 === Possible Error Conditions
 
@@ -391,7 +394,7 @@ Sample data:
           <th title="Throughput is total number of requests processed by your application per minute." class="throughput last">Throughput<br>(change from <abbr title="24 hours ago">24h</abbr>/<abbr title="7 days ago">7d</abbr>)</th>
         </tr>
       </thead>
-      <tbody class="application application_1">  
+      <tbody class="application application_1">
         <tr class="application_tier data">
           <td class="agent">
             <img alt="Normal" src="https://api.newrelic.com/images/v2/16x16/light-green.png?1285097852" />
@@ -410,7 +413,7 @@ Sample data:
             <div class="throughput_history">
               <span class="yesterday" title="Throughput down 2% from 24 hours ago"><strong class="down ">-2%</strong></span>
               <span class="last_week" title="Throughput up 0% from 7 days ago"><strong class="up ">0%</strong></span>
-            </div>  
+            </div>
           </td>
         </tr>
       </tbody>
@@ -461,7 +464,8 @@ Sample data:
 
 == Dashboard HTML fragment (One application)
 
-URL::   <code>https://api.newrelic.com/application_dashboard?application_id=:id</code>   Replace <tt>:id</tt> with application ID.
+URL::   <code>https://api.newrelic.com/application_dashboard?application_id=:id</code>
+Replace <tt>:id</tt> with application ID.
 Method::   GET
 Restrictions::   This API should be called at most once per minute
 Active Resource Helper::  None available currently
@@ -490,7 +494,7 @@ Sample data:
           <th title="Throughput is total number of requests processed by your application per minute." class="throughput last">Throughput<br>(change from <abbr title="24 hours ago">24h</abbr>/<abbr title="7 days ago">7d</abbr>)</th>
         </tr>
       </thead>
-      <tbody class="application application_1">  
+      <tbody class="application application_1">
         <tr class="application_tier data">
           <td class="agent">
             <img alt="Normal" src="https://api.newrelic.com/images/v2/16x16/light-green.png?1285097852" />
@@ -509,7 +513,7 @@ Sample data:
             <div class="throughput_history">
               <span class="yesterday" title="Throughput down 2% from 24 hours ago"><strong class="down ">-2%</strong></span>
               <span class="last_week" title="Throughput up 0% from 7 days ago"><strong class="up ">0%</strong></span>
-            </div>  
+            </div>
           </td>
         </tr>
       </tbody>
@@ -596,11 +600,11 @@ For example, you could set the <tt>user</tt> to <tt>"auto deployment script"</tt
 Here's an example using <tt>curl</tt>:
 
     curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" https://api.newrelic.com/deployments.xml
-  
+
 If you were to specify the optional <tt>description</tt>,
 <tt>changelog</tt> and <tt>user</tt> fields,
 then the command would look like this:
-  
+
     curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://api.newrelic.com/deployments.xml
 
 == Metric Names
@@ -608,9 +612,11 @@ then the command would look like this:
 Fetches all metrics for an application,
 or allows you to use a regular expression to get a subset of the metrics.
 These metrics are used to retrieve metric values from the Metric Data API (below).
-Each metric is returned with a list of fields that are valid for that metric. 
+Each metric is returned with a list of fields that are valid for that metric.
 
-URL::  <code>https://api.newrelic.com/api/v1/agents/:agent_id/metrics.:format</code>   Replace +:format+ with the one of (+json+, +xml+, +csv+). +:agent_id+ is either an application ID, server ID, host ID, or instance ID, from the APIs documented above. 
+URL::  <code>https://api.newrelic.com/api/v1/agents/:agent_id/metrics.:format</code>
+Replace +:format+ with the one of (+json+, +xml+, +csv+).
++:agent_id+ is either an application ID, server ID, host ID, or instance ID, from the APIs documented above.
 Method::    GET
 Restrictions::   This API should be called at most once per minute.
 
@@ -618,14 +624,17 @@ For partner admins,
 you can use a slightly different URL
 to get metric names for your customers (requires partner permissions).
 
-URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/agents/:agent_id/metrics.:format</code>   Replace +:account_id+ with the account ID of the customer, +:agent_id+ with the application, server, host, or instance ID for the customer, and +:format+ with one of (+json+, +xml+, +csv+).
+URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/agents/:agent_id/metrics.:format</code>
+Replace +:account_id+ with the account ID of the customer,
++:agent_id+ with the application, server, host, or instance ID for the customer,
+and +:format+ with one of (+json+, +xml+, +csv+).
 Method::    GET
-Restrictions::   This API should be called at most once per minute. 
+Restrictions::   This API should be called at most once per minute.
 
 === Request Parameters
 
-* +re+: A regular expression to filter the metric names by. Optional.
-* +limit+: The number of metrics to retrieve. Optional. By default the limit is 5000.
+* +re+: A regular expression to filter the metric names by. This is Optional.
+* +limit+: The number of metrics to retrieve. This is Optional. By default the limit is 5000.
 
 === Data Returned
 
@@ -712,16 +721,22 @@ Apdex metrics support a particular set of fields:
 == Metric Data
 
 Returns the data values for metrics collected by New Relic for your application.
-You can use this API to build your own view of almost any metric data tracked by New Relic. 
+You can use this API to build your own view of almost any metric data tracked by New Relic.
 
-URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/metrics/data.:format</code>   Replace +:account_id+ and +:format+ with your New Relic account ID (found in the URL when you access New Relic), and for format use one of (+json+, +xml+, +csv+).
+URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/metrics/data.:format</code>
+Replace +:account_id+ and +:format+ with your New Relic account ID
+(found in the URL when you access New Relic),
+and for format use one of (+json+, +xml+, +csv+).
 Method::    GET
 Restrictions::   This API is rate-limited per minute, and the limit is subject to change at any point.
 
 For partner admins,
 you can use a slightly different URL to get metric data for your customers (requires partner permissions).
 
-URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/agents/:agent_id/data.:format</code>   Replace +:account_id+ with the account ID of the customer, +:agent_id+ with the application, server, host, or instance ID for the customer, and +:format+ with one of (+json+, +xml+, +csv+).
+URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/agents/:agent_id/data.:format</code>
+Replace +:account_id+ with the account ID of the customer,
++:agent_id+ with the application, server, host, or instance ID for the customer,
+and +:format+ with one of (+json+, +xml+, +csv+).
 Method::    GET
 Restrictions::   This API is rate-limited per minute, and the limit is subject to change at any point.
 
@@ -745,7 +760,8 @@ Restrictions::   This API is rate-limited per minute, and the limit is subject t
 * +begin+: Begin time, in XML UTC format.
   For example: <tt>2011-04-20T15:47:00Z</tt>
   (note that the New Relic site graphs are NOT in UTC format, so when comparing results, be sure to convert.)
-* +end+: End time, in XML UTC format. For example: <tt>2011-04-20T15:52:00Z</tt>
+* +end+: End time, in XML UTC format.
+  For example: <tt>2011-04-20T15:52:00Z</tt>
 * +metrics+: Included one or many times, this lists the metrics you are interested in.
   You can only specify a specific metric once.
   If you specify multiple metrics,
@@ -802,7 +818,7 @@ Sample summary data:
       <metric agent_id="123456" app="My Application" name="ActiveRecord/all">
         <field type="integer" name="average_response_time">0</field>
       </metric>
-    </metrics> 
+    </metrics>
 
 === Possible Error Conditions
 
