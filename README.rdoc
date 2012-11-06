@@ -627,7 +627,7 @@ For the error-rate metric ('Errors/all')
 * +errors_per_minute+
 
 For memory metrics (e.g., 'Memory/Physical')
-* +used+: in megabytes (MB)
+* +used+: in Megabytes (MB)
 
 For instance-counting metrics (e.g., 'Instance/Busy'):
 * +busy_percent+: Percentage of total app server instances busy over the given time period
