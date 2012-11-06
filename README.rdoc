@@ -672,10 +672,10 @@ Restrictions::   This API is rate-limited per minute, and the limit is subject t
   but they must all be of the same type:
   application, instance, server, or host.
   Examples:
-  agent_id[]=1234&agent_id[]=2345 (for applications),
-  agent_id[]=1441_i7584&agent_id[]=1441_i7588 (for instances),
-  agent_id[]=123_h3333&agent_id[]=123_h3388 (for host filtered application data),
-  agent_id[]=555&agent_id[]=556 (for server data)
+  * agent_id[]=1234&agent_id[]=2345 (for applications);
+  * agent_id[]=1441_i7584&agent_id[]=1441_i7588 (for instances);
+  * agent_id[]=123_h3333&agent_id[]=123_h3388 (for host filtered application data);
+  * agent_id[]=555&agent_id[]=556 (for server data).
 * +begin+: Begin time, in XML UTC format.
   For example: <tt>2011-04-20T15:47:00Z</tt>
   (note that the New Relic site graphs are NOT in UTC format, so when comparing results, be sure to convert.)
