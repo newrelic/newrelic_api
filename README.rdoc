@@ -662,12 +662,36 @@ Restrictions::   This API is rate-limited per minute, and the limit is subject t
 
 === Request Parameters
 
-* +app+ or +agent_id+: Application name, or agent ID, respectively. The application name must be an exact match. You can pass in an array of apps to query by specifying app[]=First&app[]=Second . The agent_id is either an ID for an application, an instance, a server, or a host. You can look each of these up using our API (see documentation above for "view applications", "view servers", "view hosts", "view instances"). You can query multiple agents at the same time, but they must all be of the same type: application, instance, server, or host. Examples: agent_id[]=1234&agent_id[]=2345 (for applications), agent_id[]=1441_i7584&agent_id[]=1441_i7588 (for instances), agent_id[]=123_h3333&agent_id[]=123_h3388 (for host filtered application data), agent_id[]=555&agent_id[]=556 (for server data)
-* +begin+: Begin time, in XML UTC format. For example: <tt>2011-04-20T15:47:00Z</tt> (note that the New Relic site graphs are NOT in UTC format, so when comparing results, be sure to convert)
+* +app+ or +agent_id+: Application name, or agent ID, respectively.
+  The application name must be an exact match.
+  You can pass in an array of apps to query by specifying app[]=First&app[]=Second .
+  The agent_id is either an ID for an application, an instance, a server, or a host.
+  You can look each of these up using our API
+  (see documentation above for "view applications", "view servers", "view hosts", "view instances").
+  You can query multiple agents at the same time,
+  but they must all be of the same type:
+  application, instance, server, or host.
+  Examples:
+  agent_id[]=1234&agent_id[]=2345 (for applications),
+  agent_id[]=1441_i7584&agent_id[]=1441_i7588 (for instances),
+  agent_id[]=123_h3333&agent_id[]=123_h3388 (for host filtered application data),
+  agent_id[]=555&agent_id[]=556 (for server data)
+* +begin+: Begin time, in XML UTC format.
+  For example: <tt>2011-04-20T15:47:00Z</tt>
+  (note that the New Relic site graphs are NOT in UTC format, so when comparing results, be sure to convert.)
 * +end+: End time, in XML UTC format. For example: <tt>2011-04-20T15:52:00Z</tt>
-* +metrics+: Included one or many times, this lists the metrics you are interested in. If you specify multiple metrics, the request parameter should look like <tt>metrics[]=foo&metrics[]=bar</tt> (append '[]' to the end of the name of the parameter). You can specify <tt>metrics[]</tt> even if there is a single metric.
-* +field+: Each metric supports different fields, such as 'average_response_time'. If the field is not valid for a given metric, you will get a blank value, and if there are no valid fields for the metrics you request, you will get an error.
-* +summary+: 1 or 0, defaults to 0. This determines whether you get back a single value aggregated over the entire time period, or a time series. Summary results do not include the <tt>begin</tt> and <tt>end</tt> times in the result. Time series results give you a separate row for each time segment.
+* +metrics+: Included one or many times, this lists the metrics you are interested in.
+  If you specify multiple metrics,
+  the request parameter should look like <tt>metrics[]=foo&metrics[]=bar</tt>
+  (append '[]' to the end of the name of the parameter).
+  You can specify <tt>metrics[]</tt> even if there is a single metric.
+* +field+: Each metric supports different fields, such as 'average_response_time'.
+  If the field is not valid for a given metric,
+  you will get a blank value,
+  and if there are no valid fields for the metrics you request, you will get an error.
+* +summary+: 1 or 0, defaults to 0.  This determines whether you get back a single value aggregated over the entire time period, or a time series.
+  Summary results do not include the <tt>begin</tt> and <tt>end</tt> times in the result.
+  Time series results give you a separate row for each time segment.
 
 === Data Returned
 
