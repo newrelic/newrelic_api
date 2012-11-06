@@ -730,10 +730,10 @@ Restrictions::   This API is rate-limited per minute, and the limit is subject t
 
 * +app+ or +agent_id+: Application name, or agent ID, respectively.
   The application name must be an exact match.
-  You can pass in an array of apps to query by specifying app[]=First&app[]=Second .
-  The agent_id is either an ID for an application, an instance, a server, or a host.
-  You can look each of these up using our API
-  (see documentation above for "view applications", "view servers", "view hosts", "view instances").
+  You can pass in an array of apps to query by specifying +app[]=First&app[]=Second+.
+  The +agent_id+ is either an ID for an application, an instance, a server, or a host.
+  You can look each of these up using our API;
+  see the documentation above for "view applications", "view servers", "view hosts", "view instances".
   You can query multiple agents at the same time,
   but they must all be of the same type:
   application, instance, server, or host.
@@ -747,6 +747,7 @@ Restrictions::   This API is rate-limited per minute, and the limit is subject t
   (note that the New Relic site graphs are NOT in UTC format, so when comparing results, be sure to convert.)
 * +end+: End time, in XML UTC format. For example: <tt>2011-04-20T15:52:00Z</tt>
 * +metrics+: Included one or many times, this lists the metrics you are interested in.
+  You can only specify a specific metric once.
   If you specify multiple metrics,
   the request parameter should look like <tt>metrics[]=foo&metrics[]=bar</tt>
   (append '[]' to the end of the name of the parameter).
