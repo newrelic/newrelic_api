@@ -5,15 +5,28 @@ This gem contains the documentation and examples for using the New Relic REST AP
 Rails developers can use the ActiveResource helper file found in this gem.  Refer to the gem rdocs.
 
 
-New Relic supports a RESTful API that can be used to list applications within a given account and enumerate the health indicators of each application. The API uses the XML response format. As a convenience, New Relic offers an ActiveResource wrapper API, but developers are welcome to work directly with the XML.
+New Relic supports a RESTful API that can be used
+to list applications within a given account
+and enumerate the health indicators of each application.
+The API uses the XML response format.
+As a convenience, New Relic offers an ActiveResource wrapper API,
+but developers are welcome to work directly with the XML.
 
 == Authentication
 
-New Relic supports an api key-based authentication mechanism. The key is the api key associated with an account and can be obtained using the RPM Account settings for Integrations.  This key should be passed as a request header with each request. All API calls described in this document require authentication.
+New Relic supports an api key-based authentication mechanism.
+The key is the api key associated with an account
+and can be obtained using the RPM Account settings for Integrations.
+This key should be passed as a request header
+with each request.
+All API calls described in this document require authentication.
 
 API requests require HTTPS in order to ensure the API key cannot be easily read by a third party.
 
-You will need to enable API access to your account. To do this, go to Account settings (upper right corner of the New Relic site), and then click on API + web integration. Select API access, and enable it.
+You will need to enable API access to your account.
+To do this, go to Account settings (upper right corner of the New Relic site),
+and then click on API + web integration.
+Select API access, and enable it.
 
 === Request Headers
 
@@ -32,7 +45,8 @@ If you are behind a proxy:
 == ActiveResource API
 
 The New Relic ActiveResource-based API helper is NewRelicApi.
-If you are using ActiveResource to access our API you can focus on the documentation and examples contained in the {Ruby Documentation}[link:NewRelicApi.html].
+If you are using ActiveResource to access our API
+you can focus on the documentation and examples contained in the {Ruby Documentation}[link:NewRelicApi.html].
 
 The remainder of this document will describe our XML API.
 
@@ -43,7 +57,8 @@ Method::         GET
 Restrictions::   None
 Active Resource Helper  ::  {NewRelicApi::Account}[link:NewRelicApi/Account.html]
 
-Replace <tt>:account_id</tt> with your account number.  You can see this in the browser URL when you log in to api.newrelic.com.
+Replace <tt>:account_id</tt> with your account number.
+You can see this in the browser URL when you log in to api.newrelic.com.
 
 === Data Returned
 
@@ -73,7 +88,8 @@ URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/serv
 Method::         GET
 Restrictions::   None
 
-Replace <tt>:account_id</tt> with your account number.  You can see this in the browser URL when you log in to api.newrelic.com.
+Replace <tt>:account_id</tt> with your account number.
+You can see this in the browser URL when you log in to api.newrelic.com.
 
 === Data Returned
 
@@ -103,7 +119,11 @@ URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/serv
 Method::         DELETE
 Restrictions::   None
 
-Replace <tt>:account_id</tt> with your account number.  Replace <tt>:id</tt> with the server number you want to delete. You can find your account and server number in the browser URL when you log in to api.newrelic.com and navigate to the server you want to delete. The first number in the URL is your account number and the last number is your server number.
+Replace <tt>:account_id</tt> with your account number.
+Replace <tt>:id</tt> with the server number you want to delete.
+You can find your account and server number in the browser URL
+when you log in to api.newrelic.com and navigate to the server you want to delete.
+The first number in the URL is your account number and the last number is your server number.
 
 === Data Returned
 
@@ -137,7 +157,10 @@ URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/appl
 Method::         GET
 Restrictions::   None
 
-Replace <tt>:account_id</tt> with your account number, and <tt>:app_id</tt> with the application ID. You can see this in the browser URL when you log in to api.newrelic.com, or you can look up the applications using the API to view applications. JSON is also supported.
+Replace <tt>:account_id</tt> with your account number,
+and <tt>:app_id</tt> with the application ID.
+You can see this in the browser URL when you log in to api.newrelic.com,
+or you can look up the applications using the API to view applications. JSON is also supported.
 
 === Data Returned
 
@@ -159,13 +182,16 @@ Sample data:
 
 == View instances
 
-This gives you the list of instances of your application, so you can look up application data filtered by instance. 
+This gives you the list of instances of your application, so you can look up application data filtered by instance.
 
 URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/instances.xml</code>  
 Method::         GET
 Restrictions::   None
 
-Replace <tt>:account_id</tt> with your account number, and <tt>:app_id</tt> with the application ID. You can see this in the browser URL when you log in to api.newrelic.com, or you can look up the applications using the API to view applications. JSON is also supported.
+Replace <tt>:account_id</tt> with your account number, and <tt>:app_id</tt> with the application ID.
+You can see this in the browser URL when you log in to api.newrelic.com,
+or you can look up the applications using the API to view applications.
+JSON is also supported.
 
 === Data Returned
 
@@ -192,11 +218,13 @@ URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/appl
 Method::         POST
 Parameters::     app, a string representing the name of your application, or
                  app_id, an integer representing the id of your application
-Replace <tt>:account_id</tt> with the your account number. You can see this in the browser URL when you log in to api.newrelic.com. 
+Replace <tt>:account_id</tt> with the your account number.
+You can see this in the browser URL when you log in to api.newrelic.com. 
 
 EXAMPLE 1 - Deleting an app via browser URL field
-We want to delete the app called "dotNet qa3" which has the app_id of 11068. 
-The account # is 26286. The data_access_key is the API key for this account.
+We want to delete the app called "dotNet qa3" which has the app_id of 11068.
+The account number is 26286.
+The data_access_key is the API key for this account.
 
 https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id[]=11068&data_access_key=4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9
 
@@ -247,7 +275,8 @@ Restrictions::   This API should be called at most once per minute
 Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.html]
 
 === Data Returned
-Note: Application Busy data will only be returned to Professional and Volume customers. Errors data will only be returned to Professional and Volume customers.
+Note: Application Busy data will only be returned to Professional and Volume customers.
+Errors data will only be returned to Professional and Volume customers.
 
 Sample data:
 
@@ -263,12 +292,16 @@ Sample data:
       <threshold_value name="DB" begin_time="Fri Dec 12 01:22:00 +0000 2008" end_time="Fri Dec 12 01:27:00 +0000 2008" formatted_metric_value="46.82 %" threshold_value="1" metric_value="46.82"/> 
     </threshold-values>
 
-* Apdex is a measurement of the experience of people hitting your site, with a value between 0 and 1. Errors are poor performance lower the score.
-* Application Busy shows the count of apps (agents) reporting and the percentage of wallclock time that is spent handing requests as an average of the reporting apps. In other words, how often your app your busy handling stuff compared to the elapsed time (as a percentage).
+* Apdex is a measurement of the experience of people hitting your site, with a value between 0 and 1.
+  Errors are poor performance lower the score.
+* Application Busy shows the count of apps (agents) reporting
+  and the percentage of wallclock time that is spent handing requests as an average of the reporting apps.
+  In other words, how often your app your busy handling stuff compared to the elapsed time (as a percentage).
 * CPU shows the percentage of time spent in User space by the CPU as an average of reporting apps (agents).
 * Memory shows memory usage by your app
 * Errors shows the errors per minute for your app
-* Response time show the overall response-time on average across your whole application at the app server layer (not including any browser data)
+* Response time show the overall response-time on average across
+  your whole application at the app server layer (not including any browser data)
 * Throughput is the total of all activity (in requests per min) across all web transactions of your app
 * DB shows the time spent in the database as a percent of the time
 
@@ -288,7 +321,8 @@ Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.ht
 
 === Data Returned
 
-Note: Application Busy data will only be returned to Professional and Volume customers. Errors data will only be returned to Professional and Volume customers.
+Note: Application Busy data will only be returned to Professional and Volume customers.
+Errors data will only be returned to Professional and Volume customers.
 
 Sample data:
 
@@ -321,7 +355,16 @@ Sample data:
 
 == Dashboard HTML fragment (All applications)
 
-New Relic provides an HTML fragment of the {dashboard view}[https://api.newrelic.com] of RPM. CSS styles are included, and images linked absolutely, which enables callers to embed the response directly in their applications. Authentication is through setting the appropriate API key header as outlined above, or through the regular login cookie. When using the regular login cookie, the logged-in user's default account's applications will be shown.
+New Relic provides an HTML fragment of the
+{dashboard view}[https://api.newrelic.com] of RPM.
+CSS styles are included,
+and images linked absolutely,
+which enables callers to embed the response directly
+in their applications.
+Authentication is through setting the appropriate API key header as outlined above,
+or through the regular login cookie.
+When using the regular login cookie,
+the logged-in user's default account's applications will be shown.
 
 URL::    <code>https://api.newrelic.com/application_dashboard</code>
 Method::   GET
@@ -517,7 +560,14 @@ Sample data:
 
 == Deployment Notifications
 
-Unlike other API requests, the deployments API will accept either a license key (in the +x-license-key+ header) or an API key (in the +x-api-key+ header).  Furthermore, when using the license key, you do not need to enable the API in the account settings.  This is the standard mechanism used by the agent to upload deployments from the built in capistrano recipes.
+Unlike other API requests,
+the deployments API will accept either a license key
+(in the +x-license-key+ header)
+or an API key (in the +x-api-key+ header).
+Furthermore, when using the license key,
+you do not need to enable the API in the account settings.
+This is the standard mechanism used by the agent
+to upload deployments from the built in capistrano recipes.
 
 URL::      <code>https://api.newrelic.com/deployments.xml</code>
 Method::   POST
@@ -526,7 +576,9 @@ Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Deployment.htm
 === Request Parameters
 
 Exactly one of the following is required:
-* <tt>deployment[app_name]</tt>: The value of app_name in the newrelic.yml file used by the application.  This may be different than the label that appears in the RPM UI.  You can find the app_name value in RPM by looking at the label settings for your application.
+* <tt>deployment[app_name]</tt>: The value of app_name in the newrelic.yml file used by the application.
+  This may be different than the label that appears in the RPM UI.
+  You can find the app_name value in RPM by looking at the label settings for your application.
 * <tt>deployment[application_id]</tt>: The application id, found in the URL when viewing the application in RPM.
 
 Following are optional parameters:
@@ -535,7 +587,9 @@ Following are optional parameters:
 * <tt>deployment[revision]</tt>: A revision number (e.g., git commit SHA)
 * <tt>deployment[user]</tt>: The name of the user/process that triggered this deployment
 
-The optional fields may be set to anything you wish, and are not validated. For example, you could set the <tt>user</tt> to <tt>"auto deployment script"</tt>.
+The optional fields may be set to anything you wish,
+and are not validated.
+For example, you could set the <tt>user</tt> to <tt>"auto deployment script"</tt>.
 
 === Example
 
@@ -543,19 +597,26 @@ Here's an example using <tt>curl</tt>:
 
     curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" https://api.newrelic.com/deployments.xml
   
-If you were to specify the optional <tt>description</tt>, <tt>changelog</tt> and <tt>user</tt> fields, the command would look like this:
+If you were to specify the optional <tt>description</tt>,
+<tt>changelog</tt> and <tt>user</tt> fields,
+then the command would look like this:
   
     curl -H "x-api-key:YOUR_API_KEY_HERE" -d "deployment[app_name]=iMyFace.ly Production" -d "deployment[description]=This deployment was sent using curl" -d "deployment[changelog]=many hands make light work" -d "deployment[user]=Joe User" https://api.newrelic.com/deployments.xml
 
 == Metric Names
 
-Fetches all metrics for an application, or allows you to use a regular expression to get a subset of the metrics. These metrics are used to retrieve metric values from the Metric Data API (below). Each metric is returned with a list of fields that are valid for that metric. 
+Fetches all metrics for an application,
+or allows you to use a regular expression to get a subset of the metrics.
+These metrics are used to retrieve metric values from the Metric Data API (below).
+Each metric is returned with a list of fields that are valid for that metric. 
 
 URL::  <code>https://api.newrelic.com/api/v1/agents/:agent_id/metrics.:format</code>   Replace +:format+ with the one of (+json+, +xml+, +csv+). +:agent_id+ is either an application ID, server ID, host ID, or instance ID, from the APIs documented above. 
 Method::    GET
 Restrictions::   This API should be called at most once per minute.
 
-For partner admins, you can use a slightly different URL to get metric names for your customers (requires partner permissions).
+For partner admins,
+you can use a slightly different URL
+to get metric names for your customers (requires partner permissions).
 
 URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/agents/:agent_id/metrics.:format</code>   Replace +:account_id+ with the account ID of the customer, +:agent_id+ with the application, server, host, or instance ID for the customer, and +:format+ with one of (+json+, +xml+, +csv+).
 Method::    GET
@@ -606,14 +667,17 @@ Sample data:
 
 === Fields
 
-Several different values are recorded or computed for each metric. Each value is returned in a 'field' in the metric data API response. Each field contains a value having a specific meaning and unit of measurement.
+Several different values are recorded or computed for each metric.
+Each value is returned in a 'field' in the metric data API response.
+Each field contains a value having a specific meaning and unit of measurement.
 
 Time values are measured in seconds (s):
 * +average_call_time+, +average_response_time+: Average time spent per invocation
 * +max_call_time+, +max_response_time+
 * +min_call_time+, +min_response_time+
 * +total_call_time+
-* +average_exclusive_time+: Average time spent per invocation, exclusive of any time instrumented by other metrics
+* +average_exclusive_time+: Average time spent per invocation,
+  exclusive of any time instrumented by other metrics
 
 Some fields imply their units, or have none:
 * +call_count+, +throughput+: Number of calls/requests in the given time period
@@ -647,13 +711,15 @@ Apdex metrics support a particular set of fields:
 
 == Metric Data
 
-Returns the data values for metrics collected by New Relic for your application. You can use this API to build your own view of almost any metric data tracked by New Relic. 
+Returns the data values for metrics collected by New Relic for your application.
+You can use this API to build your own view of almost any metric data tracked by New Relic. 
 
 URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/metrics/data.:format</code>   Replace +:account_id+ and +:format+ with your New Relic account ID (found in the URL when you access New Relic), and for format use one of (+json+, +xml+, +csv+).
 Method::    GET
 Restrictions::   This API is rate-limited per minute, and the limit is subject to change at any point.
 
-For partner admins, you can use a slightly different URL to get metric data for your customers (requires partner permissions).
+For partner admins,
+you can use a slightly different URL to get metric data for your customers (requires partner permissions).
 
 URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/agents/:agent_id/data.:format</code>   Replace +:account_id+ with the account ID of the customer, +:agent_id+ with the application, server, host, or instance ID for the customer, and +:format+ with one of (+json+, +xml+, +csv+).
 Method::    GET
@@ -689,7 +755,9 @@ Restrictions::   This API is rate-limited per minute, and the limit is subject t
   If the field is not valid for a given metric,
   you will get a blank value,
   and if there are no valid fields for the metrics you request, you will get an error.
-* +summary+: 1 or 0, defaults to 0.  This determines whether you get back a single value aggregated over the entire time period, or a time series.
+* +summary+: 1 or 0, defaults to 0.
+  This determines whether you get back a single value
+  aggregated over the entire time period, or a time series.
   Summary results do not include the <tt>begin</tt> and <tt>end</tt> times in the result.
   Time series results give you a separate row for each time segment.
 
