@@ -63,6 +63,9 @@ You can see this in the browser URL when you log in to api.newrelic.com.
 
 === Data Returned
 
+For each application, a list of associated servers is provided.
+The list of servers is empty if you do not use server monitoring.
+
 Sample data:
 
     <?xml version="1.0" encoding="UTF-8"?>
@@ -70,18 +73,296 @@ Sample data:
       <application>
         <id type="integer">123</id>
         <name>My Application</name>
-        <overview-url><a href="https://api.newrelic.com/browser/agent?account_id=1&agent=123%3C">https://api.newrelic.com/browser...</a>/overview-url>
+        <overview-url>https://api.newrelic.com/accounts/1/applications/123</overview-url>
+        <servers type="array">
+          <server>
+            <id type="integer">111</id>
+            <hostname>host-1.example.com</hostname>
+            <overview-url>https://dev.newrelic.com/accounts/1/servers/111</overview-url>
+          </server>
+          <server>
+            <id type="integer">222</id>
+            <hostname>host-2.example.com</hostname>
+            <overview-url>https://dev.newrelic.com/accounts/1/servers/222</overview-url>
+          </server>
+        </servers>
       </application>
       <application>
         <id type="integer">124</id>
         <name>My Application2</name>
-        <overview-url><a href="https://api.newrelic.com/browser/agent?account_id=1&agent=124%3C">https://api.newrelic.com/browser...</a>/overview-url>
+        <overview-url>https://dev.newrelic.com/accounts/1/applications/124</overview-url>
+        <servers type="array">
+          <server>
+            <id type="integer">111</id>
+            <hostname>host-1.example.com</hostname>
+            <overview-url>https://dev.newrelic.com/accounts/1/servers/111</overview-url>
+          </server>
+        </servers>
       </application>
     </applications>
 
 === Possible Error Conditions
 
 * Invalid API Key (403)
+
+== View settings of all applications
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/application_settings.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> with your account number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+
+=== Data Returned
+
+Note: <code>app-apdex-t</code> is only included for applications that support apdex T as a server side setting.
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <applications-settings type="array">
+      <application-setting>
+        <application-id type="integer">123</application-id>
+        <name>My Application One</name>
+        <alerts-enabled>true</alerts-enabled>
+        <rum-apdex-t>7.0</rum-apdex-t>
+        <rum-enabled>false</rum-enabled>
+        <url>https://api.newrelic.com/api/v1/accounts/1/application_settings/123</url>
+      </application-setting>
+      <application-setting>
+        <application-id type="integer">124</application-id>
+        <name>My Application Two</name>
+        <alerts-enabled>false</alerts-enabled>
+        <app-apdex-t>0.01</app-apdex-t>
+        <rum-apdex-t>4.0</rum-apdex-t>
+        <rum-enabled>true</rum-enabled>
+        <url>https://api.newrelic.com/api/v1/accounts/1/application_settings/124</url>
+      </application-setting>
+    </applications-settings>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+
+== View an application's settings
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/application_settings/:app_id.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> and <tt>:app_id</tt> with your account and application number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+
+=== Data Returned
+
+Note: <code>app-apdex-t</code> is only included for applications that support apdex T as a server side setting.
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <application-setting>
+      <application-id type="integer">124</application-id>
+      <name>My Application Two</name>
+      <alerts-enabled>false</alerts-enabled>
+      <app-apdex-t>0.01</app-apdex-t>
+      <rum-apdex-t>4.0</rum-apdex-t>
+      <rum-enabled>true</rum-enabled>
+      <url>https://api.newrelic.com/api/v1/accounts/1/application_settings/124</url>
+    </application-setting>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* Application not found (404)
+
+== Update an application's settings
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/application_settings/:app_id.xml</code>
+Method::         PUT
+Restrictions::   None
+
+=== Request Parameters
+
+The following settings can be updated:
+
+* +alerts_enabled+: Specifies whether this application will generate alerts when its defined thresholds are
+  violated. This is an account wide setting for the application that effects all users.
+  When <code>false</code> the application will not generate alerts or notifications. When
+  <code>true</code> the application will generate alerts when it is experiencing problems
+  and registered users will be notified.
+* +app_apdex_t+: Specifies the application's app tier Apdex-T value in seconds. Requests responding in less than
+  this value are satisfying (s); requests responding in the range of this value to 4 times this value
+  are tolerating (t); and requests responding in greater than 4 times this value are frustrating (f). 
+* +rum_apdex_t+: Specifies the application's end user Apdex-T value in seconds. Page loads completing in less than
+  this value are satisfying (s); page loads completing in the range of this value to 4 times this value
+  are tolerating (t); and page loads completing in greater than 4 times this value are frustrating (f). 
+* +rum_enabled+: Specifies whether real user monitoring (RUM) is enbabled for this application. When <code>true</code>
+  the agent will inject RUM JavaScript into your pages to collect end user page load times.
+  When <code>false</code> the agent will not inject RUM JavaScript and end user page load times will
+  not be collected.
+
+Replace <tt>:account_id</tt> and <tt>:app_id</tt> with your account and application number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+
+=== Example
+
+This example uses curl to enable alerts for an application.
+
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "alerts_enabled=true" https://api.newrelic.com/api/v1/accounts/1/application_settings/124.xml   
+
+Result:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <application-setting>
+      <application-id type="integer">124</application-id>
+      <name>My Application Two</name>
+      <alerts-enabled>true</alerts-enabled>
+      <app-apdex-t>0.01</app-apdex-t>
+      <rum-apdex-t>4.0</rum-apdex-t>
+      <rum-enabled>true</rum-enabled>
+      <url>https://api.newrelic.com/api/v1/accounts/1/application_settings/124</url>
+    </application-setting>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* Application not found (404)
+* No parameters specified (422)
+* Invalid parameters (422 or 400)
+
+== View all alert thresholds for an application
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/applications/:app_id/thresholds.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> and <tt>:app_id</tt> with your account and application number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+
+=== Data Returned
+
+Note: Error monitoring and alerting thresholds are only supported at the Pro subscription level.
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <thresholds type="array">
+      <threshold>
+        <id type="integer">456</id>
+        <type>Apdex</type>
+        <caution-value>0.8</caution-value>
+        <critical-value>0.7</critical-value>
+        <url>https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/456</url>
+      </threshold>
+      <threshold>
+        <id type="integer">789</id>
+        <type>ErrorRate</type>
+        <caution-value>1</caution-value>
+        <critical-value>5</critical-value>
+        <url>https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/789</url>
+      </threshold>
+    </thresholds>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* Application not found (404)
+
+== View an alert threshold for an application
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/applications/:app_id/thresholds/:id.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> and <tt>:app_id</tt> with your account and application number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+Replace <tt>:id</tt> with the threshold's ID. You can see this in the XML returned for an application's thresholds.
+
+=== Data Returned
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <threshold>
+      <id type="integer">456</id>
+      <type>Apdex</type>
+      <caution-value>0.8</caution-value>
+      <critical-value>0.7</critical-value>
+      <url>https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/456</url>
+    </threshold>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* Application not found (404)
+* Threshold not found (404)
+
+== Update an alert threshold for an application
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/applications/:app_id/thresholds/:id.xml</code>
+Method::         PUT
+Restrictions::   None
+
+=== Request Parameters
+
+* +caution_value+: Exceeding this value for an extended period results in the creation of a caution event.
+  For Apdex, a value from 0 to 1.0 should be specified.
+  For error rate, a percentage between 0 and 100 should be specified. 
+* +critical_value+: Exceeding this value for an extended period results in the creation of a critical event.
+  For Apdex, a value from 0 to 1.0 should be specified.
+  For error rate, a percentage between 0 and 100 should be specified.
+                    
+When an application has alerts enabled and a critical event has been open longer than 3 minutes, New Relic will
+create an alert an notify registered users.
+
+Replace <tt>:account_id</tt> and <tt>:app_id</tt> with your account and application number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+Replace <tt>:id</tt> with the threshold's ID. You can see this in the XML returned for an application's thresholds.
+
+=== Apdex Example
+
+This example uses curl to modify Apdex caution and critical values. The caution value must be greater
+than the critical value, as a decreasing Apdex score corresponds to a degradation in performance. 
+
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "caution_value=0.9;critical_value=0.75" https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/456.xml
+
+Result:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <threshold>
+      <id type="integer">456</id>
+      <type>Apdex</type>
+      <caution-value>0.9</caution-value>
+      <critical-value>0.75</critical-value>
+      <url>https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/456</url>
+    </threshold>
+    
+=== Error Rate Example
+
+This example uses curl to modify error rate caution and critical values. The caution value must be less
+than the critical value, as a increasing error corresponds to a degradation in performance. 
+
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "caution_value=5;critical_value=10" https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/789.xml
+
+Result:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <threshold>
+      <id type="integer">789</id>
+      <type>ErrorRate</type>
+      <caution-value>5</caution-value>
+      <critical-value>10</critical-value>
+      <url>https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/789</url>
+    </threshold>
+
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* Application not found (404)
+* Threshold not found (404)
+* Missing or invalid parameters (422 or 400)
 
 == View servers
 
@@ -149,6 +430,224 @@ Or:
 === Possible Error Conditions
 
 * Invalid API Key (403)
+
+== View settings of all servers
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/server_settings.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> with your account number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+
+=== Data Returned
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <servers-settings type="array">
+      <server-setting>
+        <server-id type="integer">222</server-id>
+        <hostname>my-hostname.example.com</hostname>
+        <alerts-enabled>false</alerts-enabled>
+        <url>https://api.newrelic.com/api/v1/accounts/1/server_settings/222</url>
+      </server-setting>
+    </servers-settings>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+
+== View a server's settings
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/server_settings/:server_id.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+
+=== Data Returned
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <server-setting>
+      <server-id type="integer">222</server-id>
+      <hostname>my-hostname.example.com</hostname>
+      <alerts-enabled>false</alerts-enabled>
+      <url>https://api.newrelic.com/api/v1/accounts/1/server_settings/222</url>
+    </server-setting>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* Server not found (404)
+
+== Update a server's settings
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/server_settings/:server_id.xml</code>
+Method::         PUT
+Restrictions::   None
+
+=== Request Parameters
+
+The following settings can be updated:
+
+* +alerts_enabled+: Specifies whether this server will generate alerts when its defined thresholds are
+  violated. This is an account wide setting for the server that effects all users.
+  When <code>false</code> the server will not generate alerts or notifications. When
+  <code>true</code> the server will generate alerts when it is experiencing problems
+  and registered users will be notified.
+
+Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+
+=== Example
+
+This example uses curl to enable alerts for a server.
+
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "alerts_enabled=true" https://api.newrelic.com/api/v1/accounts/1/server_settings/222.xml   
+
+Result:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <server-setting>
+      <server-id type="integer">222</server-id>
+      <hostname>my-hostname.example.com</hostname>
+      <alerts-enabled>true</alerts-enabled>
+      <url>https://api.newrelic.com/api/v1/accounts/1/server_settings/222</url>
+    </server-setting>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* Server not found (404)
+* Missing or invalid parameters (422 or 400)
+
+== View all alert thresholds for a server
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/servers/:server_id/thresholds.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+
+=== Data Returned
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <thresholds type="array">
+      <threshold>
+        <id type="integer">11</id>
+        <type>SystemCpu</type>
+        <caution-value>59</caution-value>
+        <critical-value>80</critical-value>
+        <url>https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/11</url>
+      </threshold>
+      <threshold>
+        <id type="integer">22</id>
+        <type>SystemDiskIo</type>
+        <caution-value>70</caution-value>
+        <critical-value>89</critical-value>
+        <url>https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/22</url>
+      </threshold>
+      <threshold>
+        <id type="integer">33</id>
+        <type>SystemFullestDisk</type>
+        <caution-value>85</caution-value>
+        <critical-value>95</critical-value>
+        <url>https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/33</url>
+      </threshold>
+      <threshold>
+        <id type="integer">44</id>
+        <type>SystemMemory</type>
+        <caution-value>85</caution-value>
+        <critical-value>95</critical-value>
+        <url>https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/44</url>
+      </threshold>
+    </thresholds>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* Server not found (404)
+
+== View an alert threshold for a server
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/servers/:server_id/thresholds/:id.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+Replace <tt>:id</tt> with the threshold's ID. You can see this in the XML returned for a server's thresholds.
+
+=== Data Returned
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <threshold>
+      <id type="integer">11</id>
+      <type>SystemCpu</type>
+      <caution-value>59</caution-value>
+      <critical-value>80</critical-value>
+      <url>https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/11</url>
+    </threshold>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* Server not found (404)
+* Threshold not found (404)
+
+== Update an alert threshold for a server
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/servers/:server_id/thresholds/:id.xml</code>
+Method::         PUT
+Restrictions::   None
+
+=== Request Parameters
+
+* +caution_value+: Exceeding this value for an extended period results in the creation of a caution event.
+  Value represents a percentage between 0 and 100. 
+* +critical_value+: Exceeding this value for an extended period results in the creation of a critical event.
+  Value represents a percentage between 0 and 100.
+                    
+When a server has alerts enabled and a critical event has been open for an extended period of time, New Relic will
+create an alert an notify registered users.
+
+Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+Replace <tt>:id</tt> with the threshold's ID. You can see this in the XML returned for a server's thresholds.
+
+=== CPU Example
+
+This example uses curl to modify CPU utilization caution and critical values. The caution value must be less
+than the critical value, as a increase in CPU represents a potential performance issue. 
+
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "caution_value=75;critical_value=90" https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/11.xml
+
+Result:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <threshold>
+      <id type="integer">11</id>
+      <type>SystemCpu</type>
+      <caution-value>75</caution-value>
+      <critical-value>90</critical-value>
+      <url>https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/11</url>
+    </threshold>
+    
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* Server not found (404)
+* Threshold not found (404)
+* Missing or invalid parameters (422 or 400)
 
 == View hosts
 
@@ -266,6 +765,220 @@ Sample data:
       </application>
       </record>
     </applications>
+    
+== View all users
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/users.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> with your account number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+
+=== Data Returned
+
+An alert settings URL is included with each user. It can be used to retrieve the user's alert settings
+associated with each application.
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <users type="array">
+      <user>
+        <id type="integer">44</id>
+        <email>bob@example.com</email>
+        <send-weekly-report>false</send-weekly-report>
+        <send-alert-email>false</send-alert-email>
+        <alert-settings-url>https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings</alert-settings-url>
+      </user>
+      <user>
+        <id type="integer">88</id>
+        <email>alice@example.com</email>
+        <send-weekly-report>true</send-weekly-report>
+        <send-alert-email>true</send-alert-email>
+        <alert-settings-url>https://api.newrelic.com/api/v1/accounts/1/users/88/alert_settings</alert-settings-url>
+      </user>
+    </users>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+
+== View a user
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/users/:id.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> with your account number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+Replace <tt>:id</tt> with a user ID. This can be seen in the XML returned when viewing all users.
+
+=== Data Returned
+
+The alert settings URL included with the user can be used to retrieve the user's alert settings
+associated with each application.
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <user>
+      <id type="integer">44</id>
+      <email>bob@example.com</email>
+      <send-weekly-report>false</send-weekly-report>
+      <send-alert-email>false</send-alert-email>
+      <alert-settings-url>https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings</alert-settings-url>
+    </user>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* User not found (404)
+
+== Update a user's settings
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/users/:id.xml</code>
+Method::         PUT
+Restrictions::   None
+
+=== Request Parameters
+
+* +send_weekly_report+: Boolean specifying whether the user will receive weekly performance report via email.
+* +send_alert_email+: Boolean specifying whether the user will receive email notification for applcation and
+  server alerts associated with the account. When <code>true</code>, the user will receive
+  alert notifications for the applications they have subscribed to. When <code>false</code>,
+  the user won't recieve any alert notifications.
+
+Replace <tt>:account_id</tt> with your account number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+Replace <tt>:id</tt> with a user ID. This can be seen in the XML returned when viewing all users.
+
+=== Example
+
+This example uses curl to specify a user should receive email alerts.
+
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "send_alert_email=true" https://api.newrelic.com/api/v1/accounts/1/users/44.xml   
+
+Result:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <user>
+      <id type="integer">44</id>
+      <email>bob@example.com</email>
+      <send-weekly-report>false</send-weekly-report>
+      <send-alert-email>true</send-alert-email>
+      <alert-settings-url>https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings</alert-settings-url>
+    </user>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* User not found (404)
+* Missing or invalid parameters (422 or 400)
+
+== View a user's alert settings for all applications
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/users/:user_id/alert_settings.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> with your account number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+Replace <tt>:user_id</tt> with a user ID. This can be seen in the XML returned when viewing all users.
+
+=== Data Returned 
+
+An array of alert settings is retuned for the user with an entry for each application.  
+
+Sample Data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <alert-settings type="array">
+      <alert-setting>
+        <application-id type="integer">123</application-id>
+        <application-name>My Application One</application-name>
+        <email-alerts>true</email-alerts>
+        <url>https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings/123</url>
+      </alert-setting>
+      <alert-setting>
+        <application-id type="integer">456</application-id>
+        <application-name>My Application Two</application-name>
+        <email-alerts>false</email-alerts>
+        <url>https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings/456</url>
+      </alert-setting>
+    </alert-settings>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* User not found (404)
+
+== View a user's alert setting for a specific application
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/users/:user_id/alert_settings/:id.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> with your account number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+Replace <tt>:user_id</tt> with a user ID. This can be seen in the XML returned when viewing all users.
+Replace <tt>:id</tt> with an application number.
+
+=== Data Returned 
+
+Sample Data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <alert-setting>
+      <application-id type="integer">123</application-id>
+      <application-name>My Application One</application-name>
+      <email-alerts>true</email-alerts>
+      <url>https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings/123</url>
+    </alert-setting>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* User not found (404)
+* Application not found (404)
+
+== Update a user's alert setting for a specific application
+
+URL::            <code>https://api.newrelic.com/accounts/:account_id/users/:user_id/alert_settings/:id.xml</code>
+Method::         PUT
+Restrictions::   None
+
+=== Request Parameters
+
+* +email_alerts+: Boolean specifying whether the user will recieve email alert notifiactions for the specified application.
+
+Replace <tt>:account_id</tt> with your account number.
+You can see this in the browser URL when you log in to api.newrelic.com.
+Replace <tt>:user_id</tt> with a user ID. This can be seen in the XML returned when viewing all users.
+Replace <tt>:id</tt> with an application number.
+
+=== Example
+
+This example uses curl to specify a user does not want to recieve email alerts for a specific application.
+
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "email_alerts=false" https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings/123.xml   
+
+Result:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <alert-setting>
+      <application-id type="integer">123</application-id>
+      <application-name>My Application One</application-name>
+      <email-alerts>false</email-alerts>
+      <url>https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings/123</url>
+    </alert-setting>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* User not found (404)
+* Application not found (404)
+* Missing or invalid parameters (422 or 400)
 
 == Application Summary Metrics
 
