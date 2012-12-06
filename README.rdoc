@@ -53,7 +53,7 @@ The remainder of this document will describe our XML API.
 
 == View applications
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/applications.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications.xml</code>
 Method::         GET
 Restrictions::   None
 Active Resource Helper  ::  {NewRelicApi::Account}[link:NewRelicApi/Account.html]
@@ -73,29 +73,29 @@ Sample data:
       <application>
         <id type="integer">123</id>
         <name>My Application</name>
-        <overview-url>https://api.newrelic.com/accounts/1/applications/123</overview-url>
+        <overview-url>https://api.newrelic.com/api/v1/accounts/1/applications/123</overview-url>
         <servers type="array">
           <server>
             <id type="integer">111</id>
             <hostname>host-1.example.com</hostname>
-            <overview-url>https://dev.newrelic.com/accounts/1/servers/111</overview-url>
+            <overview-url>https://api.newrelic.com/api/v1/accounts/1/servers/111</overview-url>
           </server>
           <server>
             <id type="integer">222</id>
             <hostname>host-2.example.com</hostname>
-            <overview-url>https://dev.newrelic.com/accounts/1/servers/222</overview-url>
+            <overview-url>https://api.newrelic.com/api/v1/accounts/1/servers/222</overview-url>
           </server>
         </servers>
       </application>
       <application>
         <id type="integer">124</id>
         <name>My Application2</name>
-        <overview-url>https://dev.newrelic.com/accounts/1/applications/124</overview-url>
+        <overview-url>https://api.newrelic.com/api/v1/accounts/1/applications/124</overview-url>
         <servers type="array">
           <server>
             <id type="integer">111</id>
             <hostname>host-1.example.com</hostname>
-            <overview-url>https://dev.newrelic.com/accounts/1/servers/111</overview-url>
+            <overview-url>https://api.newrelic.com/api/v1/accounts/1/servers/111</overview-url>
           </server>
         </servers>
       </application>
@@ -107,7 +107,7 @@ Sample data:
 
 == View settings of all applications
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/application_settings.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/application_settings.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -147,7 +147,7 @@ Sample data:
 
 == View an application's settings
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/application_settings/:app_id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/application_settings/:app_id.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -178,7 +178,7 @@ Sample data:
 
 == Update an application's settings
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/application_settings/:app_id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/application_settings/:app_id.xml</code>
 Method::         PUT
 Restrictions::   None
 
@@ -233,7 +233,7 @@ Result:
 
 == View all alert thresholds for an application
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/applications/:app_id/thresholds.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/thresholds.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -271,7 +271,7 @@ Sample data:
 
 == View an alert threshold for an application
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/applications/:app_id/thresholds/:id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/thresholds/:id.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -300,7 +300,7 @@ Sample data:
 
 == Update an alert threshold for an application
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/applications/:app_id/thresholds/:id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/thresholds/:id.xml</code>
 Method::         PUT
 Restrictions::   None
 
@@ -380,12 +380,12 @@ Sample data:
     <?xml version="1.0" encoding="UTF-8"?>
     <servers type="array">
       <server>
-        <overview-url>https://api.newrelic.com/accounts/1/servers/555</overview-url>
+        <overview-url>https://api.newrelic.com/api/v1/accounts/1/servers/555</overview-url>
         <hostname>my-hostname.newrelic.com</hostname>
         <id type="integer">555</id>
       </server>
       <server>
-        <overview-url>https://api.newrelic.com/accounts/1/servers/556</overview-url>
+        <overview-url>https://api.newrelic.com/api/v1/accounts/1/servers/556</overview-url>
         <hostname>my-hostname-2.newrelic.com</hostname>
         <id type="integer">556</id>
       </server>
@@ -433,7 +433,7 @@ Or:
 
 == View settings of all servers
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/server_settings.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/server_settings.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -460,7 +460,7 @@ Sample data:
 
 == View a server's settings
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/server_settings/:server_id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/server_settings/:server_id.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -486,7 +486,7 @@ Sample data:
 
 == Update a server's settings
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/server_settings/:server_id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/server_settings/:server_id.xml</code>
 Method::         PUT
 Restrictions::   None
 
@@ -527,7 +527,7 @@ Result:
 
 == View all alert thresholds for a server
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/servers/:server_id/thresholds.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:server_id/thresholds.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -577,7 +577,7 @@ Sample data:
 
 == View an alert threshold for a server
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/servers/:server_id/thresholds/:id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:server_id/thresholds/:id.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -606,7 +606,7 @@ Sample data:
 
 == Update an alert threshold for a server
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/servers/:server_id/thresholds/:id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:server_id/thresholds/:id.xml</code>
 Method::         PUT
 Restrictions::   None
 
@@ -670,7 +670,7 @@ Sample data:
     <?xml version="1.0" encoding="UTF-8"?>
     <hosts type="array">
       <host>
-        <overview-url>https://api.newrelic.com/accounts/1/applications/123_h3333</overview-url>
+        <overview-url>https://api.newrelic.com/api/v1/accounts/1/applications/123_h3333</overview-url>
         <name>App name (my-hostname.newrelic.com)</name>
         <id>123_h3333</id>
       </host>
@@ -701,7 +701,7 @@ Sample data:
     <?xml version="1.0" encoding="UTF-8"?>
     <instances type="array">
       <instance>
-        <overview-url>https://api.newrelic.com/accounts/1/applications/123/instances/1441_i7584</overview-url>
+        <overview-url>https://api.newrelic.com/api/v1/accounts/1/applications/123/instances/1441_i7584</overview-url>
         <name>App name (my-hostname.newrelic.com)</name>
         <id>1441_i7584</id>
       </instance>
@@ -768,7 +768,7 @@ Sample data:
     
 == View all users
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/users.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/users.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -806,7 +806,7 @@ Sample data:
 
 == View a user
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/users/:id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:id.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -837,7 +837,7 @@ Sample data:
 
 == Update a user's settings
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/users/:id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:id.xml</code>
 Method::         PUT
 Restrictions::   None
 
@@ -878,7 +878,7 @@ Result:
 
 == View a user's alert settings for all applications
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/users/:user_id/alert_settings.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:user_id/alert_settings.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -915,7 +915,7 @@ Sample Data:
 
 == View a user's alert setting for a specific application
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/users/:user_id/alert_settings/:id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:user_id/alert_settings/:id.xml</code>
 Method::         GET
 Restrictions::   None
 
@@ -944,7 +944,7 @@ Sample Data:
 
 == Update a user's alert setting for a specific application
 
-URL::            <code>https://api.newrelic.com/accounts/:account_id/users/:user_id/alert_settings/:id.xml</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:user_id/alert_settings/:id.xml</code>
 Method::         PUT
 Restrictions::   None
 
@@ -984,7 +984,7 @@ Result:
 
 Fetch summary metrics and threshold values (traffic light information) for one application.
 
-URL::  <code>https://api.newrelic.com/accounts/:account_id/applications/:app_id/threshold_values.xml</code>
+URL::  <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/threshold_values.xml</code>
 Replace <tt>:account_id</tt> and <tt>:app_id</tt> with the account and application IDs.
 Method::    GET
 Restrictions::   This API should be called at most once per minute
@@ -1030,7 +1030,7 @@ Sample data:
 
 Fetch summary metrics and threshold values (traffic light information) for all applications.
 
-URL::   <code>https://api.newrelic.com/accounts.xml?include=application_health</code>
+URL::   <code>https://api.newrelic.com/api/v1/accounts.xml?include=application_health</code>
 Method::   GET
 Restrictions::   This API should be called at most once per minute
 Active Resource Helper::  {NewRelicApi::Account}[link:NewRelicApi/Application.html]
