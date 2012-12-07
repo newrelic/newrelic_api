@@ -168,7 +168,6 @@ Sample data:
       <app-apdex-t>0.01</app-apdex-t>
       <rum-apdex-t>4.0</rum-apdex-t>
       <rum-enabled>true</rum-enabled>
-      <url>https://api.newrelic.com/api/v1/accounts/1/application_settings/124</url>
     </application-setting>
 
 === Possible Error Conditions
@@ -221,7 +220,6 @@ Result:
       <app-apdex-t>0.01</app-apdex-t>
       <rum-apdex-t>4.0</rum-apdex-t>
       <rum-enabled>true</rum-enabled>
-      <url>https://api.newrelic.com/api/v1/accounts/1/application_settings/124</url>
     </application-setting>
 
 === Possible Error Conditions
@@ -289,7 +287,6 @@ Sample data:
       <type>Apdex</type>
       <caution-value>0.8</caution-value>
       <critical-value>0.7</critical-value>
-      <url>https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/456</url>
     </threshold>
 
 === Possible Error Conditions
@@ -335,7 +332,6 @@ Result:
       <type>Apdex</type>
       <caution-value>0.9</caution-value>
       <critical-value>0.75</critical-value>
-      <url>https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/456</url>
     </threshold>
     
 === Error Rate Example
@@ -353,7 +349,6 @@ Result:
       <type>ErrorRate</type>
       <caution-value>5</caution-value>
       <critical-value>10</critical-value>
-      <url>https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/789</url>
     </threshold>
 
 
@@ -476,7 +471,6 @@ Sample data:
       <server-id type="integer">222</server-id>
       <hostname>my-hostname.example.com</hostname>
       <alerts-enabled>false</alerts-enabled>
-      <url>https://api.newrelic.com/api/v1/accounts/1/server_settings/222</url>
     </server-setting>
 
 === Possible Error Conditions
@@ -516,7 +510,6 @@ Result:
       <server-id type="integer">222</server-id>
       <hostname>my-hostname.example.com</hostname>
       <alerts-enabled>true</alerts-enabled>
-      <url>https://api.newrelic.com/api/v1/accounts/1/server_settings/222</url>
     </server-setting>
 
 === Possible Error Conditions
@@ -595,7 +588,6 @@ Sample data:
       <type>SystemCpu</type>
       <caution-value>59</caution-value>
       <critical-value>80</critical-value>
-      <url>https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/11</url>
     </threshold>
 
 === Possible Error Conditions
@@ -639,7 +631,6 @@ Result:
       <type>SystemCpu</type>
       <caution-value>75</caution-value>
       <critical-value>90</critical-value>
-      <url>https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/11</url>
     </threshold>
     
 === Possible Error Conditions
@@ -933,7 +924,6 @@ Sample Data:
       <application-id type="integer">123</application-id>
       <application-name>My Application One</application-name>
       <email-alerts>true</email-alerts>
-      <url>https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings/123</url>
     </alert-setting>
 
 === Possible Error Conditions
@@ -970,7 +960,6 @@ Result:
       <application-id type="integer">123</application-id>
       <application-name>My Application One</application-name>
       <email-alerts>false</email-alerts>
-      <url>https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings/123</url>
     </alert-setting>
 
 === Possible Error Conditions
