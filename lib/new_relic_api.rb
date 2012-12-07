@@ -8,7 +8,7 @@ require 'active_resource_associations'
 # Can also be used as a script using script/runner.
 #
 # In this version of the api, authentication is handled using your account API key, available in your Account settings
-# in http://rpm.newrelic.com.  
+# in rpm.newrelic.com[link:https://rpm.newrelic.com].
 # Log in, click Account at the top of the page and check the "Make my account data accessible" checkbox.  An
 # API key will appear.
 #

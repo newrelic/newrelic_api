@@ -59,7 +59,7 @@ Restrictions::   None
 Active Resource Helper  ::  {NewRelicApi::Account}[link:NewRelicApi/Account.html]
 
 Replace <tt>:account_id</tt> with your account number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 === Data Returned
 
@@ -112,7 +112,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> with your account number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 === Data Returned
 
@@ -152,7 +152,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> and <tt>:app_id</tt> with your account and application number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 === Data Returned
 
@@ -203,7 +203,7 @@ The following settings can be updated:
   not be collected.
 
 Replace <tt>:account_id</tt> and <tt>:app_id</tt> with your account and application number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 === Example
 
@@ -238,7 +238,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> and <tt>:app_id</tt> with your account and application number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 === Data Returned
 
@@ -276,7 +276,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> and <tt>:app_id</tt> with your account and application number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 Replace <tt>:id</tt> with the threshold's ID. You can see this in the XML returned for an application's thresholds.
 
 === Data Returned
@@ -317,7 +317,7 @@ When an application has alerts enabled and a critical event has been open longer
 create an alert an notify registered users.
 
 Replace <tt>:account_id</tt> and <tt>:app_id</tt> with your account and application number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 Replace <tt>:id</tt> with the threshold's ID. You can see this in the XML returned for an application's thresholds.
 
 === Apdex Example
@@ -371,7 +371,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> with your account number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 === Data Returned
 
@@ -404,7 +404,7 @@ Restrictions::   None
 Replace <tt>:account_id</tt> with your account number.
 Replace <tt>:id</tt> with the server number you want to delete.
 You can find your account and server number in the browser URL
-when you log in to api.newrelic.com and navigate to the server you want to delete.
+when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com] and navigate to the server you want to delete.
 The first number in the URL is your account number and the last number is your server number.
 
 === Data Returned
@@ -438,7 +438,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> with your account number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 === Data Returned
 
@@ -465,7 +465,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 === Data Returned
 
@@ -501,7 +501,7 @@ The following settings can be updated:
   and registered users will be notified.
 
 Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 === Example
 
@@ -532,7 +532,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 === Data Returned
 
@@ -582,7 +582,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 Replace <tt>:id</tt> with the threshold's ID. You can see this in the XML returned for a server's thresholds.
 
 === Data Returned
@@ -621,7 +621,7 @@ When a server has alerts enabled and a critical event has been open for an exten
 create an alert an notify registered users.
 
 Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 Replace <tt>:id</tt> with the threshold's ID. You can see this in the XML returned for a server's thresholds.
 
 === CPU Example
@@ -659,7 +659,7 @@ Restrictions::   None
 
 Replace <tt>:account_id</tt> with your account number,
 and <tt>:app_id</tt> with the application ID.
-You can see this in the browser URL when you log in to api.newrelic.com,
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com],
 or you can look up the applications using the API to view applications.
 JSON is also supported.
 
@@ -690,7 +690,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> with your account number, and <tt>:app_id</tt> with the application ID.
-You can see this in the browser URL when you log in to api.newrelic.com,
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com],
 or you can look up the applications using the API to view applications.
 JSON is also supported.
 
@@ -720,7 +720,7 @@ Method::         POST
 Parameters::     app, a string representing the name of your application, or
                  app_id, an integer representing the id of your application
 Replace <tt>:account_id</tt> with the your account number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 EXAMPLE 1 - Deleting an app via browser URL field
 We want to delete the app called "dotNet qa3" which has the app_id of 11068.
@@ -773,7 +773,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> with your account number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 === Data Returned
 
@@ -811,7 +811,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> with your account number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 Replace <tt>:id</tt> with a user ID. This can be seen in the XML returned when viewing all users.
 
 === Data Returned
@@ -850,7 +850,7 @@ Restrictions::   None
   the user won't recieve any alert notifications.
 
 Replace <tt>:account_id</tt> with your account number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 Replace <tt>:id</tt> with a user ID. This can be seen in the XML returned when viewing all users.
 
 === Example
@@ -883,7 +883,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> with your account number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 Replace <tt>:user_id</tt> with a user ID. This can be seen in the XML returned when viewing all users.
 
 === Data Returned 
@@ -920,7 +920,7 @@ Method::         GET
 Restrictions::   None
 
 Replace <tt>:account_id</tt> with your account number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 Replace <tt>:user_id</tt> with a user ID. This can be seen in the XML returned when viewing all users.
 Replace <tt>:id</tt> with an application number.
 
@@ -953,7 +953,7 @@ Restrictions::   None
 * +email_alerts+: Boolean specifying whether the user will recieve email alert notifiactions for the specified application.
 
 Replace <tt>:account_id</tt> with your account number.
-You can see this in the browser URL when you log in to api.newrelic.com.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 Replace <tt>:user_id</tt> with a user ID. This can be seen in the XML returned when viewing all users.
 Replace <tt>:id</tt> with an application number.
 
