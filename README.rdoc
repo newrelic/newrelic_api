@@ -63,9 +63,6 @@ You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:h
 
 === Data Returned
 
-For each application, a list of associated servers is provided.
-The list of servers is empty if you do not use server monitoring.
-
 Sample data:
 
     <?xml version="1.0" encoding="UTF-8"?>
@@ -73,37 +70,52 @@ Sample data:
       <application>
         <id type="integer">123</id>
         <name>My Application</name>
-        <overview-url>https://api.newrelic.com/api/v1/accounts/1/applications/123</overview-url>
-        <servers type="array">
-          <server>
-            <id type="integer">111</id>
-            <hostname>host-1.example.com</hostname>
-            <overview-url>https://api.newrelic.com/api/v1/accounts/1/servers/111</overview-url>
-          </server>
-          <server>
-            <id type="integer">222</id>
-            <hostname>host-2.example.com</hostname>
-            <overview-url>https://api.newrelic.com/api/v1/accounts/1/servers/222</overview-url>
-          </server>
-        </servers>
+        <overview-url>https://rpm.newrelic.com/accounts/1/applications/123</overview-url>
+        <servers-url>https://api.newrelic.com/api/v1/accounts/1/applications/123/servers</servers-url>
       </application>
       <application>
         <id type="integer">124</id>
         <name>My Application2</name>
-        <overview-url>https://api.newrelic.com/api/v1/accounts/1/applications/124</overview-url>
-        <servers type="array">
-          <server>
-            <id type="integer">111</id>
-            <hostname>host-1.example.com</hostname>
-            <overview-url>https://api.newrelic.com/api/v1/accounts/1/servers/111</overview-url>
-          </server>
-        </servers>
+        <overview-url>https://rpm.newrelic.com/accounts/1/applications/124</overview-url>
+        <servers-url>https://api.newrelic.com/api/v1/accounts/1/applications/123/servers</servers-url>
       </application>
     </applications>
 
 === Possible Error Conditions
 
 * Invalid API Key (403)
+
+== View a list of servers for an application
+
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:application_id/servers.xml</code>
+Method::         GET
+Restrictions::   None
+
+Replace <tt>:account_id</tt> and <tt>:application_id</tt> with your account number and application number.
+You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
+
+=== Data Returned
+
+Sample data:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <servers type="array">
+      <server>
+        <id type="integer">111</id>
+        <hostname>host-1.example.com</hostname>
+        <overview-url>https://rpm.newrelic.com/accounts/1/servers/111</overview-url>
+      </server>
+      <server>
+        <id type="integer">222</id>
+        <hostname>host-2.example.com</hostname>
+        <overview-url>https://rpm.newrelic.com/accounts/1/servers/222</overview-url>
+      </server>
+    </servers>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+* Application not found (404)
 
 == View settings of all applications
 
@@ -375,12 +387,12 @@ Sample data:
     <?xml version="1.0" encoding="UTF-8"?>
     <servers type="array">
       <server>
-        <overview-url>https://api.newrelic.com/api/v1/accounts/1/servers/555</overview-url>
+        <overview-url>https://rpm.newrelic.com/accounts/1/servers/555</overview-url>
         <hostname>my-hostname.newrelic.com</hostname>
         <id type="integer">555</id>
       </server>
       <server>
-        <overview-url>https://api.newrelic.com/api/v1/accounts/1/servers/556</overview-url>
+        <overview-url>https://rpm.newrelic.com/accounts/1/servers/556</overview-url>
         <hostname>my-hostname-2.newrelic.com</hostname>
         <id type="integer">556</id>
       </server>
@@ -661,7 +673,7 @@ Sample data:
     <?xml version="1.0" encoding="UTF-8"?>
     <hosts type="array">
       <host>
-        <overview-url>https://api.newrelic.com/api/v1/accounts/1/applications/123_h3333</overview-url>
+        <overview-url>https://rpm.newrelic.com/accounts/1/applications/123_h3333</overview-url>
         <name>App name (my-hostname.newrelic.com)</name>
         <id>123_h3333</id>
       </host>
@@ -692,7 +704,7 @@ Sample data:
     <?xml version="1.0" encoding="UTF-8"?>
     <instances type="array">
       <instance>
-        <overview-url>https://api.newrelic.com/api/v1/accounts/1/applications/123/instances/1441_i7584</overview-url>
+        <overview-url>https://rpm.newrelic.com/accounts/1/applications/123/instances/1441_i7584</overview-url>
         <name>App name (my-hostname.newrelic.com)</name>
         <id>1441_i7584</id>
       </instance>
