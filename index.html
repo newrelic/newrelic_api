@@ -146,7 +146,7 @@ the <a href="NewRelicApi.html">Ruby Documentation</a>.</p>
 <h2 id="label-View+applications">View applications</h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
-<p><code>https://api.newrelic.com/accounts/:account_id/applications.xml</code></p>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications.xml</code></p>
 </dd><dt>Method
 <dd>
 <p>GET</p>
@@ -159,7 +159,8 @@ the <a href="NewRelicApi.html">Ruby Documentation</a>.</p>
 </dd></dl>
 
 <p>Replace <code>:account_id</code> with your account number. You can see this
-in the browser URL when you log in to api.newrelic.com.</p>
+in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
 <h3 id="label-Data+Returned">Data Returned</h3>
 
@@ -170,18 +171,394 @@ in the browser URL when you log in to api.newrelic.com.</p>
   &lt;application&gt;
     &lt;id type=&quot;integer&quot;&gt;123&lt;/id&gt;
     &lt;name&gt;My Application&lt;/name&gt;
-    &lt;overview-url&gt;&lt;a href=&quot;https://api.newrelic.com/browser/agent?account_id=1&amp;agent=123%3C&quot;&gt;https://api.newrelic.com/browser...&lt;/a&gt;/overview-url&gt;
+    &lt;overview-url&gt;https://rpm.newrelic.com/accounts/1/applications/123&lt;/overview-url&gt;
+    &lt;servers-url&gt;https://api.newrelic.com/api/v1/accounts/1/applications/123/servers&lt;/servers-url&gt;
   &lt;/application&gt;
   &lt;application&gt;
     &lt;id type=&quot;integer&quot;&gt;124&lt;/id&gt;
     &lt;name&gt;My Application2&lt;/name&gt;
-    &lt;overview-url&gt;&lt;a href=&quot;https://api.newrelic.com/browser/agent?account_id=1&amp;agent=124%3C&quot;&gt;https://api.newrelic.com/browser...&lt;/a&gt;/overview-url&gt;
+    &lt;overview-url&gt;https://rpm.newrelic.com/accounts/1/applications/124&lt;/overview-url&gt;
+    &lt;servers-url&gt;https://api.newrelic.com/api/v1/accounts/1/applications/123/servers&lt;/servers-url&gt;
   &lt;/application&gt;
 &lt;/applications&gt;</pre>
 
 <h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
+</li></ul>
+
+<h2 id="label-View+a+list+of+servers+for+an+application">View a list of servers for an application</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:application_id/servers.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> and <code>:application_id</code> with your
+account number and application number. You can see this in the browser URL
+when you log in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;servers type=&quot;array&quot;&gt;
+  &lt;server&gt;
+    &lt;id type=&quot;integer&quot;&gt;111&lt;/id&gt;
+    &lt;hostname&gt;host-1.example.com&lt;/hostname&gt;
+    &lt;overview-url&gt;https://rpm.newrelic.com/accounts/1/servers/111&lt;/overview-url&gt;
+  &lt;/server&gt;
+  &lt;server&gt;
+    &lt;id type=&quot;integer&quot;&gt;222&lt;/id&gt;
+    &lt;hostname&gt;host-2.example.com&lt;/hostname&gt;
+    &lt;overview-url&gt;https://rpm.newrelic.com/accounts/1/servers/222&lt;/overview-url&gt;
+  &lt;/server&gt;
+&lt;/servers&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Application not found (404)</p>
+</li></ul>
+
+<h2 id="label-View+settings+of+all+applications">View settings of all applications</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/application_settings.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> with your account number. You can see this
+in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Note: <code>app-apdex-t</code> is only included for applications that
+support apdex T as a server side setting.</p>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;applications-settings type=&quot;array&quot;&gt;
+  &lt;application-setting&gt;
+    &lt;application-id type=&quot;integer&quot;&gt;123&lt;/application-id&gt;
+    &lt;name&gt;My Application One&lt;/name&gt;
+    &lt;alerts-enabled&gt;true&lt;/alerts-enabled&gt;
+    &lt;rum-apdex-t&gt;7.0&lt;/rum-apdex-t&gt;
+    &lt;rum-enabled&gt;false&lt;/rum-enabled&gt;
+    &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/application_settings/123&lt;/url&gt;
+  &lt;/application-setting&gt;
+  &lt;application-setting&gt;
+    &lt;application-id type=&quot;integer&quot;&gt;124&lt;/application-id&gt;
+    &lt;name&gt;My Application Two&lt;/name&gt;
+    &lt;alerts-enabled&gt;false&lt;/alerts-enabled&gt;
+    &lt;app-apdex-t&gt;0.01&lt;/app-apdex-t&gt;
+    &lt;rum-apdex-t&gt;4.0&lt;/rum-apdex-t&gt;
+    &lt;rum-enabled&gt;true&lt;/rum-enabled&gt;
+    &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/application_settings/124&lt;/url&gt;
+  &lt;/application-setting&gt;
+&lt;/applications-settings&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li></ul>
+
+<h2 id="label-View+an+application%27s+settings">View an application’s settings</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/application_settings/:app_id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> and <code>:app_id</code> with your account
+and application number. You can see this in the browser URL when you log in
+to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Note: <code>app-apdex-t</code> is only included for applications that
+support apdex T as a server side setting.</p>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;application-setting&gt;
+  &lt;application-id type=&quot;integer&quot;&gt;124&lt;/application-id&gt;
+  &lt;name&gt;My Application Two&lt;/name&gt;
+  &lt;alerts-enabled&gt;false&lt;/alerts-enabled&gt;
+  &lt;app-apdex-t&gt;0.01&lt;/app-apdex-t&gt;
+  &lt;rum-apdex-t&gt;4.0&lt;/rum-apdex-t&gt;
+  &lt;rum-enabled&gt;true&lt;/rum-enabled&gt;
+&lt;/application-setting&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Application not found (404)</p>
+</li></ul>
+
+<h2 id="label-Update+an+application%27s+settings">Update an application’s settings</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/application_settings/:app_id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>PUT</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<h3 id="label-Request+Parameters">Request Parameters</h3>
+
+<p>The following settings can be updated:</p>
+<ul><li>
+<p><code>alerts_enabled</code>: Specifies whether this application will
+generate alerts when its defined thresholds are violated. This is an
+account wide setting for the application that effects all users. When
+<code>false</code> the application will not generate alerts or
+notifications. When <code>true</code> the application will generate alerts
+when it is experiencing problems and registered users will be notified.</p>
+</li><li>
+<p><code>app_apdex_t</code>: Specifies the application's app tier Apdex-T
+value in seconds. Requests responding in less than this value are
+satisfying (s); requests responding in the range of this value to 4 times
+this value are tolerating (t); and requests responding in greater than 4
+times this value are frustrating (f).</p>
+</li><li>
+<p><code>rum_apdex_t</code>: Specifies the application's end user Apdex-T
+value in seconds. Page loads completing in less than this value are
+satisfying (s); page loads completing in the range of this value to 4 times
+this value are tolerating (t); and page loads completing in greater than 4
+times this value are frustrating (f).</p>
+</li><li>
+<p><code>rum_enabled</code>: Specifies whether real user monitoring (RUM) is
+enbabled for this application. When <code>true</code> the agent will inject
+RUM JavaScript into your pages to collect end user page load times. When
+<code>false</code> the agent will not inject RUM JavaScript and end user
+page load times will not be collected.</p>
+</li></ul>
+
+<p>Replace <code>:account_id</code> and <code>:app_id</code> with your account
+and application number. You can see this in the browser URL when you log in
+to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
+
+<h3 id="label-Example">Example</h3>
+
+<p>This example uses curl to enable alerts for an application.</p>
+
+<pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -X PUT -d &quot;alerts_enabled=true&quot; https://api.newrelic.com/api/v1/accounts/1/application_settings/124.xml</pre>
+
+<p>Result:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;application-setting&gt;
+  &lt;application-id type=&quot;integer&quot;&gt;124&lt;/application-id&gt;
+  &lt;name&gt;My Application Two&lt;/name&gt;
+  &lt;alerts-enabled&gt;true&lt;/alerts-enabled&gt;
+  &lt;app-apdex-t&gt;0.01&lt;/app-apdex-t&gt;
+  &lt;rum-apdex-t&gt;4.0&lt;/rum-apdex-t&gt;
+  &lt;rum-enabled&gt;true&lt;/rum-enabled&gt;
+&lt;/application-setting&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Application not found (404)</p>
+</li><li>
+<p>No parameters specified (422)</p>
+</li><li>
+<p>Invalid parameters (422 or 400)</p>
+</li></ul>
+
+<h2 id="label-View+all+alert+thresholds+for+an+application">View all alert thresholds for an application</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/thresholds.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> and <code>:app_id</code> with your account
+and application number. You can see this in the browser URL when you log in
+to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Note: Error monitoring and alerting thresholds are only supported at the
+Pro subscription level.</p>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;thresholds type=&quot;array&quot;&gt;
+  &lt;threshold&gt;
+    &lt;id type=&quot;integer&quot;&gt;456&lt;/id&gt;
+    &lt;type&gt;Apdex&lt;/type&gt;
+    &lt;caution-value&gt;0.8&lt;/caution-value&gt;
+    &lt;critical-value&gt;0.7&lt;/critical-value&gt;
+    &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/456&lt;/url&gt;
+  &lt;/threshold&gt;
+  &lt;threshold&gt;
+    &lt;id type=&quot;integer&quot;&gt;789&lt;/id&gt;
+    &lt;type&gt;ErrorRate&lt;/type&gt;
+    &lt;caution-value&gt;1&lt;/caution-value&gt;
+    &lt;critical-value&gt;5&lt;/critical-value&gt;
+    &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/789&lt;/url&gt;
+  &lt;/threshold&gt;
+&lt;/thresholds&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Application not found (404)</p>
+</li></ul>
+
+<h2 id="label-View+an+alert+threshold+for+an+application">View an alert threshold for an application</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/thresholds/:id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> and <code>:app_id</code> with your account
+and application number. You can see this in the browser URL when you log in
+to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
+<code>:id</code> with the threshold’s ID. You can see this in the XML
+returned for an application’s thresholds.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;threshold&gt;
+  &lt;id type=&quot;integer&quot;&gt;456&lt;/id&gt;
+  &lt;type&gt;Apdex&lt;/type&gt;
+  &lt;caution-value&gt;0.8&lt;/caution-value&gt;
+  &lt;critical-value&gt;0.7&lt;/critical-value&gt;
+&lt;/threshold&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Application not found (404)</p>
+</li><li>
+<p>Threshold not found (404)</p>
+</li></ul>
+
+<h2 id="label-Update+an+alert+threshold+for+an+application">Update an alert threshold for an application</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/thresholds/:id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>PUT</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<h3 id="label-Request+Parameters">Request Parameters</h3>
+<ul><li>
+<p><code>caution_value</code>: Exceeding this value for an extended period
+results in the creation of a caution event. For Apdex, a value from 0 to
+1.0 should be specified. For error rate, a percentage between 0 and 100
+should be specified.</p>
+</li><li>
+<p><code>critical_value</code>: Exceeding this value for an extended period
+results in the creation of a critical event. For Apdex, a value from 0 to
+1.0 should be specified. For error rate, a percentage between 0 and 100
+should be specified.</p>
+</li></ul>
+
+<p>When an application has alerts enabled and a critical event has been open
+longer than 3 minutes, New Relic will create an alert an notify registered
+users.</p>
+
+<p>Replace <code>:account_id</code> and <code>:app_id</code> with your account
+and application number. You can see this in the browser URL when you log in
+to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
+<code>:id</code> with the threshold’s ID. You can see this in the XML
+returned for an application’s thresholds.</p>
+
+<h3 id="label-Apdex+Example">Apdex Example</h3>
+
+<p>This example uses curl to modify Apdex caution and critical values. The
+caution value must be greater than the critical value, as a decreasing
+Apdex score corresponds to a degradation in performance.</p>
+
+<pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -X PUT -d &quot;caution_value=0.9;critical_value=0.75&quot; https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/456.xml</pre>
+
+<p>Result:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;threshold&gt;
+  &lt;id type=&quot;integer&quot;&gt;456&lt;/id&gt;
+  &lt;type&gt;Apdex&lt;/type&gt;
+  &lt;caution-value&gt;0.9&lt;/caution-value&gt;
+  &lt;critical-value&gt;0.75&lt;/critical-value&gt;
+&lt;/threshold&gt;</pre>
+
+<h3 id="label-Error+Rate+Example">Error Rate Example</h3>
+
+<p>This example uses curl to modify error rate caution and critical values.
+The caution value must be less than the critical value, as a increasing
+error corresponds to a degradation in performance.</p>
+
+<pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -X PUT -d &quot;caution_value=5;critical_value=10&quot; https://api.newrelic.com/api/v1/accounts/1/applications/123/thresholds/789.xml</pre>
+
+<p>Result:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;threshold&gt;
+  &lt;id type=&quot;integer&quot;&gt;789&lt;/id&gt;
+  &lt;type&gt;ErrorRate&lt;/type&gt;
+  &lt;caution-value&gt;5&lt;/caution-value&gt;
+  &lt;critical-value&gt;10&lt;/critical-value&gt;
+&lt;/threshold&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Application not found (404)</p>
+</li><li>
+<p>Threshold not found (404)</p>
+</li><li>
+<p>Missing or invalid parameters (422 or 400)</p>
 </li></ul>
 
 <h2 id="label-View+servers">View servers</h2>
@@ -197,7 +574,8 @@ in the browser URL when you log in to api.newrelic.com.</p>
 </dd></dl>
 
 <p>Replace <code>:account_id</code> with your account number. You can see this
-in the browser URL when you log in to api.newrelic.com.</p>
+in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
 <h3 id="label-Data+Returned">Data Returned</h3>
 
@@ -206,12 +584,12 @@ in the browser URL when you log in to api.newrelic.com.</p>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;servers type=&quot;array&quot;&gt;
   &lt;server&gt;
-    &lt;overview-url&gt;https://api.newrelic.com/accounts/1/servers/555&lt;/overview-url&gt;
+    &lt;overview-url&gt;https://rpm.newrelic.com/accounts/1/servers/555&lt;/overview-url&gt;
     &lt;hostname&gt;my-hostname.newrelic.com&lt;/hostname&gt;
     &lt;id type=&quot;integer&quot;&gt;555&lt;/id&gt;
   &lt;/server&gt;
   &lt;server&gt;
-    &lt;overview-url&gt;https://api.newrelic.com/accounts/1/servers/556&lt;/overview-url&gt;
+    &lt;overview-url&gt;https://rpm.newrelic.com/accounts/1/servers/556&lt;/overview-url&gt;
     &lt;hostname&gt;my-hostname-2.newrelic.com&lt;/hostname&gt;
     &lt;id type=&quot;integer&quot;&gt;556&lt;/id&gt;
   &lt;/server&gt;
@@ -236,10 +614,10 @@ in the browser URL when you log in to api.newrelic.com.</p>
 
 <p>Replace <code>:account_id</code> with your account number. Replace
 <code>:id</code> with the server number you want to delete. You can find
-your account and server number in the browser URL when you log in to
-api.newrelic.com and navigate to the server you want to delete. The first
-number in the URL is your account number and the last number is your server
-number.</p>
+your account and server number in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a> and navigate to the
+server you want to delete. The first number in the URL is your account
+number and the last number is your server number.</p>
 
 <h3 id="label-Data+Returned">Data Returned</h3>
 
@@ -266,6 +644,287 @@ number.</p>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
+<h2 id="label-View+settings+of+all+servers">View settings of all servers</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/server_settings.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> with your account number. You can see this
+in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;servers-settings type=&quot;array&quot;&gt;
+  &lt;server-setting&gt;
+    &lt;server-id type=&quot;integer&quot;&gt;222&lt;/server-id&gt;
+    &lt;hostname&gt;my-hostname.example.com&lt;/hostname&gt;
+    &lt;alerts-enabled&gt;false&lt;/alerts-enabled&gt;
+    &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/server_settings/222&lt;/url&gt;
+  &lt;/server-setting&gt;
+&lt;/servers-settings&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li></ul>
+
+<h2 id="label-View+a+server%27s+settings">View a server’s settings</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/server_settings/:server_id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> and <code>:server_id</code> with your
+account and server number. You can see this in the browser URL when you log
+in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;server-setting&gt;
+  &lt;server-id type=&quot;integer&quot;&gt;222&lt;/server-id&gt;
+  &lt;hostname&gt;my-hostname.example.com&lt;/hostname&gt;
+  &lt;alerts-enabled&gt;false&lt;/alerts-enabled&gt;
+&lt;/server-setting&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Server not found (404)</p>
+</li></ul>
+
+<h2 id="label-Update+a+server%27s+settings">Update a server’s settings</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/server_settings/:server_id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>PUT</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<h3 id="label-Request+Parameters">Request Parameters</h3>
+
+<p>The following settings can be updated:</p>
+<ul><li>
+<p><code>alerts_enabled</code>: Specifies whether this server will generate
+alerts when its defined thresholds are violated. This is an account wide
+setting for the server that effects all users. When <code>false</code> the
+server will not generate alerts or notifications. When <code>true</code>
+the server will generate alerts when it is experiencing problems and
+registered users will be notified.</p>
+</li></ul>
+
+<p>Replace <code>:account_id</code> and <code>:server_id</code> with your
+account and server number. You can see this in the browser URL when you log
+in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
+
+<h3 id="label-Example">Example</h3>
+
+<p>This example uses curl to enable alerts for a server.</p>
+
+<pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -X PUT -d &quot;alerts_enabled=true&quot; https://api.newrelic.com/api/v1/accounts/1/server_settings/222.xml</pre>
+
+<p>Result:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;server-setting&gt;
+  &lt;server-id type=&quot;integer&quot;&gt;222&lt;/server-id&gt;
+  &lt;hostname&gt;my-hostname.example.com&lt;/hostname&gt;
+  &lt;alerts-enabled&gt;true&lt;/alerts-enabled&gt;
+&lt;/server-setting&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Server not found (404)</p>
+</li><li>
+<p>Missing or invalid parameters (422 or 400)</p>
+</li></ul>
+
+<h2 id="label-View+all+alert+thresholds+for+a+server">View all alert thresholds for a server</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:server_id/thresholds.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> and <code>:server_id</code> with your
+account and server number. You can see this in the browser URL when you log
+in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;thresholds type=&quot;array&quot;&gt;
+  &lt;threshold&gt;
+    &lt;id type=&quot;integer&quot;&gt;11&lt;/id&gt;
+    &lt;type&gt;SystemCpu&lt;/type&gt;
+    &lt;caution-value&gt;59&lt;/caution-value&gt;
+    &lt;critical-value&gt;80&lt;/critical-value&gt;
+    &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/11&lt;/url&gt;
+  &lt;/threshold&gt;
+  &lt;threshold&gt;
+    &lt;id type=&quot;integer&quot;&gt;22&lt;/id&gt;
+    &lt;type&gt;SystemDiskIo&lt;/type&gt;
+    &lt;caution-value&gt;70&lt;/caution-value&gt;
+    &lt;critical-value&gt;89&lt;/critical-value&gt;
+    &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/22&lt;/url&gt;
+  &lt;/threshold&gt;
+  &lt;threshold&gt;
+    &lt;id type=&quot;integer&quot;&gt;33&lt;/id&gt;
+    &lt;type&gt;SystemFullestDisk&lt;/type&gt;
+    &lt;caution-value&gt;85&lt;/caution-value&gt;
+    &lt;critical-value&gt;95&lt;/critical-value&gt;
+    &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/33&lt;/url&gt;
+  &lt;/threshold&gt;
+  &lt;threshold&gt;
+    &lt;id type=&quot;integer&quot;&gt;44&lt;/id&gt;
+    &lt;type&gt;SystemMemory&lt;/type&gt;
+    &lt;caution-value&gt;85&lt;/caution-value&gt;
+    &lt;critical-value&gt;95&lt;/critical-value&gt;
+    &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/44&lt;/url&gt;
+  &lt;/threshold&gt;
+&lt;/thresholds&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Server not found (404)</p>
+</li></ul>
+
+<h2 id="label-View+an+alert+threshold+for+a+server">View an alert threshold for a server</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:server_id/thresholds/:id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> and <code>:server_id</code> with your
+account and server number. You can see this in the browser URL when you log
+in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
+<code>:id</code> with the threshold’s ID. You can see this in the XML
+returned for a server’s thresholds.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;threshold&gt;
+  &lt;id type=&quot;integer&quot;&gt;11&lt;/id&gt;
+  &lt;type&gt;SystemCpu&lt;/type&gt;
+  &lt;caution-value&gt;59&lt;/caution-value&gt;
+  &lt;critical-value&gt;80&lt;/critical-value&gt;
+&lt;/threshold&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Server not found (404)</p>
+</li><li>
+<p>Threshold not found (404)</p>
+</li></ul>
+
+<h2 id="label-Update+an+alert+threshold+for+a+server">Update an alert threshold for a server</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:server_id/thresholds/:id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>PUT</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<h3 id="label-Request+Parameters">Request Parameters</h3>
+<ul><li>
+<p><code>caution_value</code>: Exceeding this value for an extended period
+results in the creation of a caution event. Value represents a percentage
+between 0 and 100.</p>
+</li><li>
+<p><code>critical_value</code>: Exceeding this value for an extended period
+results in the creation of a critical event. Value represents a percentage
+between 0 and 100.</p>
+</li></ul>
+
+<p>When a server has alerts enabled and a critical event has been open for an
+extended period of time, New Relic will create an alert an notify
+registered users.</p>
+
+<p>Replace <code>:account_id</code> and <code>:server_id</code> with your
+account and server number. You can see this in the browser URL when you log
+in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
+<code>:id</code> with the threshold’s ID. You can see this in the XML
+returned for a server’s thresholds.</p>
+
+<h3 id="label-CPU+Example">CPU Example</h3>
+
+<p>This example uses curl to modify CPU utilization caution and critical
+values. The caution value must be less than the critical value, as a
+increase in CPU represents a potential performance issue.</p>
+
+<pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -X PUT -d &quot;caution_value=75;critical_value=90&quot; https://api.newrelic.com/api/v1/accounts/1/servers/222/thresholds/11.xml</pre>
+
+<p>Result:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;threshold&gt;
+  &lt;id type=&quot;integer&quot;&gt;11&lt;/id&gt;
+  &lt;type&gt;SystemCpu&lt;/type&gt;
+  &lt;caution-value&gt;75&lt;/caution-value&gt;
+  &lt;critical-value&gt;90&lt;/critical-value&gt;
+&lt;/threshold&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>Server not found (404)</p>
+</li><li>
+<p>Threshold not found (404)</p>
+</li><li>
+<p>Missing or invalid parameters (422 or 400)</p>
+</li></ul>
+
 <h2 id="label-View+hosts">View hosts</h2>
 
 <p>This gives you the list of hosts, so you can look up application data
@@ -283,7 +942,8 @@ filtered by host.</p>
 
 <p>Replace <code>:account_id</code> with your account number, and
 <code>:app_id</code> with the application ID. You can see this in the
-browser URL when you log in to api.newrelic.com, or you can look up the
+browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>, or you can look up the
 applications using the API to view applications. JSON is also supported.</p>
 
 <h3 id="label-Data+Returned">Data Returned</h3>
@@ -293,7 +953,7 @@ applications using the API to view applications. JSON is also supported.</p>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;hosts type=&quot;array&quot;&gt;
   &lt;host&gt;
-    &lt;overview-url&gt;https://api.newrelic.com/accounts/1/applications/123_h3333&lt;/overview-url&gt;
+    &lt;overview-url&gt;https://rpm.newrelic.com/accounts/1/applications/123_h3333&lt;/overview-url&gt;
     &lt;name&gt;App name (my-hostname.newrelic.com)&lt;/name&gt;
     &lt;id&gt;123_h3333&lt;/id&gt;
   &lt;/host&gt;
@@ -321,7 +981,8 @@ up application data filtered by instance.</p>
 
 <p>Replace <code>:account_id</code> with your account number, and
 <code>:app_id</code> with the application ID. You can see this in the
-browser URL when you log in to api.newrelic.com, or you can look up the
+browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>, or you can look up the
 applications using the API to view applications. JSON is also supported.</p>
 
 <h3 id="label-Data+Returned">Data Returned</h3>
@@ -331,7 +992,7 @@ applications using the API to view applications. JSON is also supported.</p>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;instances type=&quot;array&quot;&gt;
   &lt;instance&gt;
-    &lt;overview-url&gt;https://api.newrelic.com/accounts/1/applications/123/instances/1441_i7584&lt;/overview-url&gt;
+    &lt;overview-url&gt;https://rpm.newrelic.com/accounts/1/applications/123/instances/1441_i7584&lt;/overview-url&gt;
     &lt;name&gt;App name (my-hostname.newrelic.com)&lt;/name&gt;
     &lt;id&gt;1441_i7584&lt;/id&gt;
   &lt;/instance&gt;
@@ -358,11 +1019,12 @@ integer representing the id of your application</p>
 </dd></dl>
 
 <p>Replace <code>:account_id</code> with the your account number. You can see
-this in the browser URL when you log in to api.newrelic.com.</p>
+this in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
 <p>EXAMPLE 1 - Deleting an app via browser URL field We want to delete the app
-called “dotNet qa3” which has the app_id of 11068. The account number
-is 26286. The data_access_key is the API key for this account.</p>
+called “dotNet qa3” which has the app_id of 11068. The account number is
+26286. The data_access_key is the API key for this account.</p>
 
 <p><a
 href="https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id[]=11068&data_access_key=4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9">api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id[]=11068&data_access_key=4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9</a></p>
@@ -377,8 +1039,7 @@ href="https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app
 
 <p>EXAMPLE 2 - Deleting an app via Curl</p>
 
-<p>curl -H “x-api-key:4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9”
-‘<a
+<p>curl -H “x-api-key:4a249e3f3b437002efb6121844e0a4ee1d00942b18cfb9” ‘<a
 href="https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id=11253">api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app_id=11253</a>’</p>
 
 <p>Actual response:</p>
@@ -405,13 +1066,295 @@ href="https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app
   &lt;/record&gt;
 &lt;/applications&gt;</pre>
 
+<h2 id="label-View+all+users">View all users</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> with your account number. You can see this
+in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>An alert settings URL is included with each user. It can be used to
+retrieve the user’s alert settings associated with each application.</p>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;users type=&quot;array&quot;&gt;
+  &lt;user&gt;
+    &lt;id type=&quot;integer&quot;&gt;44&lt;/id&gt;
+    &lt;email&gt;bob@example.com&lt;/email&gt;
+    &lt;send-weekly-report&gt;false&lt;/send-weekly-report&gt;
+    &lt;send-alert-email&gt;false&lt;/send-alert-email&gt;
+    &lt;alert-settings-url&gt;https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings&lt;/alert-settings-url&gt;
+  &lt;/user&gt;
+  &lt;user&gt;
+    &lt;id type=&quot;integer&quot;&gt;88&lt;/id&gt;
+    &lt;email&gt;alice@example.com&lt;/email&gt;
+    &lt;send-weekly-report&gt;true&lt;/send-weekly-report&gt;
+    &lt;send-alert-email&gt;true&lt;/send-alert-email&gt;
+    &lt;alert-settings-url&gt;https://api.newrelic.com/api/v1/accounts/1/users/88/alert_settings&lt;/alert-settings-url&gt;
+  &lt;/user&gt;
+&lt;/users&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li></ul>
+
+<h2 id="label-View+a+user">View a user</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> with your account number. You can see this
+in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
+<code>:id</code> with a user ID. This can be seen in the XML returned when
+viewing all users.</p>
+
+<h3 id="label-Data+Returned">Data Returned</h3>
+
+<p>The alert settings URL included with the user can be used to retrieve the
+user’s alert settings associated with each application.</p>
+
+<p>Sample data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;user&gt;
+  &lt;id type=&quot;integer&quot;&gt;44&lt;/id&gt;
+  &lt;email&gt;bob@example.com&lt;/email&gt;
+  &lt;send-weekly-report&gt;false&lt;/send-weekly-report&gt;
+  &lt;send-alert-email&gt;false&lt;/send-alert-email&gt;
+  &lt;alert-settings-url&gt;https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings&lt;/alert-settings-url&gt;
+&lt;/user&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>User not found (404)</p>
+</li></ul>
+
+<h2 id="label-Update+a+user%27s+settings">Update a user’s settings</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>PUT</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<h3 id="label-Request+Parameters">Request Parameters</h3>
+<ul><li>
+<p><code>send_weekly_report</code>: Boolean specifying whether the user will
+receive weekly performance report via email.</p>
+</li><li>
+<p><code>send_alert_email</code>: Boolean specifying whether the user will
+receive email notification for applcation and server alerts associated with
+the account. When <code>true</code>, the user will receive alert
+notifications for the applications they have subscribed to. When
+<code>false</code>, the user won't recieve any alert notifications.</p>
+</li></ul>
+
+<p>Replace <code>:account_id</code> with your account number. You can see this
+in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
+<code>:id</code> with a user ID. This can be seen in the XML returned when
+viewing all users.</p>
+
+<h3 id="label-Example">Example</h3>
+
+<p>This example uses curl to specify a user should receive email alerts.</p>
+
+<pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -X PUT -d &quot;send_alert_email=true&quot; https://api.newrelic.com/api/v1/accounts/1/users/44.xml</pre>
+
+<p>Result:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;user&gt;
+  &lt;id type=&quot;integer&quot;&gt;44&lt;/id&gt;
+  &lt;email&gt;bob@example.com&lt;/email&gt;
+  &lt;send-weekly-report&gt;false&lt;/send-weekly-report&gt;
+  &lt;send-alert-email&gt;true&lt;/send-alert-email&gt;
+  &lt;alert-settings-url&gt;https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings&lt;/alert-settings-url&gt;
+&lt;/user&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>User not found (404)</p>
+</li><li>
+<p>Missing or invalid parameters (422 or 400)</p>
+</li></ul>
+
+<h2 id="label-View+a+user%27s+alert+settings+for+all+applications">View a user’s alert settings for all applications</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:user_id/alert_settings.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> with your account number. You can see this
+in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
+<code>:user_id</code> with a user ID. This can be seen in the XML returned
+when viewing all users.</p>
+
+<h3 id="label-Data+Returned+">Data Returned </h3>
+
+<p>An array of alert settings is retuned for the user with an entry for each
+application.</p>
+
+<p>Sample Data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;alert-settings type=&quot;array&quot;&gt;
+  &lt;alert-setting&gt;
+    &lt;application-id type=&quot;integer&quot;&gt;123&lt;/application-id&gt;
+    &lt;application-name&gt;My Application One&lt;/application-name&gt;
+    &lt;email-alerts&gt;true&lt;/email-alerts&gt;
+    &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings/123&lt;/url&gt;
+  &lt;/alert-setting&gt;
+  &lt;alert-setting&gt;
+    &lt;application-id type=&quot;integer&quot;&gt;456&lt;/application-id&gt;
+    &lt;application-name&gt;My Application Two&lt;/application-name&gt;
+    &lt;email-alerts&gt;false&lt;/email-alerts&gt;
+    &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings/456&lt;/url&gt;
+  &lt;/alert-setting&gt;
+&lt;/alert-settings&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>User not found (404)</p>
+</li></ul>
+
+<h2 id="label-View+a+user%27s+alert+setting+for+a+specific+application">View a user’s alert setting for a specific application</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:user_id/alert_settings/:id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>GET</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> with your account number. You can see this
+in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
+<code>:user_id</code> with a user ID. This can be seen in the XML returned
+when viewing all users. Replace <code>:id</code> with an application
+number.</p>
+
+<h3 id="label-Data+Returned+">Data Returned </h3>
+
+<p>Sample Data:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;alert-setting&gt;
+  &lt;application-id type=&quot;integer&quot;&gt;123&lt;/application-id&gt;
+  &lt;application-name&gt;My Application One&lt;/application-name&gt;
+  &lt;email-alerts&gt;true&lt;/email-alerts&gt;
+&lt;/alert-setting&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>User not found (404)</p>
+</li><li>
+<p>Application not found (404)</p>
+</li></ul>
+
+<h2 id="label-Update+a+user%27s+alert+setting+for+a+specific+application">Update a user’s alert setting for a specific application</h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:user_id/alert_settings/:id.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>PUT</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<h3 id="label-Request+Parameters">Request Parameters</h3>
+<ul><li>
+<p><code>email_alerts</code>: Boolean specifying whether the user will recieve
+email alert notifiactions for the specified application.</p>
+</li></ul>
+
+<p>Replace <code>:account_id</code> with your account number. You can see this
+in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
+<code>:user_id</code> with a user ID. This can be seen in the XML returned
+when viewing all users. Replace <code>:id</code> with an application
+number.</p>
+
+<h3 id="label-Example">Example</h3>
+
+<p>This example uses curl to specify a user does not want to recieve email
+alerts for a specific application.</p>
+
+<pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -X PUT -d &quot;email_alerts=false&quot; https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings/123.xml</pre>
+
+<p>Result:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;alert-setting&gt;
+  &lt;application-id type=&quot;integer&quot;&gt;123&lt;/application-id&gt;
+  &lt;application-name&gt;My Application One&lt;/application-name&gt;
+  &lt;email-alerts&gt;false&lt;/email-alerts&gt;
+&lt;/alert-setting&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li><li>
+<p>User not found (404)</p>
+</li><li>
+<p>Application not found (404)</p>
+</li><li>
+<p>Missing or invalid parameters (422 or 400)</p>
+</li></ul>
+
 <h2 id="label-Application+Summary+Metrics">Application Summary Metrics</h2>
 
 <p>Fetch summary metrics and threshold values (traffic light information) for
 one application.</p>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
-<p><code>https://api.newrelic.com/accounts/:account_id/applications/:app_id/threshold_values.xml</code></p>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/threshold_values.xml</code></p>
 </dd></dl>
 
 <p>Replace <code>:account_id</code> and <code>:app_id</code> with the account
@@ -484,7 +1427,7 @@ web transactions of your app</p>
 all applications.</p>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
-<p><code>https://api.newrelic.com/accounts.xml?include=application_health</code></p>
+<p><code>https://api.newrelic.com/api/v1/accounts.xml?include=application_health</code></p>
 </dd><dt>Method
 <dd>
 <p>GET</p>
@@ -913,8 +1856,8 @@ href="https://api.newrelic.com/api/v1/agents/:agent_id/metrics.xml?re=WebTransac
 <h3 id="label-Fields">Fields</h3>
 
 <p>Several different values are recorded or computed for each metric. Each
-value is returned in a ‘field’ in the metric data API response. Each
-field contains a value having a specific meaning and unit of measurement.</p>
+value is returned in a ‘field’ in the metric data API response. Each field
+contains a value having a specific meaning and unit of measurement.</p>
 
 <p>Time values are measured in seconds (s):</p>
 <ul><li>
@@ -971,13 +1914,13 @@ given time period</p>
 <ul><li>
 <p><code>score</code>: Apdex score (e.g., 0.95)</p>
 </li><li>
-<p><code>s</code>: Percent of responses that are “Satisfied”, or have
-response times &lt;= the Apdex “T” value</p>
+<p><code>s</code>: Percent of responses that are "Satisfied", or have response
+times &lt;= the Apdex "T" value</p>
 </li><li>
-<p><code>t</code>: Percent of responses that are “Tolerated”, or have
-response times &gt; T and &lt;= 4T</p>
+<p><code>t</code>: Percent of responses that are "Tolerated", or have response
+times &gt; T and &lt;= 4T</p>
 </li><li>
-<p><code>f</code>: Percent of responses that are “Frustrated”, or have
+<p><code>f</code>: Percent of responses that are "Frustrated", or have
 response times &gt;4T (or are errors)</p>
 </li></ul>
 
@@ -1038,10 +1981,10 @@ respectively. The application name must be an exact match. You can pass in
 an array of apps to query by specifying +<a
 href="http://">app[]=First&app</a>=Second+. The <code>agent_id</code> is
 either an ID for an application, an instance, a server, or a host. You can
-look each of these up using our API; see the documentation above for
-“view applications”, “view servers”, “view hosts”, “view
-instances”. You can query multiple agents at the same time, but they must
-all be of the same type: application, instance, server, or host. Examples:</p>
+look each of these up using our API; see the documentation above for "view
+applications", "view servers", "view hosts", "view instances". You can
+query multiple agents at the same time, but they must all be of the same
+type: application, instance, server, or host. Examples:</p>
 <ul><li>
 <p><a href="http://">agent_id[]=1234&agent_id</a>=2345 (for applications);</p>
 </li><li>
@@ -1064,14 +2007,14 @@ NOT in UTC format, so when comparing results, be sure to convert.)</p>
 <p><code>metrics</code>: Included one or many times, this lists the metrics
 you are interested in. You can only specify a specific metric once. If you
 specify multiple metrics, the request parameter should look like
-<code>metrics[]=foo&metrics[]=bar</code> (append ‘[]’ to the end of the
+<code>metrics[]=foo&metrics[]=bar</code> (append '[]' to the end of the
 name of the parameter). You can specify <code>metrics[]</code> even if
 there is a single metric.</p>
 </li><li>
 <p><code>field</code>: Each metric supports different fields, such as
-‘average_response_time’. If the field is not valid for a given metric,
-you will get a blank value, and if there are no valid fields for the
-metrics you request, you will get an error.</p>
+'average_response_time'. If the field is not valid for a given metric, you
+will get a blank value, and if there are no valid fields for the metrics
+you request, you will get an error.</p>
 </li><li>
 <p><code>summary</code>: 1 or 0, defaults to 0. This determines whether you
 get back a single value aggregated over the entire time period, or a time

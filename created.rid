@@ -1,6 +1,6 @@
-Thu, 24 May 2012 14:30:41 -0700
-lib/new_relic_api.rb	Thu, 24 May 2012 14:28:58 -0700
-CHANGELOG	Thu, 24 May 2012 14:30:39 -0700
-lib/newrelic_api.rb	Thu, 24 May 2012 14:28:58 -0700
-lib/active_resource_associations.rb	Thu, 24 May 2012 14:28:58 -0700
-README.rdoc	Thu, 24 May 2012 14:28:58 -0700
+Tue, 11 Dec 2012 15:31:06 -0600
+README.rdoc	Tue, 11 Dec 2012 14:27:16 -0600
+CHANGELOG	Wed, 29 Aug 2012 14:11:30 -0500
+lib/active_resource_associations.rb	Wed, 29 Aug 2012 14:11:30 -0500
+lib/new_relic_api.rb	Tue, 11 Dec 2012 14:27:16 -0600
+lib/newrelic_api.rb	Wed, 29 Aug 2012 14:11:30 -0500
