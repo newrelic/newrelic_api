@@ -62,8 +62,8 @@ module NewRelicApi
       end
 
       def site_url
-        host = NewRelicApi.host || 'rpm.newrelic.com'
-        port = NewRelicApi.port || 80
+        host = NewRelicApi.host || 'api.newrelic.com'
+        port = NewRelicApi.port || 443
         "#{port == 443 ? 'https' : 'http'}://#{host}:#{port}"
       end
 
@@ -79,7 +79,7 @@ module NewRelicApi
     self.site = self.site_url
     self.proxy = self.proxy
   end
-  ACCOUNT_RESOURCE_PATH = '/accounts/:account_id/' #:nodoc:
+  ACCOUNT_RESOURCE_PATH = '/api/v1/accounts/:account_id/' #:nodoc:
   ACCOUNT_AGENT_RESOURCE_PATH = ACCOUNT_RESOURCE_PATH + 'agents/:agent_id/' #:nodoc:
   ACCOUNT_APPLICATION_RESOURCE_PATH = ACCOUNT_RESOURCE_PATH + 'applications/:application_id/' #:nodoc:
 
