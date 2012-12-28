@@ -33,6 +33,26 @@ Select API access, and enable it.
 
 x-api-key::   API key for account, used for authentication (required)
 
+=== Account ID
+
+Many New Relic API calls require both an API key in the call header and an Account ID in the request URI. However, when requesting authorization from users to access New Relic APIs on their behalf, you only need to ask those users for their New Relic API key; you do not need to request their New Relic Account ID.
+
+Make the following call, using only the API key in the header:
+
+    https://api.newrelic.com/api/v1/accounts.xml
+
+New Relic will return the Account ID for that API key. The Account ID appears between data-access-key and license-key as id. For example:
+
+  <account>
+    <allow-rails-core> false </allow-rails-core>
+    <api-key> xxxxxxxxxxxxxxxxxxxxx </api-key>
+    <data-access-key> xxxxxxxxxxxxxxxxxxxxx </data-access-key>
+    <id type='integer'> 1234567 </id>
+    <license-key> xxxxxxxxxxxxxxxxxxxxx </license-key>
+    ...
+
+Save that Account ID alongside the user's API key, and use them both in subsequent calls to New Relic's APIs.
+
 === ActiveResource authentication under Rails
 
     NewRelicApi.api_key = '<api key>'
