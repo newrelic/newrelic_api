@@ -124,6 +124,32 @@ on API + web integration. Select API access, and enable it.</p>
 <p>API key for account, used for authentication (required)</p>
 </dd></dl>
 
+<h3 id="label-Account+ID">Account ID</h3>
+
+<p>Many New Relic API calls require both an API key in the call header and an
+Account ID in the request URI. However, when requesting authorization from
+users to access New Relic APIs on their behalf, you only need to ask those
+users for their New Relic API key; you do not need to request their New
+Relic Account ID.</p>
+
+<p>Make the following call, using only the API key in the header:</p>
+
+<pre>https://api.newrelic.com/api/v1/accounts.xml</pre>
+
+<p>New Relic will return the Account ID for that API key. The Account ID
+appears between data-access-key and license-key as id. For example:</p>
+
+<pre>&lt;account&gt;
+  &lt;allow-rails-core&gt; false &lt;/allow-rails-core&gt;
+  &lt;api-key&gt; xxxxxxxxxxxxxxxxxxxxx &lt;/api-key&gt;
+  &lt;data-access-key&gt; xxxxxxxxxxxxxxxxxxxxx &lt;/data-access-key&gt;
+  &lt;id type='integer'&gt; 1234567 &lt;/id&gt;
+  &lt;license-key&gt; xxxxxxxxxxxxxxxxxxxxx &lt;/license-key&gt;
+  ...</pre>
+
+<p>Save that Account ID alongside the user’s API key, and use them both in
+subsequent calls to New Relic’s APIs.</p>
+
 <h3 id="label-ActiveResource+authentication+under+Rails">ActiveResource authentication under Rails</h3>
 
 <pre>NewRelicApi.api_key = '&lt;api key&gt;'</pre>
