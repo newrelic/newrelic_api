@@ -336,11 +336,11 @@ Restrictions::   None
 === Request Parameters
 
 * +caution_value+: Exceeding this value for an extended period results in the creation of a caution event.
-  For Apdex, a value from 0 to 1.0 should be specified.
-  For error rate, a percentage between 0 and 100 should be specified. 
+  For Apdex, a value between 0 and 1.0 should be specified. Use an empty value to indicate "None".
+  For error rate, a percentage between 0 and 100 should be specified. Use an empty value to indicate "None".
 * +critical_value+: Exceeding this value for an extended period results in the creation of a critical event.
-  For Apdex, a value from 0 to 1.0 should be specified.
-  For error rate, a percentage between 0 and 100 should be specified.
+  For Apdex, a value between 0 and 1.0 should be specified. Use an empty value to indicate "None".
+  For error rate, a percentage between 0 and 100 should be specified. Use an empty value to indicate "None".
                     
 When an application has alerts enabled and a critical event has been open longer than 3 minutes, New Relic will
 create an alert an notify registered users.
