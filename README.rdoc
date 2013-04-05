@@ -678,6 +678,7 @@ This gives you the list of hosts, so you can look up application data filtered b
 
 URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/hosts.xml</code>
 Method::         GET
+Parameters::     <code>connected_only</code>: a boolean specifying whether to include hosts that are currently reporting. By default, the value is <code>false</code> and all hosts are reported. Specify <code>connected_only=true</code> to limit to currently connected hosts.
 Restrictions::   None
 
 Replace <tt>:account_id</tt> with your account number,
