@@ -520,14 +520,16 @@ returned for an application’s thresholds.</p>
 <h3 id="label-Request+Parameters">Request Parameters</h3>
 <ul><li>
 <p><code>caution_value</code>: Exceeding this value for an extended period
-results in the creation of a caution event. For Apdex, a value from 0 to
-1.0 should be specified. For error rate, a percentage between 0 and 100
-should be specified.</p>
+results in the creation of a caution event. For Apdex, a value between 0
+and 1.0 should be specified. Use an empty value to indicate "None". For
+error rate, a percentage between 0 and 100 should be specified. Use an
+empty value to indicate "None".</p>
 </li><li>
 <p><code>critical_value</code>: Exceeding this value for an extended period
-results in the creation of a critical event. For Apdex, a value from 0 to
-1.0 should be specified. For error rate, a percentage between 0 and 100
-should be specified.</p>
+results in the creation of a critical event. For Apdex, a value between 0
+and 1.0 should be specified. Use an empty value to indicate "None". For
+error rate, a percentage between 0 and 100 should be specified. Use an
+empty value to indicate "None".</p>
 </li></ul>
 
 <p>When an application has alerts enabled and a critical event has been open
@@ -961,6 +963,12 @@ filtered by host.</p>
 </dd><dt>Method
 <dd>
 <p>GET</p>
+</dd><dt>Parameters
+<dd>
+<p><code>connected_only</code>: a boolean specifying whether to include hosts
+that are currently reporting. By default, the value is <code>false</code>
+and all hosts are reported. Specify <code>connected_only=true</code> to
+limit to currently connected hosts.</p>
 </dd><dt>Restrictions
 <dd>
 <p>None</p>
