@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>CHANGELOG</title>
+<title>README - Documentation and helper code for the New Relic API</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -43,6 +43,130 @@
 </nav>
 
 
+  
+<div id="table-of-contents">
+  <nav class="section">
+    <h3 class="section-header">Table of Contents</h3>
+    <ul>
+      <li><a href="#label-New+Relic+REST+API">New Relic REST API</a>
+      <li><a href="#label-Authentication">Authentication</a>
+      <li><a href="#label-Request+Headers">Request Headers</a>
+      <li><a href="#label-Account+ID">Account ID</a>
+      <li><a href="#label-ActiveResource+authentication+under+Rails">ActiveResource authentication under Rails</a>
+      <li><a href="#label-Proxy+Support">Proxy Support</a>
+      <li><a href="#label-ActiveResource+API">ActiveResource API</a>
+      <li><a href="#label-View+applications">View applications</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+a+list+of+servers+for+an+application">View a list of servers for an application</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+settings+of+all+applications">View settings of all applications</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+an+application%27s+settings">View an application’s settings</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Update+an+application%27s+settings">Update an application’s settings</a>
+      <li><a href="#label-Request+Parameters">Request Parameters</a>
+      <li><a href="#label-Example">Example</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+all+alert+thresholds+for+an+application">View all alert thresholds for an application</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+an+alert+threshold+for+an+application">View an alert threshold for an application</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Update+an+alert+threshold+for+an+application">Update an alert threshold for an application</a>
+      <li><a href="#label-Request+Parameters">Request Parameters</a>
+      <li><a href="#label-Apdex+Example">Apdex Example</a>
+      <li><a href="#label-Error+Rate+Example">Error Rate Example</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+servers">View servers</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Delete+servers">Delete servers</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+settings+of+all+servers">View settings of all servers</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+a+server%27s+settings">View a server’s settings</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Update+a+server%27s+settings">Update a server’s settings</a>
+      <li><a href="#label-Request+Parameters">Request Parameters</a>
+      <li><a href="#label-Example">Example</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+all+alert+thresholds+for+a+server">View all alert thresholds for a server</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+an+alert+threshold+for+a+server">View an alert threshold for a server</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Update+an+alert+threshold+for+a+server">Update an alert threshold for a server</a>
+      <li><a href="#label-Request+Parameters">Request Parameters</a>
+      <li><a href="#label-CPU+Example">CPU Example</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+hosts">View hosts</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+instances">View instances</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Delete+applications">Delete applications</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-View+all+users">View all users</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+a+user">View a user</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Update+a+user%27s+settings">Update a user’s settings</a>
+      <li><a href="#label-Request+Parameters">Request Parameters</a>
+      <li><a href="#label-Example">Example</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+a+user%27s+alert+settings+for+all+applications">View a user’s alert settings for all applications</a>
+      <li><a href="#label-Data+Returned+">Data Returned </a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-View+a+user%27s+alert+setting+for+a+specific+application">View a user’s alert setting for a specific application</a>
+      <li><a href="#label-Data+Returned+">Data Returned </a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Update+a+user%27s+alert+setting+for+a+specific+application">Update a user’s alert setting for a specific application</a>
+      <li><a href="#label-Request+Parameters">Request Parameters</a>
+      <li><a href="#label-Example">Example</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Application+Summary+Metrics">Application Summary Metrics</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Application+Summary+Metrics+%28All+applications%29">Application Summary Metrics (All applications)</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Dashboard+HTML+fragment+%28All+applications%29">Dashboard HTML fragment (All applications)</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Dashboard+HTML+fragment+%28One+application%29">Dashboard HTML fragment (One application)</a>
+      <li><a href="#label-Request+Parameters">Request Parameters</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Deployment+Notifications">Deployment Notifications</a>
+      <li><a href="#label-Request+Parameters">Request Parameters</a>
+      <li><a href="#label-Example">Example</a>
+      <li><a href="#label-Metric+Names">Metric Names</a>
+      <li><a href="#label-Request+Parameters">Request Parameters</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Fields">Fields</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Metric+Data">Metric Data</a>
+      <li><a href="#label-Request+Parameters">Request Parameters</a>
+      <li><a href="#label-Data+Returned">Data Returned</a>
+      <li><a href="#label-Possible+Error+Conditions">Possible Error Conditions</a>
+      <li><a href="#label-Copyright">Copyright</a>
+    </ul>
+  </nav>
+</div>
+
+
   <div id="project-metadata">
     <nav id="fileindex-section" class="section project-section">
   <h3 class="section-header">Pages</h3>
@@ -73,6 +197,12 @@
   
     <li><a href="./NewRelicApi/Application/Agent.html">NewRelicApi::Application::Agent</a>
   
+    <li><a href="./NewRelicApi/BaseResource.html">NewRelicApi::BaseResource</a>
+  
+    <li><a href="./NewRelicApi/BaseResource/ActiveResource.html">NewRelicApi::BaseResource::ActiveResource</a>
+  
+    <li><a href="./NewRelicApi/BaseResource/ActiveResource/Formats.html">NewRelicApi::BaseResource::ActiveResource::Formats</a>
+  
     <li><a href="./NewRelicApi/Deployment.html">NewRelicApi::Deployment</a>
   
     <li><a href="./NewRelicApi/Subscription.html">NewRelicApi::Subscription</a>
@@ -89,7 +219,7 @@
 
 <div id="documentation" class="description">
   
-<h1 id="label-New+Relic+REST+API">New Relic REST API</h1>
+<h1 id="label-New+Relic+REST+API">New Relic REST API<span><a href="#label-New+Relic+REST+API">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
 
 <p>This gem contains the documentation and examples for using the New Relic
 REST API for RPM customers.</p>
@@ -103,7 +233,7 @@ application. The API uses the XML response format. As a convenience, New
 Relic offers an ActiveResource wrapper API, but developers are welcome to
 work directly with the XML.</p>
 
-<h2 id="label-Authentication">Authentication</h2>
+<h2 id="label-Authentication">Authentication<span><a href="#label-Authentication">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>New Relic supports an api key-based authentication mechanism. The key is
 the api key associated with an account and can be obtained using the RPM
@@ -118,13 +248,13 @@ read by a third party.</p>
 Account settings (upper right corner of the New Relic site), and then click
 on API + web integration. Select API access, and enable it.</p>
 
-<h3 id="label-Request+Headers">Request Headers</h3>
+<h3 id="label-Request+Headers">Request Headers<span><a href="#label-Request+Headers">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <dl class="rdoc-list note-list"><dt>x-api-key
 <dd>
 <p>API key for account, used for authentication (required)</p>
 </dd></dl>
 
-<h3 id="label-Account+ID">Account ID</h3>
+<h3 id="label-Account+ID">Account ID<span><a href="#label-Account+ID">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Many New Relic API calls require both an API key in the call header and an
 Account ID in the request URI. However, when requesting authorization from
@@ -150,17 +280,17 @@ appears between data-access-key and license-key as id. For example:</p>
 <p>Save that Account ID alongside the user’s API key, and use them both in
 subsequent calls to New Relic’s APIs.</p>
 
-<h3 id="label-ActiveResource+authentication+under+Rails">ActiveResource authentication under Rails</h3>
+<h3 id="label-ActiveResource+authentication+under+Rails">ActiveResource authentication under Rails<span><a href="#label-ActiveResource+authentication+under+Rails">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <pre>NewRelicApi.api_key = '&lt;api key&gt;'</pre>
 
-<h2 id="label-Proxy+Support">Proxy Support</h2>
+<h2 id="label-Proxy+Support">Proxy Support<span><a href="#label-Proxy+Support">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>If you are behind a proxy:</p>
 
 <pre>NewRelicApi.proxy = 'http://localhost:3128'</pre>
 
-<h2 id="label-ActiveResource+API">ActiveResource API</h2>
+<h2 id="label-ActiveResource+API">ActiveResource API<span><a href="#label-ActiveResource+API">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>The New Relic ActiveResource-based API helper is <a
 href="NewRelicApi.html">NewRelicApi</a>. If you are using ActiveResource to
@@ -169,7 +299,7 @@ the <a href="NewRelicApi.html">Ruby Documentation</a>.</p>
 
 <p>The remainder of this document will describe our XML API.</p>
 
-<h2 id="label-View+applications">View applications</h2>
+<h2 id="label-View+applications">View applications<span><a href="#label-View+applications">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications.xml</code></p>
@@ -188,7 +318,7 @@ the <a href="NewRelicApi.html">Ruby Documentation</a>.</p>
 in the browser URL when you log in to <a
 href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -208,12 +338,12 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
   &lt;/application&gt;
 &lt;/applications&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
-<h2 id="label-View+a+list+of+servers+for+an+application">View a list of servers for an application</h2>
+<h2 id="label-View+a+list+of+servers+for+an+application">View a list of servers for an application<span><a href="#label-View+a+list+of+servers+for+an+application">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:application_id/servers.xml</code></p>
@@ -229,7 +359,7 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 account number and application number. You can see this in the browser URL
 when you log in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -247,14 +377,14 @@ when you log in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
   &lt;/server&gt;
 &lt;/servers&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
 <p>Application not found (404)</p>
 </li></ul>
 
-<h2 id="label-View+settings+of+all+applications">View settings of all applications</h2>
+<h2 id="label-View+settings+of+all+applications">View settings of all applications<span><a href="#label-View+settings+of+all+applications">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/application_settings.xml</code></p>
@@ -270,7 +400,7 @@ when you log in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 in the browser URL when you log in to <a
 href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Note: <code>app-apdex-t</code> is only included for applications that
 support apdex T as a server side setting.</p>
@@ -298,12 +428,12 @@ support apdex T as a server side setting.</p>
   &lt;/application-setting&gt;
 &lt;/applications-settings&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
-<h2 id="label-View+an+application%27s+settings">View an application’s settings</h2>
+<h2 id="label-View+an+application%27s+settings">View an application’s settings<span><a href="#label-View+an+application%27s+settings">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/application_settings/:app_id.xml</code></p>
@@ -319,7 +449,7 @@ support apdex T as a server side setting.</p>
 and application number. You can see this in the browser URL when you log in
 to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Note: <code>app-apdex-t</code> is only included for applications that
 support apdex T as a server side setting.</p>
@@ -336,14 +466,14 @@ support apdex T as a server side setting.</p>
   &lt;rum-enabled&gt;true&lt;/rum-enabled&gt;
 &lt;/application-setting&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
 <p>Application not found (404)</p>
 </li></ul>
 
-<h2 id="label-Update+an+application%27s+settings">Update an application’s settings</h2>
+<h2 id="label-Update+an+application%27s+settings">Update an application’s settings<span><a href="#label-Update+an+application%27s+settings">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/application_settings/:app_id.xml</code></p>
@@ -355,7 +485,7 @@ support apdex T as a server side setting.</p>
 <p>None</p>
 </dd></dl>
 
-<h3 id="label-Request+Parameters">Request Parameters</h3>
+<h3 id="label-Request+Parameters">Request Parameters<span><a href="#label-Request+Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>The following settings can be updated:</p>
 <ul><li>
@@ -389,7 +519,7 @@ page load times will not be collected.</p>
 and application number. You can see this in the browser URL when you log in
 to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Example">Example</h3>
+<h3 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>This example uses curl to enable alerts for an application.</p>
 
@@ -407,7 +537,7 @@ to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
   &lt;rum-enabled&gt;true&lt;/rum-enabled&gt;
 &lt;/application-setting&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
@@ -418,7 +548,7 @@ to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 <p>Invalid parameters (422 or 400)</p>
 </li></ul>
 
-<h2 id="label-View+all+alert+thresholds+for+an+application">View all alert thresholds for an application</h2>
+<h2 id="label-View+all+alert+thresholds+for+an+application">View all alert thresholds for an application<span><a href="#label-View+all+alert+thresholds+for+an+application">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/thresholds.xml</code></p>
@@ -434,7 +564,7 @@ to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 and application number. You can see this in the browser URL when you log in
 to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Note: Error monitoring and alerting thresholds are only supported at the
 Pro subscription level.</p>
@@ -459,14 +589,14 @@ Pro subscription level.</p>
   &lt;/threshold&gt;
 &lt;/thresholds&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
 <p>Application not found (404)</p>
 </li></ul>
 
-<h2 id="label-View+an+alert+threshold+for+an+application">View an alert threshold for an application</h2>
+<h2 id="label-View+an+alert+threshold+for+an+application">View an alert threshold for an application<span><a href="#label-View+an+alert+threshold+for+an+application">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/thresholds/:id.xml</code></p>
@@ -484,7 +614,7 @@ to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
 <code>:id</code> with the threshold’s ID. You can see this in the XML
 returned for an application’s thresholds.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -496,7 +626,7 @@ returned for an application’s thresholds.</p>
   &lt;critical-value&gt;0.7&lt;/critical-value&gt;
 &lt;/threshold&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
@@ -505,7 +635,7 @@ returned for an application’s thresholds.</p>
 <p>Threshold not found (404)</p>
 </li></ul>
 
-<h2 id="label-Update+an+alert+threshold+for+an+application">Update an alert threshold for an application</h2>
+<h2 id="label-Update+an+alert+threshold+for+an+application">Update an alert threshold for an application<span><a href="#label-Update+an+alert+threshold+for+an+application">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/:app_id/thresholds/:id.xml</code></p>
@@ -517,7 +647,7 @@ returned for an application’s thresholds.</p>
 <p>None</p>
 </dd></dl>
 
-<h3 id="label-Request+Parameters">Request Parameters</h3>
+<h3 id="label-Request+Parameters">Request Parameters<span><a href="#label-Request+Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p><code>caution_value</code>: Exceeding this value for an extended period
 results in the creation of a caution event. For Apdex, a value between 0
@@ -542,7 +672,7 @@ to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
 <code>:id</code> with the threshold’s ID. You can see this in the XML
 returned for an application’s thresholds.</p>
 
-<h3 id="label-Apdex+Example">Apdex Example</h3>
+<h3 id="label-Apdex+Example">Apdex Example<span><a href="#label-Apdex+Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>This example uses curl to modify Apdex caution and critical values. The
 caution value must be greater than the critical value, as a decreasing
@@ -560,7 +690,7 @@ Apdex score corresponds to a degradation in performance.</p>
   &lt;critical-value&gt;0.75&lt;/critical-value&gt;
 &lt;/threshold&gt;</pre>
 
-<h3 id="label-Error+Rate+Example">Error Rate Example</h3>
+<h3 id="label-Error+Rate+Example">Error Rate Example<span><a href="#label-Error+Rate+Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>This example uses curl to modify error rate caution and critical values.
 The caution value must be less than the critical value, as a increasing
@@ -578,7 +708,7 @@ error corresponds to a degradation in performance.</p>
   &lt;critical-value&gt;10&lt;/critical-value&gt;
 &lt;/threshold&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
@@ -589,7 +719,7 @@ error corresponds to a degradation in performance.</p>
 <p>Missing or invalid parameters (422 or 400)</p>
 </li></ul>
 
-<h2 id="label-View+servers">View servers</h2>
+<h2 id="label-View+servers">View servers<span><a href="#label-View+servers">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/servers.xml</code></p>
@@ -605,7 +735,7 @@ error corresponds to a degradation in performance.</p>
 in the browser URL when you log in to <a
 href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -623,12 +753,12 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
   &lt;/server&gt;
 &lt;server&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
-<h2 id="label-Delete+servers">Delete servers</h2>
+<h2 id="label-Delete+servers">Delete servers<span><a href="#label-Delete+servers">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:id</code></p>
@@ -647,7 +777,7 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a> and navigate to the
 server you want to delete. The first number in the URL is your account
 number and the last number is your server number.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -667,12 +797,12 @@ number and the last number is your server number.</p>
   &lt;/server&gt;
 &lt;server&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
-<h2 id="label-View+settings+of+all+servers">View settings of all servers</h2>
+<h2 id="label-View+settings+of+all+servers">View settings of all servers<span><a href="#label-View+settings+of+all+servers">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/server_settings.xml</code></p>
@@ -688,7 +818,7 @@ number and the last number is your server number.</p>
 in the browser URL when you log in to <a
 href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -702,12 +832,12 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
   &lt;/server-setting&gt;
 &lt;/servers-settings&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
-<h2 id="label-View+a+server%27s+settings">View a server’s settings</h2>
+<h2 id="label-View+a+server%27s+settings">View a server’s settings<span><a href="#label-View+a+server%27s+settings">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/server_settings/:server_id.xml</code></p>
@@ -723,7 +853,7 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 account and server number. You can see this in the browser URL when you log
 in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -734,14 +864,14 @@ in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
   &lt;alerts-enabled&gt;false&lt;/alerts-enabled&gt;
 &lt;/server-setting&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
 <p>Server not found (404)</p>
 </li></ul>
 
-<h2 id="label-Update+a+server%27s+settings">Update a server’s settings</h2>
+<h2 id="label-Update+a+server%27s+settings">Update a server’s settings<span><a href="#label-Update+a+server%27s+settings">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/server_settings/:server_id.xml</code></p>
@@ -753,7 +883,7 @@ in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 <p>None</p>
 </dd></dl>
 
-<h3 id="label-Request+Parameters">Request Parameters</h3>
+<h3 id="label-Request+Parameters">Request Parameters<span><a href="#label-Request+Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>The following settings can be updated:</p>
 <ul><li>
@@ -769,7 +899,7 @@ registered users will be notified.</p>
 account and server number. You can see this in the browser URL when you log
 in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Example">Example</h3>
+<h3 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>This example uses curl to enable alerts for a server.</p>
 
@@ -784,7 +914,7 @@ in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
   &lt;alerts-enabled&gt;true&lt;/alerts-enabled&gt;
 &lt;/server-setting&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
@@ -793,7 +923,7 @@ in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 <p>Missing or invalid parameters (422 or 400)</p>
 </li></ul>
 
-<h2 id="label-View+all+alert+thresholds+for+a+server">View all alert thresholds for a server</h2>
+<h2 id="label-View+all+alert+thresholds+for+a+server">View all alert thresholds for a server<span><a href="#label-View+all+alert+thresholds+for+a+server">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:server_id/thresholds.xml</code></p>
@@ -809,7 +939,7 @@ in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 account and server number. You can see this in the browser URL when you log
 in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -845,14 +975,14 @@ in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
   &lt;/threshold&gt;
 &lt;/thresholds&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
 <p>Server not found (404)</p>
 </li></ul>
 
-<h2 id="label-View+an+alert+threshold+for+a+server">View an alert threshold for a server</h2>
+<h2 id="label-View+an+alert+threshold+for+a+server">View an alert threshold for a server<span><a href="#label-View+an+alert+threshold+for+a+server">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:server_id/thresholds/:id.xml</code></p>
@@ -870,7 +1000,7 @@ in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
 <code>:id</code> with the threshold’s ID. You can see this in the XML
 returned for a server’s thresholds.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -882,7 +1012,7 @@ returned for a server’s thresholds.</p>
   &lt;critical-value&gt;80&lt;/critical-value&gt;
 &lt;/threshold&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
@@ -891,7 +1021,7 @@ returned for a server’s thresholds.</p>
 <p>Threshold not found (404)</p>
 </li></ul>
 
-<h2 id="label-Update+an+alert+threshold+for+a+server">Update an alert threshold for a server</h2>
+<h2 id="label-Update+an+alert+threshold+for+a+server">Update an alert threshold for a server<span><a href="#label-Update+an+alert+threshold+for+a+server">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:server_id/thresholds/:id.xml</code></p>
@@ -903,7 +1033,7 @@ returned for a server’s thresholds.</p>
 <p>None</p>
 </dd></dl>
 
-<h3 id="label-Request+Parameters">Request Parameters</h3>
+<h3 id="label-Request+Parameters">Request Parameters<span><a href="#label-Request+Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p><code>caution_value</code>: Exceeding this value for an extended period
 results in the creation of a caution event. Value represents a percentage
@@ -924,7 +1054,7 @@ in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
 <code>:id</code> with the threshold’s ID. You can see this in the XML
 returned for a server’s thresholds.</p>
 
-<h3 id="label-CPU+Example">CPU Example</h3>
+<h3 id="label-CPU+Example">CPU Example<span><a href="#label-CPU+Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>This example uses curl to modify CPU utilization caution and critical
 values. The caution value must be less than the critical value, as a
@@ -942,7 +1072,7 @@ increase in CPU represents a potential performance issue.</p>
   &lt;critical-value&gt;90&lt;/critical-value&gt;
 &lt;/threshold&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
@@ -953,7 +1083,7 @@ increase in CPU represents a potential performance issue.</p>
 <p>Missing or invalid parameters (422 or 400)</p>
 </li></ul>
 
-<h2 id="label-View+hosts">View hosts</h2>
+<h2 id="label-View+hosts">View hosts<span><a href="#label-View+hosts">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>This gives you the list of hosts, so you can look up application data
 filtered by host.</p>
@@ -980,7 +1110,7 @@ browser URL when you log in to <a
 href="https:/rpm.newrelic.com">rpm.newrelic.com</a>, or you can look up the
 applications using the API to view applications. JSON is also supported.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -993,12 +1123,12 @@ applications using the API to view applications. JSON is also supported.</p>
   &lt;/host&gt;
 &lt;/hosts&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
-<h2 id="label-View+instances">View instances</h2>
+<h2 id="label-View+instances">View instances<span><a href="#label-View+instances">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>This gives you the list of instances of your application, so you can look
 up application data filtered by instance.</p>
@@ -1019,7 +1149,7 @@ browser URL when you log in to <a
 href="https:/rpm.newrelic.com">rpm.newrelic.com</a>, or you can look up the
 applications using the API to view applications. JSON is also supported.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -1034,12 +1164,12 @@ applications using the API to view applications. JSON is also supported.</p>
 
 <p>The overview URL may vary depending on the language of your application.</p>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
-<h2 id="label-Delete+applications">Delete applications</h2>
+<h2 id="label-Delete+applications">Delete applications<span><a href="#label-Delete+applications">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/applications/delete.xml</code></p>
@@ -1085,7 +1215,7 @@ href="https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app
         &lt;/application&gt;
 &lt;/applications&gt;</pre>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
@@ -1100,7 +1230,7 @@ href="https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app
   &lt;/record&gt;
 &lt;/applications&gt;</pre>
 
-<h2 id="label-View+all+users">View all users</h2>
+<h2 id="label-View+all+users">View all users<span><a href="#label-View+all+users">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users.xml</code></p>
@@ -1116,7 +1246,7 @@ href="https://api.newrelic.com/api/v1/accounts/26286/applications/delete.xml?app
 in the browser URL when you log in to <a
 href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>An alert settings URL is included with each user. It can be used to
 retrieve the user’s alert settings associated with each application.</p>
@@ -1141,12 +1271,12 @@ retrieve the user’s alert settings associated with each application.</p>
   &lt;/user&gt;
 &lt;/users&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
-<h2 id="label-View+a+user">View a user</h2>
+<h2 id="label-View+a+user">View a user<span><a href="#label-View+a+user">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:id.xml</code></p>
@@ -1164,7 +1294,7 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
 <code>:id</code> with a user ID. This can be seen in the XML returned when
 viewing all users.</p>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>The alert settings URL included with the user can be used to retrieve the
 user’s alert settings associated with each application.</p>
@@ -1180,14 +1310,14 @@ user’s alert settings associated with each application.</p>
   &lt;alert-settings-url&gt;https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings&lt;/alert-settings-url&gt;
 &lt;/user&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
 <p>User not found (404)</p>
 </li></ul>
 
-<h2 id="label-Update+a+user%27s+settings">Update a user’s settings</h2>
+<h2 id="label-Update+a+user%27s+settings">Update a user’s settings<span><a href="#label-Update+a+user%27s+settings">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:id.xml</code></p>
@@ -1199,7 +1329,7 @@ user’s alert settings associated with each application.</p>
 <p>None</p>
 </dd></dl>
 
-<h3 id="label-Request+Parameters">Request Parameters</h3>
+<h3 id="label-Request+Parameters">Request Parameters<span><a href="#label-Request+Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p><code>send_weekly_report</code>: Boolean specifying whether the user will
 receive weekly performance report via email.</p>
@@ -1217,7 +1347,7 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
 <code>:id</code> with a user ID. This can be seen in the XML returned when
 viewing all users.</p>
 
-<h3 id="label-Example">Example</h3>
+<h3 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>This example uses curl to specify a user should receive email alerts.</p>
 
@@ -1234,7 +1364,7 @@ viewing all users.</p>
   &lt;alert-settings-url&gt;https://api.newrelic.com/api/v1/accounts/1/users/44/alert_settings&lt;/alert-settings-url&gt;
 &lt;/user&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
@@ -1243,7 +1373,7 @@ viewing all users.</p>
 <p>Missing or invalid parameters (422 or 400)</p>
 </li></ul>
 
-<h2 id="label-View+a+user%27s+alert+settings+for+all+applications">View a user’s alert settings for all applications</h2>
+<h2 id="label-View+a+user%27s+alert+settings+for+all+applications">View a user’s alert settings for all applications<span><a href="#label-View+a+user%27s+alert+settings+for+all+applications">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:user_id/alert_settings.xml</code></p>
@@ -1261,7 +1391,7 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
 <code>:user_id</code> with a user ID. This can be seen in the XML returned
 when viewing all users.</p>
 
-<h3 id="label-Data+Returned+">Data Returned </h3>
+<h3 id="label-Data+Returned+">Data Returned <span><a href="#label-Data+Returned+">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>An array of alert settings is retuned for the user with an entry for each
 application.</p>
@@ -1284,14 +1414,14 @@ application.</p>
   &lt;/alert-setting&gt;
 &lt;/alert-settings&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
 <p>User not found (404)</p>
 </li></ul>
 
-<h2 id="label-View+a+user%27s+alert+setting+for+a+specific+application">View a user’s alert setting for a specific application</h2>
+<h2 id="label-View+a+user%27s+alert+setting+for+a+specific+application">View a user’s alert setting for a specific application<span><a href="#label-View+a+user%27s+alert+setting+for+a+specific+application">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:user_id/alert_settings/:id.xml</code></p>
@@ -1310,7 +1440,7 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
 when viewing all users. Replace <code>:id</code> with an application
 number.</p>
 
-<h3 id="label-Data+Returned+">Data Returned </h3>
+<h3 id="label-Data+Returned+">Data Returned <span><a href="#label-Data+Returned+">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample Data:</p>
 
@@ -1321,7 +1451,7 @@ number.</p>
   &lt;email-alerts&gt;true&lt;/email-alerts&gt;
 &lt;/alert-setting&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
@@ -1330,7 +1460,7 @@ number.</p>
 <p>Application not found (404)</p>
 </li></ul>
 
-<h2 id="label-Update+a+user%27s+alert+setting+for+a+specific+application">Update a user’s alert setting for a specific application</h2>
+<h2 id="label-Update+a+user%27s+alert+setting+for+a+specific+application">Update a user’s alert setting for a specific application<span><a href="#label-Update+a+user%27s+alert+setting+for+a+specific+application">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/api/v1/accounts/:account_id/users/:user_id/alert_settings/:id.xml</code></p>
@@ -1342,7 +1472,7 @@ number.</p>
 <p>None</p>
 </dd></dl>
 
-<h3 id="label-Request+Parameters">Request Parameters</h3>
+<h3 id="label-Request+Parameters">Request Parameters<span><a href="#label-Request+Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p><code>email_alerts</code>: Boolean specifying whether the user will recieve
 email alert notifiactions for the specified application.</p>
@@ -1355,7 +1485,7 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>. Replace
 when viewing all users. Replace <code>:id</code> with an application
 number.</p>
 
-<h3 id="label-Example">Example</h3>
+<h3 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>This example uses curl to specify a user does not want to recieve email
 alerts for a specific application.</p>
@@ -1371,7 +1501,7 @@ alerts for a specific application.</p>
   &lt;email-alerts&gt;false&lt;/email-alerts&gt;
 &lt;/alert-setting&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
@@ -1382,7 +1512,7 @@ alerts for a specific application.</p>
 <p>Missing or invalid parameters (422 or 400)</p>
 </li></ul>
 
-<h2 id="label-Application+Summary+Metrics">Application Summary Metrics</h2>
+<h2 id="label-Application+Summary+Metrics">Application Summary Metrics<span><a href="#label-Application+Summary+Metrics">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>Fetch summary metrics and threshold values (traffic light information) for
 one application.</p>
@@ -1404,7 +1534,7 @@ and application IDs.</p>
 <p><a href="NewRelicApi/Application.html">NewRelicApi::Account</a></p>
 </dd></dl>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Note: Application Busy data will only be returned to Professional and
 Volume customers. Errors data will only be returned to Professional and
@@ -1448,14 +1578,14 @@ web transactions of your app</p>
 <p>DB shows the time spent in the database as a percent of the time</p>
 </li></ul>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
 <p>Unknown Application (404)</p>
 </li></ul>
 
-<h2 id="label-Application+Summary+Metrics+%28All+applications%29">Application Summary Metrics (All applications)</h2>
+<h2 id="label-Application+Summary+Metrics+%28All+applications%29">Application Summary Metrics (All applications)<span><a href="#label-Application+Summary+Metrics+%28All+applications%29">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>Fetch summary metrics and threshold values (traffic light information) for
 all applications.</p>
@@ -1473,7 +1603,7 @@ all applications.</p>
 <p><a href="NewRelicApi/Application.html">NewRelicApi::Account</a></p>
 </dd></dl>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Note: Application Busy data will only be returned to Professional and
 Volume customers. Errors data will only be returned to Professional and
@@ -1504,12 +1634,12 @@ Volume customers.</p>
   &lt;/account&gt;
 &lt;/accounts&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
-<h2 id="label-Dashboard+HTML+fragment+%28All+applications%29">Dashboard HTML fragment (All applications)</h2>
+<h2 id="label-Dashboard+HTML+fragment+%28All+applications%29">Dashboard HTML fragment (All applications)<span><a href="#label-Dashboard+HTML+fragment+%28All+applications%29">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>New Relic provides an HTML fragment of the <a
 href="https://api.newrelic.com">dashboard view</a> of RPM. CSS styles are
@@ -1532,52 +1662,52 @@ default account’s applications will be shown.</p>
 <p>None available currently</p>
 </dd></dl>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
-<pre class="ruby"><span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;newrelic-rpm-2&quot;</span><span class="ruby-operator">&gt;</span>
-  <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;newrelic-rpm-2-content&quot;</span><span class="ruby-operator">&gt;</span>
-    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">style</span> <span class="ruby-identifier">type</span>=<span class="ruby-string">&quot;text/css&quot;</span> <span class="ruby-identifier">media</span>=<span class="ruby-string">&quot;screen&quot;</span><span class="ruby-operator">&gt;</span>
-       <span class="ruby-operator">...</span><span class="ruby-identifier">embeded</span> <span class="ruby-identifier">styles</span><span class="ruby-operator">...</span>
-    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/style&gt;
+<pre>&lt;div id=&quot;newrelic-rpm-2&quot;&gt;
+  &lt;div id=&quot;newrelic-rpm-2-content&quot;&gt;
+    &lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
+       ...embeded styles...
+    &lt;/style&gt;
 
 &lt;table id=&quot;all_applications&quot; cellspacing=&quot;0&quot; class=&quot;section agent_display span-16&quot;&gt;
   &lt;thead&gt;
     &lt;tr&gt;
-      &lt;th class=&quot;header&quot;&gt;Application&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Apdex Score is a industry-standard measurement of customer satisfaction. It is calculated essentially as weighted response time. The larger number is your Apdex Score, out of 1, and the smaller number is the threshold for an acceptable response time, in seconds.&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;apdex&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Apdex</span> <span class="ruby-constant">Score</span> <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-string">&quot;http://support.newrelic.com/faqs/general/apdex&quot;</span> <span class="ruby-identifier">target</span>=<span class="ruby-string">&quot;_blank&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">img</span> <span class="ruby-identifier">alt</span>=<span class="ruby-string">&quot;?&quot;</span> <span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;https://api.newrelic.com/images/v2/12x12/moreinfo.png?1285097852&quot;</span> <span class="ruby-identifier">style</span>=<span class="ruby-string">&quot;border: 0px none;&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/a&gt;&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Response Time is the average time it took to generate a response to all requests.&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Resp</span>. <span class="ruby-constant">Time</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/th&gt;
-      &lt;th title=&quot;Errors is the percentage of your requests that received an error as a response.&quot;&gt;Errors&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput is total number of requests processed by your application per minute.&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;throughput last&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Throughput</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">br</span><span class="ruby-operator">&gt;</span>(<span class="ruby-identifier">change</span> <span class="ruby-identifier">from</span> <span class="ruby-operator">&lt;</span><span class="ruby-identifier">abbr</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;24 hours ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">24</span><span class="ruby-identifier">h</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/abbr&gt;/</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">abbr</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;7 days ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">7</span><span class="ruby-identifier">d</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/abbr&gt;)&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
-    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tr&gt;
-  &lt;/</span><span class="ruby-identifier">thead</span><span class="ruby-operator">&gt;</span>
-  <span class="ruby-operator">&lt;</span><span class="ruby-identifier">tbody</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application application_1&quot;</span><span class="ruby-operator">&gt;</span>
-    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">tr</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application_tier data&quot;</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">td</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;agent&quot;</span><span class="ruby-operator">&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">img</span> <span class="ruby-identifier">alt</span>=<span class="ruby-string">&quot;Normal&quot;</span> <span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;https://api.newrelic.com/images/v2/16x16/light-green.png?1285097852&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;name&quot;</span><span class="ruby-operator">&gt;</span>
-          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-string">&quot;https://api.newrelic.com/accounts/1/applications/1&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">RPM</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/a&gt;
-        &lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;status reporting&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">1</span> <span class="ruby-constant">Host</span> <span class="ruby-keyword">and</span> <span class="ruby-value">5</span> <span class="ruby-constant">Instances</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/span&gt;
-      &lt;/</span><span class="ruby-identifier">td</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">td</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;data apdex&quot;</span><span class="ruby-operator">&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-node">&quot;https://api.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dapdex&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0.99</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">sub</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0.025</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/sub&gt;&lt;/</span><span class="ruby-identifier">a</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/td&gt;
-      &lt;td class=&quot;data&quot;&gt;&lt;a href=&quot;https:/</span><span class="ruby-operator">/</span><span class="ruby-identifier">api</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">transactions</span><span class="ruby-string">&quot;&gt;5.7 ms&lt;/a&gt;&lt;/td&gt;
-      &lt;td class=&quot;</span><span class="ruby-identifier">data</span><span class="ruby-string">&quot;&gt;&lt;a href=&quot;</span><span class="ruby-identifier">https</span><span class="ruby-operator">:</span><span class="ruby-regexp">//</span><span class="ruby-identifier">api</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">traced_errors</span><span class="ruby-string">&quot;&gt;0.00 %&lt;/a&gt;&lt;/td&gt;
-      &lt;td class=&quot;</span><span class="ruby-identifier">data</span> <span class="ruby-identifier">throughput</span> <span class="ruby-identifier">last</span><span class="ruby-string">&quot;&gt;
-        &lt;a href=&quot;</span><span class="ruby-identifier">https</span><span class="ruby-operator">:</span><span class="ruby-regexp">//</span><span class="ruby-identifier">api</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">transactions</span><span class="ruby-comment">#sort_by%3Dthroughput&quot;&gt;92 rpm&lt;/a&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;throughput_history&quot;</span><span class="ruby-operator">&gt;</span>
-          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;yesterday&quot;</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput down 2% from 24 hours ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">strong</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;down &quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">-2</span><span class="ruby-operator">%</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/strong&gt;&lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
-          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;last_week&quot;</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput up 0% from 7 days ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">strong</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;up &quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-operator">%</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/strong&gt;&lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/div&gt;
-      &lt;/</span><span class="ruby-identifier">td</span><span class="ruby-operator">&gt;</span>
-    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tr&gt;
-  &lt;/</span><span class="ruby-identifier">tbody</span><span class="ruby-operator">&gt;</span>
-<span class="ruby-operator">&lt;</span><span class="ruby-regexp">/table&gt;
+      &lt;th class=&quot;header&quot;&gt;Application&lt;/th&gt;
+      &lt;th title=&quot;Apdex Score is a industry-standard measurement of customer satisfaction. It is calculated essentially as weighted response time. The larger number is your Apdex Score, out of 1, and the smaller number is the threshold for an acceptable response time, in seconds.&quot; class=&quot;apdex&quot;&gt;Apdex Score &lt;a href=&quot;http://support.newrelic.com/faqs/general/apdex&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;?&quot; src=&quot;https://api.newrelic.com/images/v2/12x12/moreinfo.png?1285097852&quot; style=&quot;border: 0px none;&quot; /&gt;&lt;/a&gt;&lt;/th&gt;
+      &lt;th title=&quot;Response Time is the average time it took to generate a response to all requests.&quot;&gt;Resp. Time&lt;/th&gt;
+      &lt;th title=&quot;Errors is the percentage of your requests that received an error as a response.&quot;&gt;Errors&lt;/th&gt;
+      &lt;th title=&quot;Throughput is total number of requests processed by your application per minute.&quot; class=&quot;throughput last&quot;&gt;Throughput&lt;br&gt;(change from &lt;abbr title=&quot;24 hours ago&quot;&gt;24h&lt;/abbr&gt;/&lt;abbr title=&quot;7 days ago&quot;&gt;7d&lt;/abbr&gt;)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&quot;application application_1&quot;&gt;
+    &lt;tr class=&quot;application_tier data&quot;&gt;
+      &lt;td class=&quot;agent&quot;&gt;
+        &lt;img alt=&quot;Normal&quot; src=&quot;https://api.newrelic.com/images/v2/16x16/light-green.png?1285097852&quot; /&gt;
+        &lt;span class=&quot;name&quot;&gt;
+          &lt;a href=&quot;https://api.newrelic.com/accounts/1/applications/1&quot; class=&quot;application&quot;&gt;RPM&lt;/a&gt;
+        &lt;/span&gt;
+        &lt;span class=&quot;status reporting&quot;&gt;1 Host and 5 Instances&lt;/span&gt;
+      &lt;/td&gt;
+      &lt;td class=&quot;data apdex&quot;&gt;
+        &lt;a href=&quot;https://api.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dapdex&quot;&gt;0.99&lt;sub&gt;0.025&lt;/sub&gt;&lt;/a&gt;
+      &lt;/td&gt;
+      &lt;td class=&quot;data&quot;&gt;&lt;a href=&quot;https://api.newrelic.com/accounts/1/applications/1/transactions&quot;&gt;5.7 ms&lt;/a&gt;&lt;/td&gt;
+      &lt;td class=&quot;data&quot;&gt;&lt;a href=&quot;https://api.newrelic.com/accounts/1/applications/1/traced_errors&quot;&gt;0.00 %&lt;/a&gt;&lt;/td&gt;
+      &lt;td class=&quot;data throughput last&quot;&gt;
+        &lt;a href=&quot;https://api.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dthroughput&quot;&gt;92 rpm&lt;/a&gt;
+        &lt;div class=&quot;throughput_history&quot;&gt;
+          &lt;span class=&quot;yesterday&quot; title=&quot;Throughput down 2% from 24 hours ago&quot;&gt;&lt;strong class=&quot;down &quot;&gt;-2%&lt;/strong&gt;&lt;/span&gt;
+          &lt;span class=&quot;last_week&quot; title=&quot;Throughput up 0% from 7 days ago&quot;&gt;&lt;strong class=&quot;up &quot;&gt;0%&lt;/strong&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;script type=&quot;text/</span><span class="ruby-identifier">javascript</span><span class="ruby-string">&quot; charset=&quot;</span><span class="ruby-identifier">utf</span><span class="ruby-operator">-</span><span class="ruby-value">8</span><span class="ruby-string">&quot;&gt;
+&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
 
   // Link catching via event delegation
 
@@ -1597,7 +1727,7 @@ default account’s applications will be shown.</p>
   };
 
   var findLink = function(el){
-    while(el.nodeName.toLowerCase() !== &quot;</span><span class="ruby-identifier">body</span><span class="ruby-string">&quot;){
+    while(el.nodeName.toLowerCase() !== &quot;body&quot;){
       if(el.nodeName.toLowerCase() === 'a'){
         return el;
       }
@@ -1608,20 +1738,19 @@ default account’s applications will be shown.</p>
     return null;
   };
 
-  var table = document.getElementById(&quot;</span><span class="ruby-identifier">all_applications</span><span class="ruby-string">&quot;);
+  var table = document.getElementById(&quot;all_applications&quot;);
   table.onclick = linkCatcher;
 &lt;/script&gt;
 
   &lt;/div&gt;
-&lt;/div&gt;
-</span></pre>
+&lt;/div&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
-<h2 id="label-Dashboard+HTML+fragment+%28One+application%29">Dashboard HTML fragment (One application)</h2>
+<h2 id="label-Dashboard+HTML+fragment+%28One+application%29">Dashboard HTML fragment (One application)<span><a href="#label-Dashboard+HTML+fragment+%28One+application%29">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
 <p><code>https://api.newrelic.com/application_dashboard?application_id=:id</code></p>
@@ -1639,57 +1768,57 @@ default account’s applications will be shown.</p>
 <p>None available currently</p>
 </dd></dl>
 
-<h3 id="label-Request+Parameters">Request Parameters</h3>
+<h3 id="label-Request+Parameters">Request Parameters<span><a href="#label-Request+Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p><code>application_id</code>: the ID of the application to view</p>
 </li></ul>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Sample data:</p>
 
-<pre class="ruby"><span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;newrelic-rpm-2&quot;</span><span class="ruby-operator">&gt;</span>
-  <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;newrelic-rpm-2-content&quot;</span><span class="ruby-operator">&gt;</span>
-    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">style</span> <span class="ruby-identifier">type</span>=<span class="ruby-string">&quot;text/css&quot;</span> <span class="ruby-identifier">media</span>=<span class="ruby-string">&quot;screen&quot;</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">...</span><span class="ruby-identifier">embeded</span> <span class="ruby-identifier">styles</span><span class="ruby-operator">...</span>
-    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/style&gt;
+<pre>&lt;div id=&quot;newrelic-rpm-2&quot;&gt;
+  &lt;div id=&quot;newrelic-rpm-2-content&quot;&gt;
+    &lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
+      ...embeded styles...
+    &lt;/style&gt;
 
 &lt;table id=&quot;all_applications&quot; cellspacing=&quot;0&quot; class=&quot;section agent_display span-16&quot;&gt;
   &lt;thead&gt;
     &lt;tr&gt;
-      &lt;th class=&quot;header&quot;&gt;Application&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Apdex Score is a industry-standard measurement of customer satisfaction. It is calculated essentially as weighted response time. The larger number is your Apdex Score, out of 1, and the smaller number is the threshold for an acceptable response time, in seconds.&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;apdex&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Apdex</span> <span class="ruby-constant">Score</span> <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-string">&quot;http://support.newrelic.com/faqs/general/apdex&quot;</span> <span class="ruby-identifier">target</span>=<span class="ruby-string">&quot;_blank&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">img</span> <span class="ruby-identifier">alt</span>=<span class="ruby-string">&quot;?&quot;</span> <span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;https://api.newrelic.com/images/v2/12x12/moreinfo.png?1285097852&quot;</span> <span class="ruby-identifier">style</span>=<span class="ruby-string">&quot;border: 0px none;&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/a&gt;&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Response Time is the average time it took to generate a response to all requests.&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Resp</span>. <span class="ruby-constant">Time</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/th&gt;
-      &lt;th title=&quot;Errors is the percentage of your requests that received an error as a response.&quot;&gt;Errors&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">th</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput is total number of requests processed by your application per minute.&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;throughput last&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Throughput</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">br</span><span class="ruby-operator">&gt;</span>(<span class="ruby-identifier">change</span> <span class="ruby-identifier">from</span> <span class="ruby-operator">&lt;</span><span class="ruby-identifier">abbr</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;24 hours ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">24</span><span class="ruby-identifier">h</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/abbr&gt;/</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">abbr</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;7 days ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">7</span><span class="ruby-identifier">d</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/abbr&gt;)&lt;/</span><span class="ruby-identifier">th</span><span class="ruby-operator">&gt;</span>
-    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tr&gt;
-  &lt;/</span><span class="ruby-identifier">thead</span><span class="ruby-operator">&gt;</span>
-  <span class="ruby-operator">&lt;</span><span class="ruby-identifier">tbody</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application application_1&quot;</span><span class="ruby-operator">&gt;</span>
-    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">tr</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application_tier data&quot;</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">td</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;agent&quot;</span><span class="ruby-operator">&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">img</span> <span class="ruby-identifier">alt</span>=<span class="ruby-string">&quot;Normal&quot;</span> <span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;https://api.newrelic.com/images/v2/16x16/light-green.png?1285097852&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;name&quot;</span><span class="ruby-operator">&gt;</span>
-          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-string">&quot;https://api.newrelic.com/accounts/1/applications/1&quot;</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;application&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">RPM</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/a&gt;
-        &lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;status reporting&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">1</span> <span class="ruby-constant">Host</span> <span class="ruby-keyword">and</span> <span class="ruby-value">5</span> <span class="ruby-constant">Instances</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/span&gt;
-      &lt;/</span><span class="ruby-identifier">td</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">td</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;data apdex&quot;</span><span class="ruby-operator">&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">a</span> <span class="ruby-identifier">href</span>=<span class="ruby-node">&quot;https://api.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dapdex&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0.99</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">sub</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0.025</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/sub&gt;&lt;/</span><span class="ruby-identifier">a</span><span class="ruby-operator">&gt;</span>
-      <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/td&gt;
-      &lt;td class=&quot;data&quot;&gt;&lt;a href=&quot;https:/</span><span class="ruby-operator">/</span><span class="ruby-identifier">api</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">transactions</span><span class="ruby-string">&quot;&gt;5.7 ms&lt;/a&gt;&lt;/td&gt;
-      &lt;td class=&quot;</span><span class="ruby-identifier">data</span><span class="ruby-string">&quot;&gt;&lt;a href=&quot;</span><span class="ruby-identifier">https</span><span class="ruby-operator">:</span><span class="ruby-regexp">//</span><span class="ruby-identifier">api</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">traced_errors</span><span class="ruby-string">&quot;&gt;0.00 %&lt;/a&gt;&lt;/td&gt;
-      &lt;td class=&quot;</span><span class="ruby-identifier">data</span> <span class="ruby-identifier">throughput</span> <span class="ruby-identifier">last</span><span class="ruby-string">&quot;&gt;
-        &lt;a href=&quot;</span><span class="ruby-identifier">https</span><span class="ruby-operator">:</span><span class="ruby-regexp">//</span><span class="ruby-identifier">api</span>.<span class="ruby-identifier">newrelic</span>.<span class="ruby-identifier">com</span><span class="ruby-operator">/</span><span class="ruby-identifier">accounts</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">applications</span><span class="ruby-operator">/</span><span class="ruby-value">1</span><span class="ruby-operator">/</span><span class="ruby-identifier">transactions</span><span class="ruby-comment">#sort_by%3Dthroughput&quot;&gt;92 rpm&lt;/a&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;throughput_history&quot;</span><span class="ruby-operator">&gt;</span>
-          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;yesterday&quot;</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput down 2% from 24 hours ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">strong</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;down &quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">-2</span><span class="ruby-operator">%</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/strong&gt;&lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
-          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;last_week&quot;</span> <span class="ruby-identifier">title</span>=<span class="ruby-string">&quot;Throughput up 0% from 7 days ago&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">strong</span> <span class="ruby-keyword">class</span>=<span class="ruby-string">&quot;up &quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-operator">%</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/strong&gt;&lt;/</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
-        <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/div&gt;
-      &lt;/</span><span class="ruby-identifier">td</span><span class="ruby-operator">&gt;</span>
-    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/tr&gt;
-  &lt;/</span><span class="ruby-identifier">tbody</span><span class="ruby-operator">&gt;</span>
-<span class="ruby-operator">&lt;</span><span class="ruby-regexp">/table&gt;
+      &lt;th class=&quot;header&quot;&gt;Application&lt;/th&gt;
+      &lt;th title=&quot;Apdex Score is a industry-standard measurement of customer satisfaction. It is calculated essentially as weighted response time. The larger number is your Apdex Score, out of 1, and the smaller number is the threshold for an acceptable response time, in seconds.&quot; class=&quot;apdex&quot;&gt;Apdex Score &lt;a href=&quot;http://support.newrelic.com/faqs/general/apdex&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;?&quot; src=&quot;https://api.newrelic.com/images/v2/12x12/moreinfo.png?1285097852&quot; style=&quot;border: 0px none;&quot; /&gt;&lt;/a&gt;&lt;/th&gt;
+      &lt;th title=&quot;Response Time is the average time it took to generate a response to all requests.&quot;&gt;Resp. Time&lt;/th&gt;
+      &lt;th title=&quot;Errors is the percentage of your requests that received an error as a response.&quot;&gt;Errors&lt;/th&gt;
+      &lt;th title=&quot;Throughput is total number of requests processed by your application per minute.&quot; class=&quot;throughput last&quot;&gt;Throughput&lt;br&gt;(change from &lt;abbr title=&quot;24 hours ago&quot;&gt;24h&lt;/abbr&gt;/&lt;abbr title=&quot;7 days ago&quot;&gt;7d&lt;/abbr&gt;)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&quot;application application_1&quot;&gt;
+    &lt;tr class=&quot;application_tier data&quot;&gt;
+      &lt;td class=&quot;agent&quot;&gt;
+        &lt;img alt=&quot;Normal&quot; src=&quot;https://api.newrelic.com/images/v2/16x16/light-green.png?1285097852&quot; /&gt;
+        &lt;span class=&quot;name&quot;&gt;
+          &lt;a href=&quot;https://api.newrelic.com/accounts/1/applications/1&quot; class=&quot;application&quot;&gt;RPM&lt;/a&gt;
+        &lt;/span&gt;
+        &lt;span class=&quot;status reporting&quot;&gt;1 Host and 5 Instances&lt;/span&gt;
+      &lt;/td&gt;
+      &lt;td class=&quot;data apdex&quot;&gt;
+        &lt;a href=&quot;https://api.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dapdex&quot;&gt;0.99&lt;sub&gt;0.025&lt;/sub&gt;&lt;/a&gt;
+      &lt;/td&gt;
+      &lt;td class=&quot;data&quot;&gt;&lt;a href=&quot;https://api.newrelic.com/accounts/1/applications/1/transactions&quot;&gt;5.7 ms&lt;/a&gt;&lt;/td&gt;
+      &lt;td class=&quot;data&quot;&gt;&lt;a href=&quot;https://api.newrelic.com/accounts/1/applications/1/traced_errors&quot;&gt;0.00 %&lt;/a&gt;&lt;/td&gt;
+      &lt;td class=&quot;data throughput last&quot;&gt;
+        &lt;a href=&quot;https://api.newrelic.com/accounts/1/applications/1/transactions#sort_by%3Dthroughput&quot;&gt;92 rpm&lt;/a&gt;
+        &lt;div class=&quot;throughput_history&quot;&gt;
+          &lt;span class=&quot;yesterday&quot; title=&quot;Throughput down 2% from 24 hours ago&quot;&gt;&lt;strong class=&quot;down &quot;&gt;-2%&lt;/strong&gt;&lt;/span&gt;
+          &lt;span class=&quot;last_week&quot; title=&quot;Throughput up 0% from 7 days ago&quot;&gt;&lt;strong class=&quot;up &quot;&gt;0%&lt;/strong&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;script type=&quot;text/</span><span class="ruby-identifier">javascript</span><span class="ruby-string">&quot; charset=&quot;</span><span class="ruby-identifier">utf</span><span class="ruby-operator">-</span><span class="ruby-value">8</span><span class="ruby-string">&quot;&gt;
+&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
 
   // Link catching via event delegation
 
@@ -1709,7 +1838,7 @@ default account’s applications will be shown.</p>
   };
 
   var findLink = function(el){
-    while(el.nodeName.toLowerCase() !== &quot;</span><span class="ruby-identifier">body</span><span class="ruby-string">&quot;){
+    while(el.nodeName.toLowerCase() !== &quot;body&quot;){
       if(el.nodeName.toLowerCase() === 'a'){
         return el;
       }
@@ -1720,22 +1849,21 @@ default account’s applications will be shown.</p>
     return null;
   };
 
-  var table = document.getElementById(&quot;</span><span class="ruby-identifier">all_applications</span><span class="ruby-string">&quot;);
+  var table = document.getElementById(&quot;all_applications&quot;);
   table.onclick = linkCatcher;
 &lt;/script&gt;
 
   &lt;/div&gt;
-&lt;/div&gt;
-</span></pre>
+&lt;/div&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
 <p>Unknown Application (404)</p>
 </li></ul>
 
-<h2 id="label-Deployment+Notifications">Deployment Notifications</h2>
+<h2 id="label-Deployment+Notifications">Deployment Notifications<span><a href="#label-Deployment+Notifications">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>Unlike other API requests, the deployments API will accept either a license
 key (in the <code>x-license-key</code> header) or an API key (in the
@@ -1754,7 +1882,7 @@ in capistrano recipes.</p>
 <p><a href="NewRelicApi/Deployment.html">NewRelicApi::Account</a></p>
 </dd></dl>
 
-<h3 id="label-Request+Parameters">Request Parameters</h3>
+<h3 id="label-Request+Parameters">Request Parameters<span><a href="#label-Request+Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Exactly one of the following is required:</p>
 <ul><li>
@@ -1784,7 +1912,7 @@ this deployment</p>
 For example, you could set the <code>user</code> to <code>&quot;auto
 deployment script&quot;</code>.</p>
 
-<h3 id="label-Example">Example</h3>
+<h3 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Here’s an example using <code>curl</code>:</p>
 
@@ -1796,7 +1924,7 @@ look like this:</p>
 
 <pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -d &quot;deployment[app_name]=iMyFace.ly Production&quot; -d &quot;deployment[description]=This deployment was sent using curl&quot; -d &quot;deployment[changelog]=many hands make light work&quot; -d &quot;deployment[user]=Joe User&quot; https://api.newrelic.com/deployments.xml</pre>
 
-<h2 id="label-Metric+Names">Metric Names</h2>
+<h2 id="label-Metric+Names">Metric Names<span><a href="#label-Metric+Names">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>Fetches all metrics for an application, or allows you to use a regular
 expression to get a subset of the metrics. These metrics are used to
@@ -1838,7 +1966,7 @@ for the customer, and <code>:format</code> with one of (<code>json</code>,
 <p>This API should be called at most once per minute.</p>
 </dd></dl>
 
-<h3 id="label-Request+Parameters">Request Parameters</h3>
+<h3 id="label-Request+Parameters">Request Parameters<span><a href="#label-Request+Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p><code>re</code>: A regular expression to filter the metric names by. This
 is Optional.</p>
@@ -1847,7 +1975,7 @@ is Optional.</p>
 default the limit is 5000.</p>
 </li></ul>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Note: Metric names will only be returned to Standard (and higher)
 customers.</p>
@@ -1887,7 +2015,7 @@ href="https://api.newrelic.com/api/v1/agents/:agent_id/metrics.xml?re=WebTransac
   &lt;/metric&gt;
 &lt;/metrics&gt;</pre>
 
-<h3 id="label-Fields">Fields</h3>
+<h3 id="label-Fields">Fields<span><a href="#label-Fields">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Several different values are recorded or computed for each metric. Each
 value is returned in a ‘field’ in the metric data API response. Each field
@@ -1958,7 +2086,7 @@ times &gt; T and &lt;= 4T</p>
 response times &gt;4T (or are errors)</p>
 </li></ul>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
@@ -1966,7 +2094,7 @@ response times &gt;4T (or are errors)</p>
 format and will contain the error message(s).</p>
 </li></ul>
 
-<h2 id="label-Metric+Data">Metric Data</h2>
+<h2 id="label-Metric+Data">Metric Data<span><a href="#label-Metric+Data">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>Returns the data values for metrics collected by New Relic for your
 application. You can use this API to build your own view of almost any
@@ -2008,7 +2136,7 @@ for the customer, and <code>:format</code> with one of (<code>json</code>,
 any point.</p>
 </dd></dl>
 
-<h3 id="label-Request+Parameters">Request Parameters</h3>
+<h3 id="label-Request+Parameters">Request Parameters<span><a href="#label-Request+Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p><code>app</code> or <code>agent_id</code>: Application name, or agent ID,
 respectively. The application name must be an exact match. You can pass in
@@ -2057,7 +2185,7 @@ series. Summary results do not include the <code>begin</code> and
 separate row for each time segment.</p>
 </li></ul>
 
-<h3 id="label-Data+Returned">Data Returned</h3>
+<h3 id="label-Data+Returned">Data Returned<span><a href="#label-Data+Returned">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Note: Metric data will only be returned to Standard (and higher) customers.</p>
 
@@ -2101,7 +2229,7 @@ href="https://api.newrelic.com/api/v1/accounts/:account_id/metrics/data.xml?begi
   &lt;/metric&gt;
 &lt;/metrics&gt;</pre>
 
-<h3 id="label-Possible+Error+Conditions">Possible Error Conditions</h3>
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 <ul><li>
 <p>Invalid API Key (403)</p>
 </li><li>
@@ -2109,7 +2237,7 @@ href="https://api.newrelic.com/api/v1/accounts/:account_id/metrics/data.xml?begi
 format and will contain the error message(s).</p>
 </li></ul>
 
-<h2 id="label-Copyright">Copyright</h2>
+<h2 id="label-Copyright">Copyright<span><a href="#label-Copyright">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>Copyright © 2012 New Relic, Inc.</p>
 
@@ -2119,7 +2247,7 @@ format and will contain the error message(s).</p>
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 
