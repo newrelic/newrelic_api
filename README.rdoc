@@ -573,7 +573,7 @@ The following settings can be updated:
 Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
 You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
-=== Example
+=== Examples
 
 This example uses curl to enable alerts for a server.
 
