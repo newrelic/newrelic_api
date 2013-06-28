@@ -634,6 +634,53 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 <p>Invalid API Key (403)</p>
 </li></ul>
 
+<h2 id="label-Find+servers">Find servers<span><a href="#label-Find+servers">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt>URL
+<dd>
+<p><code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/find.xml</code></p>
+</dd><dt>Method
+<dd>
+<p>POST</p>
+</dd><dt>Parameters
+<dd>
+<p>name, a string representing the host name, or partial host name, of the
+server you are trying to find.</p>
+</dd><dt>Restrictions
+<dd>
+<p>None</p>
+</dd></dl>
+
+<p>Replace <code>:account_id</code> with your account number. You can find
+your account number in the browser URL when you log in to <a
+href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
+
+<h3 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>This example uses curl to find servers that match “my-hostname”.</p>
+
+<pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -X PUT -d &quot;name=my-hostname&quot; https://api.newrelic.com/api/v1/accounts/1/servers/find.xml</pre>
+
+<p>Returned:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;servers type=&quot;array&quot;&gt;
+  &lt;server&gt;
+    &lt;overview-url&gt;https://rpm.newrelic.com/accounts/1/servers/555&lt;/overview-url&gt;
+    &lt;hostname&gt;my-hostname.newrelic.com&lt;/hostname&gt;
+    &lt;id type=&quot;integer&quot;&gt;555&lt;/id&gt;
+  &lt;/server&gt;
+  &lt;server&gt;
+    &lt;overview-url&gt;https://rpm.newrelic.com/accounts/1/servers/556&lt;/overview-url&gt;
+    &lt;hostname&gt;my-hostname-2.newrelic.com&lt;/hostname&gt;
+    &lt;id type=&quot;integer&quot;&gt;556&lt;/id&gt;
+  &lt;/server&gt;
+&lt;server&gt;</pre>
+
+<h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<ul><li>
+<p>Invalid API Key (403)</p>
+</li></ul>
+
 <h2 id="label-Delete+servers">Delete servers<span><a href="#label-Delete+servers">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <dl class="rdoc-list note-list"><dt>URL
 <dd>
@@ -704,6 +751,7 @@ href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
     &lt;server-id type=&quot;integer&quot;&gt;222&lt;/server-id&gt;
     &lt;hostname&gt;my-hostname.example.com&lt;/hostname&gt;
     &lt;alerts-enabled&gt;false&lt;/alerts-enabled&gt;
+    &lt;display-name&gt;My Hostname&lt;/display-name&gt;
     &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/server_settings/222&lt;/url&gt;
   &lt;/server-setting&gt;
 &lt;/servers-settings&gt;</pre>
@@ -738,6 +786,8 @@ in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
   &lt;server-id type=&quot;integer&quot;&gt;222&lt;/server-id&gt;
   &lt;hostname&gt;my-hostname.example.com&lt;/hostname&gt;
   &lt;alerts-enabled&gt;false&lt;/alerts-enabled&gt;
+  &lt;display-name&gt;My Hostname&lt;/display-name&gt;
+  &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/server_settings/222&lt;/url&gt;
 &lt;/server-setting&gt;</pre>
 
 <h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
@@ -769,13 +819,17 @@ setting for the server that effects all users. When <code>false</code> the
 server will not generate alerts or notifications. When <code>true</code>
 the server will generate alerts when it is experiencing problems and
 registered users will be notified.</p>
+</li><li>
+<p><code>display_name</code>: Sets a display name for the server that will be
+used throughout the New Relic user interface. If no display name is set,
+the host name of the  server will be used in the user interface.</p>
 </li></ul>
 
 <p>Replace <code>:account_id</code> and <code>:server_id</code> with your
 account and server number. You can see this in the browser URL when you log
 in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
 
-<h3 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Examples">Examples<span><a href="#label-Examples">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>This example uses curl to enable alerts for a server.</p>
 
@@ -788,6 +842,23 @@ in to <a href="https:/rpm.newrelic.com">rpm.newrelic.com</a>.</p>
   &lt;server-id type=&quot;integer&quot;&gt;222&lt;/server-id&gt;
   &lt;hostname&gt;my-hostname.example.com&lt;/hostname&gt;
   &lt;alerts-enabled&gt;true&lt;/alerts-enabled&gt;
+  &lt;display-name&gt;My Hostname&lt;/display-name&gt;
+  &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/server_settings/222&lt;/url&gt;
+&lt;/server-setting&gt;</pre>
+
+<p>This example uses curl to set a display name for a server.</p>
+
+<pre>curl -H &quot;x-api-key:YOUR_API_KEY_HERE&quot; -X PUT -d &quot;display_name=My Hostname&quot; https://api.newrelic.com/api/v1/accounts/1/server_settings/222.xml</pre>
+
+<p>Result:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;server-setting&gt;
+  &lt;server-id type=&quot;integer&quot;&gt;222&lt;/server-id&gt;
+  &lt;hostname&gt;my-hostname.example.com&lt;/hostname&gt;
+  &lt;alerts-enabled&gt;false&lt;/alerts-enabled&gt;
+  &lt;display-name&gt;My Hostname&lt;/display-name&gt;
+  &lt;url&gt;https://api.newrelic.com/api/v1/accounts/1/server_settings/222&lt;/url&gt;
 &lt;/server-setting&gt;</pre>
 
 <h3 id="label-Possible+Error+Conditions">Possible Error Conditions<span><a href="#label-Possible+Error+Conditions">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
