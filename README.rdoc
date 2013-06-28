@@ -422,6 +422,43 @@ Sample data:
 
 * Invalid API Key (403)
 
+== Find servers
+
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/find.xml</code>
+Method::         POST
+Parameters::     name, a string representing the host name, or partial host name, of the server you are trying to find.
+Restrictions::   None
+
+Replace <tt>:account_id</tt> with your account number.
+You can find your account number in the browser URL
+when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
+
+=== Example
+
+This example uses curl to find servers that match "my-hostname".
+
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "name=my-hostname" https://api.newrelic.com/api/v1/accounts/1/servers/find.xml
+
+Returned:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <servers type="array">
+      <server>
+        <overview-url>https://rpm.newrelic.com/accounts/1/servers/555</overview-url>
+        <hostname>my-hostname.newrelic.com</hostname>
+        <id type="integer">555</id>
+      </server>
+      <server>
+        <overview-url>https://rpm.newrelic.com/accounts/1/servers/556</overview-url>
+        <hostname>my-hostname-2.newrelic.com</hostname>
+        <id type="integer">556</id>
+      </server>
+    <server>
+
+=== Possible Error Conditions
+
+* Invalid API Key (403)
+
 == Delete servers
 
 URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:id</code>
@@ -477,6 +514,7 @@ Sample data:
         <server-id type="integer">222</server-id>
         <hostname>my-hostname.example.com</hostname>
         <alerts-enabled>false</alerts-enabled>
+        <display-name>My Hostname</display-name>
         <url>https://api.newrelic.com/api/v1/accounts/1/server_settings/222</url>
       </server-setting>
     </servers-settings>
@@ -503,6 +541,8 @@ Sample data:
       <server-id type="integer">222</server-id>
       <hostname>my-hostname.example.com</hostname>
       <alerts-enabled>false</alerts-enabled>
+      <display-name>My Hostname</display-name>
+      <url>https://api.newrelic.com/api/v1/accounts/1/server_settings/222</url>
     </server-setting>
 
 === Possible Error Conditions
@@ -526,6 +566,10 @@ The following settings can be updated:
   <code>true</code> the server will generate alerts when it is experiencing problems
   and registered users will be notified.
 
+* +display_name+: Sets a display name for the server that will be used throughout
+  the New Relic user interface. If no display name is set, the host name of the 
+  server will be used in the user interface.
+
 Replace <tt>:account_id</tt> and <tt>:server_id</tt> with your account and server number.
 You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
@@ -533,7 +577,7 @@ You can see this in the browser URL when you log in to {rpm.newrelic.com}[link:h
 
 This example uses curl to enable alerts for a server.
 
-    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "alerts_enabled=true" https://api.newrelic.com/api/v1/accounts/1/server_settings/222.xml   
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "alerts_enabled=true" https://api.newrelic.com/api/v1/accounts/1/server_settings/222.xml
 
 Result:
 
@@ -542,6 +586,23 @@ Result:
       <server-id type="integer">222</server-id>
       <hostname>my-hostname.example.com</hostname>
       <alerts-enabled>true</alerts-enabled>
+      <display-name>My Hostname</display-name>
+      <url>https://api.newrelic.com/api/v1/accounts/1/server_settings/222</url>
+    </server-setting>
+
+This example uses curl to set a display name for a server.
+
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "display_name=My Hostname" https://api.newrelic.com/api/v1/accounts/1/server_settings/222.xml
+
+Result:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <server-setting>
+      <server-id type="integer">222</server-id>
+      <hostname>my-hostname.example.com</hostname>
+      <alerts-enabled>false</alerts-enabled>
+      <display-name>My Hostname</display-name>
+      <url>https://api.newrelic.com/api/v1/accounts/1/server_settings/222</url>
     </server-setting>
 
 === Possible Error Conditions
