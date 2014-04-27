@@ -1092,7 +1092,7 @@ Sample data:
     </threshold-values>
 
 * Apdex is a measurement of the experience of people hitting your site, with a value between 0 and 1.
-  Errors are poor performance lower the score.
+  Errors and poor performance lower the score.
 * Application Busy shows the count of apps (agents) reporting
   and the percentage of wallclock time that is spent handing requests as an average of the reporting apps.
   In other words, how often your app your busy handling stuff compared to the elapsed time (as a percentage).
