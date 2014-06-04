@@ -416,7 +416,7 @@ Sample data:
         <hostname>my-hostname-2.newrelic.com</hostname>
         <id type="integer">556</id>
       </server>
-    <server>
+    </servers>
 
 === Possible Error Conditions
 
