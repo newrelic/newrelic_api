@@ -437,7 +437,7 @@ when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 This example uses curl to find servers that match "my-hostname".
 
-    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "name=my-hostname" https://api.newrelic.com/api/v1/accounts/1/servers/find.xml
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X POST -d "name=my-hostname" https://api.newrelic.com/api/v1/accounts/1/servers/find.xml
 
 Returned:
 
