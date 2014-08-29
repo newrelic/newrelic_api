@@ -214,8 +214,8 @@ module NewRelicApi
   #
   # Following are optional parameters:
   # * <tt>description</tt>: Text annotation for the deployment -- notes for you
-  # * <tt>changelog</tt>: A list of changes for this deployment
   # * <tt>revision</tt>: A revision number (e.g., git commit SHA)
+  # * <tt>changelog</tt>: A list of changes for this deployment
   # * <tt>user</tt>: The name of the user/process that triggered this deployment
   #
   # ==Example
