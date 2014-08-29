@@ -1383,7 +1383,7 @@ Exactly one of the following is required:
 
 Following are optional parameters:
 * <tt>deployment[changelog]</tt>: A list of changes for this deployment
-* <tt>deployment[description]</tt>: Text annotation for the deployment &mdash; notes for you
+* <tt>deployment[description]</tt>: Text annotation for the deployment -- notes for you
 * <tt>deployment[revision]</tt>: A revision number (e.g., git commit SHA)
 * <tt>deployment[user]</tt>: The name of the user/process that triggered this deployment
 
