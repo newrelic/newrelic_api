@@ -461,7 +461,7 @@ Returned:
 
 == Delete servers
 
-URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:id</code>
+URL::            <code>https://api.newrelic.com/api/v1/accounts/:account_id/servers/:id.xml</code>
 Method::         DELETE
 Restrictions::   None
 
