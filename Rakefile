@@ -13,7 +13,7 @@ require 'rdiscount'
 
 require 'ci/reporter/rake/test_unit'
 API_VERSION = File.read('CHANGELOG')[/^.*$/]
-TITLE = %Q{Documentation and helper code for the New Relic API}
+TITLE = %Q{Deprecated: Helper code for the New Relic API}
 RDOC_FILES=Dir['README*', 'CHANGELOG', 'sample*']
 Jeweler::Tasks.new do |gem|
   gem.version = API_VERSION
@@ -21,7 +21,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://www.github.com/newrelic/newrelic_api"
   gem.license = "MIT"
   gem.summary = TITLE
-  gem.description = %Q{Use this gem to access New Relic application information via a REST api}
+  gem.description = %Q{See https://docs.newrelic.com/docs/apm/apis for details on our current API}
   gem.email = "support@newrelic.com"
   gem.authors = ["New Relic"]
   gem.extra_rdoc_files = FileList[*RDOC_FILES]
@@ -30,7 +30,6 @@ Jeweler::Tasks.new do |gem|
       "--title" << TITLE <<
       "-m" << "README.rdoc"
 end
-#Jeweler::RubygemsDotOrgTasks.new
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|

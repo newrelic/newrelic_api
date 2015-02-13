@@ -1,3 +1,11 @@
+1.2.5
+
+The gem is now deprecated.  This version only contains some minor doc
+corrections and the deprecation notice.  It will not be updated in rubygems.
+
+* Update README to reflect this gem is no longer maintained.
+* Merge in some pull requests correcting documentation
+
 1.2.4
 
 * Update docs to reflect that api.newrelic.com should be used instead of rpm.newrelic.com
