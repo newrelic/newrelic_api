@@ -416,7 +416,7 @@ Sample data:
         <hostname>my-hostname-2.newrelic.com</hostname>
         <id type="integer">556</id>
       </server>
-    <server>
+    </servers>
 
 === Possible Error Conditions
 
@@ -437,7 +437,7 @@ when you log in to {rpm.newrelic.com}[link:https://rpm.newrelic.com].
 
 This example uses curl to find servers that match "my-hostname".
 
-    curl -H "x-api-key:YOUR_API_KEY_HERE" -X PUT -d "name=my-hostname" https://api.newrelic.com/api/v1/accounts/1/servers/find.xml
+    curl -H "x-api-key:YOUR_API_KEY_HERE" -X POST -d "name=my-hostname" https://api.newrelic.com/api/v1/accounts/1/servers/find.xml
 
 Returned:
 
@@ -480,7 +480,7 @@ Sample data:
       <server name="My Server" id="123456">
         <result>deleted</result>
       </server>
-    <server>
+    </servers>
 
 Or:
 
@@ -489,7 +489,7 @@ Or:
       <server name="My Server" id="123456">
         <result>failed</result>
       </server>
-    <server>
+    </servers>
 
 === Possible Error Conditions
 
