@@ -55,6 +55,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rdiscount>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, [">= 3.3"])
       s.add_development_dependency(%q<logging>, [">= 0"])
+      s.add_development_dependency(%q<activeresource>, [">= 0"])
     else
       s.add_dependency(%q<rails>, ["= 3.0.7"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
@@ -65,6 +66,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rdiscount>, [">= 0"])
       s.add_dependency(%q<rdoc>, [">= 3.3"])
       s.add_dependency(%q<logging>, [">= 0"])
+      s.add_dependency(%q<activeresource>, [">= 0"])
     end
   else
     s.add_dependency(%q<rails>, ["= 3.0.7"])
@@ -76,6 +78,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rdiscount>, [">= 0"])
     s.add_dependency(%q<rdoc>, [">= 3.3"])
     s.add_dependency(%q<logging>, [">= 0"])
+    s.add_dependency(%q<activeresource>, [">= 0"])
   end
 end
 
