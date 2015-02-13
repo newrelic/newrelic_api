@@ -1382,12 +1382,10 @@ Exactly one of the following is required:
 * <tt>deployment[application_id]</tt>: The application id, found in the URL when viewing the application in RPM.
 
 Following are optional parameters:
-* <tt>deployment[changelog]</tt> or <tt>deployment[changes]</tt>: A list of changes for this deployment
-* <tt>deployment[description]</tt>: Text annotation for the deployment &mdash; notes for you
+* <tt>deployment[description]</tt>: Text annotation for the deployment -- notes for you
 * <tt>deployment[revision]</tt>: A revision number (e.g., git commit SHA)
+* <tt>deployment[changelog]</tt>: A list of changes for this deployment
 * <tt>deployment[user]</tt>: The name of the user/process that triggered this deployment
-* <tt>deployment[appname]</tt>: Name of the application
-* <tt>deployment[environment]</tt>: The environment for this deployment
 
 The optional fields may be set to anything you wish,
 and are not validated.

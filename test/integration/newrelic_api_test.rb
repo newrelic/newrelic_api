@@ -110,7 +110,7 @@ class NewrelicApiTest < ActiveSupport::TestCase
 
     should "deploy" do
       # lookup an app by name
-      deployment = NewRelicApi::Deployment.create :appname => 'gold app'
+      deployment = NewRelicApi::Deployment.create :app_name => 'gold app'
       assert deployment.valid?, deployment.inspect
 
       # lookup an app by name
@@ -122,7 +122,7 @@ class NewrelicApiTest < ActiveSupport::TestCase
       application_id = apps.first.id
 
       # lookup by id won't work with appname
-      deployment = NewRelicApi::Deployment.create :appname => application_id
+      deployment = NewRelicApi::Deployment.create :app_name => application_id
       assert !deployment.valid?, deployment.inspect
 
       # lookup by id works with application_id
